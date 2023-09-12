@@ -1,0 +1,11 @@
+C:\Users\Usuario\Desktop\repo_progII\FacturasApp\WindowsFormsApp1\bin\Debug\WindowsFormsApp1.exe.config
+C:\Users\Usuario\Desktop\repo_progII\FacturasApp\WindowsFormsApp1\bin\Debug\WindowsFormsApp1.exe
+C:\Users\Usuario\Desktop\repo_progII\FacturasApp\WindowsFormsApp1\bin\Debug\WindowsFormsApp1.pdb
+C:\Users\Usuario\Desktop\repo_progII\FacturasApp\WindowsFormsApp1\obj\Debug\FacturasApp.csproj.AssemblyReference.cache
+C:\Users\Usuario\Desktop\repo_progII\FacturasApp\WindowsFormsApp1\obj\Debug\WindowsFormsApp1.FrmFacturacion.resources
+C:\Users\Usuario\Desktop\repo_progII\FacturasApp\WindowsFormsApp1\obj\Debug\WindowsFormsApp1.FrmPrincipal.resources
+C:\Users\Usuario\Desktop\repo_progII\FacturasApp\WindowsFormsApp1\obj\Debug\WindowsFormsApp1.Properties.Resources.resources
+C:\Users\Usuario\Desktop\repo_progII\FacturasApp\WindowsFormsApp1\obj\Debug\FacturasApp.csproj.GenerateResource.cache
+C:\Users\Usuario\Desktop\repo_progII\FacturasApp\WindowsFormsApp1\obj\Debug\FacturasApp.csproj.CoreCompileInputs.cache
+C:\Users\Usuario\Desktop\repo_progII\FacturasApp\WindowsFormsApp1\obj\Debug\WindowsFormsApp1.exe
+C:\Users\Usuario\Desktop\repo_progII\FacturasApp\WindowsFormsApp1\obj\Debug\WindowsFormsApp1.pdb
