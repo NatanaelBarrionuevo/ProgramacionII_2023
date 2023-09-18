@@ -1,0 +1,7 @@
+[Password| -longitud; -valor| +Password(largo)
+;+EsFuerte();-GenerarPassword()]
+[Usuario| -email; -fechaAlta; -password|+resetPass(largo)]
+[Usuario]-tiene un>[Password]
+[Program||+Main()]
+[Program]-.- crea>[Usuario]
+[Program]-.- crea>[Password]

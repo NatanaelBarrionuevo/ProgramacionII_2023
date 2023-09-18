@@ -1,0 +1,8 @@
+D:\UTN\ProgramacionI\2023\1Cuatrimestre\AppBiblioteca1w2\bin\Debug\AppBiblioteca1w2.exe.config
+D:\UTN\ProgramacionI\2023\1Cuatrimestre\AppBiblioteca1w2\bin\Debug\AppBiblioteca1w2.exe
+D:\UTN\ProgramacionI\2023\1Cuatrimestre\AppBiblioteca1w2\bin\Debug\AppBiblioteca1w2.pdb
+D:\UTN\ProgramacionI\2023\1Cuatrimestre\AppBiblioteca1w2\obj\Debug\AppBiblioteca1w2.csproj.AssemblyReference.cache
+D:\UTN\ProgramacionI\2023\1Cuatrimestre\AppBiblioteca1w2\obj\Debug\AppBiblioteca1w2.csproj.SuggestedBindingRedirects.cache
+D:\UTN\ProgramacionI\2023\1Cuatrimestre\AppBiblioteca1w2\obj\Debug\AppBiblioteca1w2.csproj.CoreCompileInputs.cache
+D:\UTN\ProgramacionI\2023\1Cuatrimestre\AppBiblioteca1w2\obj\Debug\AppBiblioteca1w2.exe
+D:\UTN\ProgramacionI\2023\1Cuatrimestre\AppBiblioteca1w2\obj\Debug\AppBiblioteca1w2.pdb

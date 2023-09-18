@@ -1,0 +1,8 @@
+D:\UTN\ProgramacionI\2023\1Cuatrimestre\AppBanco\bin\Debug\AppBanco.exe.config
+D:\UTN\ProgramacionI\2023\1Cuatrimestre\AppBanco\bin\Debug\AppBanco.exe
+D:\UTN\ProgramacionI\2023\1Cuatrimestre\AppBanco\bin\Debug\AppBanco.pdb
+D:\UTN\ProgramacionI\2023\1Cuatrimestre\AppBanco\obj\Debug\AppBanco.csproj.AssemblyReference.cache
+D:\UTN\ProgramacionI\2023\1Cuatrimestre\AppBanco\obj\Debug\AppBanco.csproj.SuggestedBindingRedirects.cache
+D:\UTN\ProgramacionI\2023\1Cuatrimestre\AppBanco\obj\Debug\AppBanco.csproj.CoreCompileInputs.cache
+D:\UTN\ProgramacionI\2023\1Cuatrimestre\AppBanco\obj\Debug\AppBanco.exe
+D:\UTN\ProgramacionI\2023\1Cuatrimestre\AppBanco\obj\Debug\AppBanco.pdb

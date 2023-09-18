@@ -1,0 +1,15 @@
+C:\Users\Martin\source\repos\CartasApp\bin\Debug\net6.0\CartasApp.exe
+C:\Users\Martin\source\repos\CartasApp\bin\Debug\net6.0\CartasApp.deps.json
+C:\Users\Martin\source\repos\CartasApp\bin\Debug\net6.0\CartasApp.runtimeconfig.json
+C:\Users\Martin\source\repos\CartasApp\bin\Debug\net6.0\CartasApp.dll
+C:\Users\Martin\source\repos\CartasApp\bin\Debug\net6.0\CartasApp.pdb
+C:\Users\Martin\source\repos\CartasApp\obj\Debug\net6.0\CartasApp.csproj.AssemblyReference.cache
+C:\Users\Martin\source\repos\CartasApp\obj\Debug\net6.0\CartasApp.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Martin\source\repos\CartasApp\obj\Debug\net6.0\CartasApp.AssemblyInfoInputs.cache
+C:\Users\Martin\source\repos\CartasApp\obj\Debug\net6.0\CartasApp.AssemblyInfo.cs
+C:\Users\Martin\source\repos\CartasApp\obj\Debug\net6.0\CartasApp.csproj.CoreCompileInputs.cache
+C:\Users\Martin\source\repos\CartasApp\obj\Debug\net6.0\CartasApp.dll
+C:\Users\Martin\source\repos\CartasApp\obj\Debug\net6.0\refint\CartasApp.dll
+C:\Users\Martin\source\repos\CartasApp\obj\Debug\net6.0\CartasApp.pdb
+C:\Users\Martin\source\repos\CartasApp\obj\Debug\net6.0\CartasApp.genruntimeconfig.cache
+C:\Users\Martin\source\repos\CartasApp\obj\Debug\net6.0\ref\CartasApp.dll
