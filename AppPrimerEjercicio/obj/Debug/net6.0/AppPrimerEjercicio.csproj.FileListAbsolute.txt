@@ -1,0 +1,15 @@
+C:\Users\Martin\source\repos\AppPrimerEjercicio\bin\Debug\net6.0\AppPrimerEjercicio.exe
+C:\Users\Martin\source\repos\AppPrimerEjercicio\bin\Debug\net6.0\AppPrimerEjercicio.deps.json
+C:\Users\Martin\source\repos\AppPrimerEjercicio\bin\Debug\net6.0\AppPrimerEjercicio.runtimeconfig.json
+C:\Users\Martin\source\repos\AppPrimerEjercicio\bin\Debug\net6.0\AppPrimerEjercicio.dll
+C:\Users\Martin\source\repos\AppPrimerEjercicio\bin\Debug\net6.0\AppPrimerEjercicio.pdb
+C:\Users\Martin\source\repos\AppPrimerEjercicio\obj\Debug\net6.0\AppPrimerEjercicio.csproj.AssemblyReference.cache
+C:\Users\Martin\source\repos\AppPrimerEjercicio\obj\Debug\net6.0\AppPrimerEjercicio.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Martin\source\repos\AppPrimerEjercicio\obj\Debug\net6.0\AppPrimerEjercicio.AssemblyInfoInputs.cache
+C:\Users\Martin\source\repos\AppPrimerEjercicio\obj\Debug\net6.0\AppPrimerEjercicio.AssemblyInfo.cs
+C:\Users\Martin\source\repos\AppPrimerEjercicio\obj\Debug\net6.0\AppPrimerEjercicio.csproj.CoreCompileInputs.cache
+C:\Users\Martin\source\repos\AppPrimerEjercicio\obj\Debug\net6.0\AppPrimerEjercicio.dll
+C:\Users\Martin\source\repos\AppPrimerEjercicio\obj\Debug\net6.0\refint\AppPrimerEjercicio.dll
+C:\Users\Martin\source\repos\AppPrimerEjercicio\obj\Debug\net6.0\AppPrimerEjercicio.pdb
+C:\Users\Martin\source\repos\AppPrimerEjercicio\obj\Debug\net6.0\AppPrimerEjercicio.genruntimeconfig.cache
+C:\Users\Martin\source\repos\AppPrimerEjercicio\obj\Debug\net6.0\ref\AppPrimerEjercicio.dll

@@ -1,0 +1,17 @@
+C:\Users\MARTIN\source\repos\AutoApp\AutoApp\bin\Debug\AutoApp.exe.config
+C:\Users\MARTIN\source\repos\AutoApp\AutoApp\bin\Debug\AutoApp.exe
+C:\Users\MARTIN\source\repos\AutoApp\AutoApp\bin\Debug\AutoApp.pdb
+C:\Users\MARTIN\source\repos\AutoApp\AutoApp\obj\Debug\AutoApp.csprojAssemblyReference.cache
+C:\Users\MARTIN\source\repos\AutoApp\AutoApp\obj\Debug\AutoApp.csproj.CoreCompileInputs.cache
+C:\Users\MARTIN\source\repos\AutoApp\AutoApp\obj\Debug\AutoApp.exe
+C:\Users\MARTIN\source\repos\AutoApp\AutoApp\obj\Debug\AutoApp.pdb
+C:\Users\MARTIN\source\repos\AutoApp\AutoApp\obj\Debug\AutoApp.Frm_Playa.resources
+C:\Users\MARTIN\source\repos\AutoApp\AutoApp\obj\Debug\AutoApp.csproj.GenerateResource.cache
+C:\Users\Martin\Desktop\AutoApp\AutoApp\AutoApp\bin\Debug\AutoApp.exe.config
+C:\Users\Martin\Desktop\AutoApp\AutoApp\AutoApp\bin\Debug\AutoApp.exe
+C:\Users\Martin\Desktop\AutoApp\AutoApp\AutoApp\bin\Debug\AutoApp.pdb
+C:\Users\Martin\Desktop\AutoApp\AutoApp\AutoApp\obj\Debug\AutoApp.csproj.AssemblyReference.cache
+C:\Users\Martin\Desktop\AutoApp\AutoApp\AutoApp\obj\Debug\AutoApp.csproj.SuggestedBindingRedirects.cache
+C:\Users\Martin\Desktop\AutoApp\AutoApp\AutoApp\obj\Debug\AutoApp.csproj.CoreCompileInputs.cache
+C:\Users\Martin\Desktop\AutoApp\AutoApp\AutoApp\obj\Debug\AutoApp.exe
+C:\Users\Martin\Desktop\AutoApp\AutoApp\AutoApp\obj\Debug\AutoApp.pdb
