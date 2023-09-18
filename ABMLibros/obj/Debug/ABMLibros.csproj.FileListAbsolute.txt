@@ -1,0 +1,11 @@
+D:\UTN\ProgramacionI\2023\1Cuatrimestre\ABMLibros\bin\Debug\ABMLibros.exe.config
+D:\UTN\ProgramacionI\2023\1Cuatrimestre\ABMLibros\bin\Debug\ABMLibros.exe
+D:\UTN\ProgramacionI\2023\1Cuatrimestre\ABMLibros\bin\Debug\ABMLibros.pdb
+D:\UTN\ProgramacionI\2023\1Cuatrimestre\ABMLibros\obj\Debug\ABMLibros.csproj.AssemblyReference.cache
+D:\UTN\ProgramacionI\2023\1Cuatrimestre\ABMLibros\obj\Debug\ABMLibros.csproj.SuggestedBindingRedirects.cache
+D:\UTN\ProgramacionI\2023\1Cuatrimestre\ABMLibros\obj\Debug\ABMLibros.frmLibros.resources
+D:\UTN\ProgramacionI\2023\1Cuatrimestre\ABMLibros\obj\Debug\ABMLibros.Properties.Resources.resources
+D:\UTN\ProgramacionI\2023\1Cuatrimestre\ABMLibros\obj\Debug\ABMLibros.csproj.GenerateResource.cache
+D:\UTN\ProgramacionI\2023\1Cuatrimestre\ABMLibros\obj\Debug\ABMLibros.csproj.CoreCompileInputs.cache
+D:\UTN\ProgramacionI\2023\1Cuatrimestre\ABMLibros\obj\Debug\ABMLibros.exe
+D:\UTN\ProgramacionI\2023\1Cuatrimestre\ABMLibros\obj\Debug\ABMLibros.pdb
