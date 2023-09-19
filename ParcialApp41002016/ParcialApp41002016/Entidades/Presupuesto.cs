@@ -19,23 +19,26 @@ namespace ParcialApp41002016.Entidades
         private DateTime fecha_baja;
         private List<DetallePresupuesto> detalle;
 
-        public int Cod_presupuesto { get; set; }
-        public DateTime Fecha { get; set; }
+        public int Cod_presupuesto { get { return cod_presupuesto; } set { cod_presupuesto = value; } }
+        public DateTime Fecha { get { return fecha; } set { fecha = value; } }
 
-        public string Cliente { get; set; }
+        public string Cliente { get { return cliente; } set { cliente = value; } }
 
-        public double Monto { get; set; }
+        public double Monto { get { return monto; } set { monto = value; } }
 
-        public double Descuento { get; set; }
+        public double Descuento { get { return descuento; } set { descuento = value; } }
 
-        public bool Activo { get; set; }
+        public bool Activo { get { return activo; } set { activo = value; } }
 
-        public DateTime Fecha_baja { get; set; }
+        public DateTime Fecha_baja { get { return fecha_baja; } set { fecha_baja = value; } }
 
-        public List<DetallePresupuesto> Detalle { get; set; }
+        public List<DetallePresupuesto> Detalle { get { return detalle; } set { detalle = value; } }
         public Presupuesto()
         {
-
+            cliente = string.Empty;
+            monto = 0;
+            fecha = DateTime.MinValue;
+            detalle = new List<DetallePresupuesto>();
         }
         public Presupuesto(string cliente, double monto, DateTime fecha)
         {
@@ -49,7 +52,7 @@ namespace ParcialApp41002016.Entidades
         public double CalcularTotales()
         {
             double total = 0;
-            foreach (DetallePresupuesto dt in detalle)
+            foreach (DetallePresupuesto dt in Detalle)
             {
                 total += dt.CalcularSubtotales();
                 
@@ -60,11 +63,11 @@ namespace ParcialApp41002016.Entidades
 
         public void AgregarDetalle(DetallePresupuesto dt)
         {
-            detalle.Add(dt);
+            Detalle.Add(dt);
         }
         public void QuitarDetalle(int indice)
         {
-            detalle.RemoveAt(indice);//BUSCAR EL ULTIMO, FIFO.
+            Detalle.RemoveAt(indice);//BUSCAR EL ULTIMO, FIFO.
         }
     }
 }

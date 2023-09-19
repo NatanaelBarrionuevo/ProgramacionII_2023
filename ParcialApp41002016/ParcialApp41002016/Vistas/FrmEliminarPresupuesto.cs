@@ -119,7 +119,7 @@ namespace ParcialApp41002016.Vistas
 
                     
 
-                    DataTable auxiliar = gestor.ConsultarTabla("SP_CONSULTAR_PRODUCTOS");
+                    DataTable auxiliar = gestor.Consultar("SP_CONSULTAR_PRODUCTOS");
                     double pre_unitario = 0;
                     for (int j = 0; j < auxiliar.Rows.Count; j++)
                     {

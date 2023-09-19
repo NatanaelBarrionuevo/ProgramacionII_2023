@@ -20,6 +20,7 @@ namespace ParcialApp41002016.Vistas
         {
             InitializeComponent();
             oBDHelper = new BDHelper();
+            oPresupuesto = new Presupuesto();
         }
 
         private void btnSalir_Click(object sender, EventArgs e)
@@ -41,33 +42,45 @@ namespace ParcialApp41002016.Vistas
             txtDescuento.MaxLength = 3;
             txtCliente.Text = "Consumidor Final";
             txtCliente.MaxLength = 255;
-            CargarCombo(cboProductos, "SP_CONSULTAR_PRODUCTOS");
-
+            CargarProductos();
         }
-        private void CargarCombo(ComboBox cbo, string SP)
+
+        private void CargarProductos()
         {
-            DataTable tabla = oBDHelper.ConsultarTabla(SP);
-            cbo.DataSource = tabla;
-            if(tabla.Rows.Count > 0)
+            DataTable tabla = oBDHelper.Consultar("SP_CONSULTAR_PRODUCTOS");
+            cboProductos.DataSource = tabla;
+            cboProductos.ValueMember = tabla.Columns[0].ColumnName;
+            cboProductos.DisplayMember = tabla.Columns[1].ColumnName;
+        }/*
+        /*CargarCombo(cboProductos, "SP_CONSULTAR_PRODUCTOS");
+
+    }
+    private void CargarCombo(ComboBox cbo, string SP)
+    {
+        DataTable tabla = oBDHelper.Consultar(SP); ;
+
+        cbo.DataSource = tabla;
+        if(tabla.Rows.Count > 0)
+        {
+            cbo.ValueMember = tabla.Columns[0].ColumnName;
+            cbo.DisplayMember = tabla.Columns[1].ColumnName;
+            cbo.DropDownStyle = ComboBoxStyle.DropDownList;
+            foreach(DataRow row in tabla.Rows )
             {
-                cbo.ValueMember = tabla.Columns[0].ColumnName;
-                cbo.DisplayMember = tabla.Columns[1].ColumnName;
-                cbo.DropDownStyle = ComboBoxStyle.DropDownList;
-                foreach(DataRow row in tabla.Rows )
+                if ((int)row.ItemArray[3] == 0)
                 {
-                    if ((int)row.ItemArray[3] == 0)
-                    {
-                        cboProductos.Items.RemoveAt((int)row.ItemArray[0] - 1);
-                    }
+                    cboProductos.Items.RemoveAt((int)row.ItemArray[0] - 1);
                 }
             }
-            
-        }
+        }*/
+
+
+
         private void Habilitar(bool b)
         {
             txtFecha.Enabled = b;
             txtDescuento.Enabled = b;
-            btnAgregar.Enabled = b;
+            // btnAgregar.Enabled = b;
             txtSubtotal.Enabled = b;
             txtTotal.Enabled = b;
         }
@@ -79,10 +92,12 @@ namespace ParcialApp41002016.Vistas
             if (ValidarDatos())
             {
                 DataRowView item = (DataRowView)cboProductos.SelectedItem;
+
+                oPresupuesto.Cod_presupuesto = oBDHelper.ObtenerId("SP_PROXIMO_ID");
                 int cod_presupuesto = oPresupuesto.Cod_presupuesto;
                 int cod_articulo = Convert.ToInt32(item.Row.ItemArray[0]);
                 string producto = item.Row.ItemArray[1].ToString();
-                double precio = (double)item.Row.ItemArray[2];
+                double precio = Convert.ToDouble(item.Row.ItemArray[2]);
                 int cantidad = Convert.ToInt32(txtCantidad.Text);
 
                 Articulo articulo = new Articulo(cod_articulo, producto, precio);
@@ -105,9 +120,14 @@ namespace ParcialApp41002016.Vistas
         }
         private void Total()
         {
-            double aux = oPresupuesto.CalcularTotales();
-            txtTotal.Text = ((aux * Convert.ToDouble(txtDescuento)) / 100).ToString();
-            oPresupuesto.Monto = Convert.ToDouble(txtTotal.Text);
+
+            txtSubtotal.Text = oPresupuesto.CalcularTotales().ToString();
+            if (!string.IsNullOrEmpty(txtDescuento.Text) && int.TryParse(txtDescuento.Text, out _))
+            {
+                double desc = oPresupuesto.CalcularTotales() * Convert.ToDouble(txtDescuento.Text) / 100;
+                txtTotal.Text = (oPresupuesto.CalcularTotales() - desc).ToString();
+            }
+
         }
 
 
@@ -197,7 +217,7 @@ namespace ParcialApp41002016.Vistas
 
         private void dgvDetalle_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
-            if(dgvDetalle.CurrentCell.ColumnIndex == 4)
+            if (dgvDetalle.CurrentCell.ColumnIndex == 4)
             {
                 oPresupuesto.QuitarDetalle(dgvDetalle.CurrentRow.Index);
                 dgvDetalle.Rows.RemoveAt(dgvDetalle.CurrentRow.Index);

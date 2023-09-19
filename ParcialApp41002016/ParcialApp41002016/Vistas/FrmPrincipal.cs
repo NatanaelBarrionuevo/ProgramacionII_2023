@@ -18,12 +18,9 @@ namespace ParcialApp41002016
             InitializeComponent();
         }
 
-        private void cerrarToolStripMenuItem_Click(object sender, EventArgs e)
+        private void conectarbdToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (MessageBox.Show("Desa SALIR?", "CONTROL", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2) == DialogResult.Yes)
-            {
-                this.Close();
-            }
+            new FrmConnecion().ShowDialog();
         }
 
         private void nuevoPresupuestoToolStripMenuItem_Click(object sender, EventArgs e)
@@ -39,6 +36,14 @@ namespace ParcialApp41002016
         private void eliminarPresupuestosToolStripMenuItem_Click(object sender, EventArgs e)
         {
             new FrmEliminarPresupuesto().ShowDialog();
+        }
+
+        private void cerrarToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            if (MessageBox.Show("Desa SALIR?", "CONTROL", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2) == DialogResult.Yes)
+            {
+                this.Close();
+            }
         }
     }
 }

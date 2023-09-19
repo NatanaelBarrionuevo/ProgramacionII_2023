@@ -16,10 +16,10 @@ namespace ParcialApp41002016.Entidades
         
         private int cantidad;
 
-        public int Cod_presupuesto { get; set; }
-        public int Cod_detalle { get; set; }
-        public Articulo Articulo {set; get;}
-        public int Cantidad { get; set; }
+        public int Cod_presupuesto { get { return cod_presupuesto; } set { cod_presupuesto = value; } }
+        public int Cod_detalle { get { return cod_detalle; } set { cod_detalle = value; } }
+        public Articulo Articulo { get { return articulo; } set { articulo = value; } }
+        public int Cantidad { get { return cantidad; } set { cantidad = value; } }
 
         public DetallePresupuesto(int cod_presuuesto, Articulo articulo, int cantidad)
         {

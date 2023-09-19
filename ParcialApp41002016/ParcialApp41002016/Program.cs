@@ -17,7 +17,7 @@ namespace ParcialApp41002016
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new FrmNuevoPresupuesto());
+            Application.Run(new FrmPrincipal());
         }
     }
 }

@@ -15,8 +15,8 @@ namespace ParcialApp41002016.Servicios
     {
         private SqlConnection conexion;
         private SqlCommand cmd;
-        private string stringcnn = @"Data Source=DESKTOP-DECHDJG\SQLEXPRESS;Initial Catalog = carpinteria_db; Integrated Security = True";
-
+        private string stringcnn = @"Data Source=LAPTOP-FC0TODPF\SQLEXPRESS;Initial Catalog=carpinteria_db;Integrated Security=True";
+       
         public string Stringcnn { set { stringcnn = value; }}
         public BDHelper()
         {
@@ -35,14 +35,14 @@ namespace ParcialApp41002016.Servicios
             cmd.Parameters.Add(param);
 
             cmd.ExecuteNonQuery();
-          
+            conexion.Close();
             return (int)param.Value;
         }
-        public DataTable ConsultarTabla(string SP)
+        public DataTable Consultar(string nombreSP)
         {
             conexion.Open();
-            cmd = new SqlCommand(SP, conexion);
-            cmd.CommandType = CommandType.StoredProcedure;
+            cmd = new SqlCommand(nombreSP, conexion);            
+            cmd.CommandType = CommandType.StoredProcedure;            
             DataTable tabla = new DataTable();
             tabla.Load(cmd.ExecuteReader());
             conexion.Close();

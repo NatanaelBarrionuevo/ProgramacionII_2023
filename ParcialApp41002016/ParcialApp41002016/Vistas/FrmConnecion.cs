@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ParcialApp41002016.Servicios;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -12,9 +13,11 @@ namespace ParcialApp41002016.Vistas
 {
     public partial class FrmConnecion : Form
     {
+        BDHelper gestor;
         public FrmConnecion()
         {
             InitializeComponent();
+            gestor = new BDHelper();
         }
 
         private void FrmConnecion_Load(object sender, EventArgs e)
@@ -43,15 +46,12 @@ namespace ParcialApp41002016.Vistas
                 return;
             }
 
-            CadenaConeccion(txtConeccion.Text);
+            gestor.Stringcnn = txtConeccion.Text;
             this.Dispose();
 
             
         }
-        public string CadenaConeccion(string cadena)
-        {
-            return txtConeccion.Text;
-        }
+        
         private void btnAyuda_Click(object sender, EventArgs e)
         {
             MessageBox.Show("En el area de texto, porfavor, ingrese la cadena de texto necesaria para la coneccion con la BD de SQL-Server con la cual quiera cobectar este formulario.", "Ayuda", MessageBoxButtons.OK, MessageBoxIcon.Information, MessageBoxDefaultButton.Button1);

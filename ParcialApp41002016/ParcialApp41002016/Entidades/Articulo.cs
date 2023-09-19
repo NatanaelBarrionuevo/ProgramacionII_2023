@@ -28,5 +28,10 @@ namespace ParcialApp41002016.Entidades
             this.precio = precio;
             activo = true;
         }
+
+        public override string ToString()
+        {
+            return Nombre; 
+        }
     }
 }
