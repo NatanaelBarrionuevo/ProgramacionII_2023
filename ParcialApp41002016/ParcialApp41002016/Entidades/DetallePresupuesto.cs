@@ -29,13 +29,14 @@ namespace ParcialApp41002016.Entidades
             this.articulo = articulo;
             this.cantidad = cantidad;
         }
+        /*
         public double PrecioVenta()
         {
             return Articulo.Precio * 1.3;
-        }
+        }*/
         public double CalcularSubtotales()
         {
-            return PrecioVenta() * Cantidad;
+            return Articulo.Precio * 1.3 * Cantidad;
         }
 
     }

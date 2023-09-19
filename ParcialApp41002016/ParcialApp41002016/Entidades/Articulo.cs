@@ -14,12 +14,12 @@ namespace ParcialApp41002016.Entidades
         private double precio;
         private bool activo;
 
-        public int Cod_articulo { get; set; }
-        public string Nombre { get; set; }
+        public int Cod_articulo { get { return codigo_articulo; } set { codigo_articulo = value; } }
+        public string Nombre { get { return nombre; } set { nombre = value; } }
 
-        public double Precio { get; set; }
+        public double Precio { get { return precio; } set { precio = value; } }
 
-        public bool Activo { get; set; }
+        public bool Activo { get { return activo; } set { activo = value; } }
 
         public Articulo(int cod_articulo, string nombre, double precio)
         {

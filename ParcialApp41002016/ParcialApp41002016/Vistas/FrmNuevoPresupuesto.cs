@@ -16,6 +16,7 @@ namespace ParcialApp41002016.Vistas
     {
         private BDHelper oBDHelper;
         private Presupuesto oPresupuesto;
+        int resultado = 0;
         public FrmNuevoPresupuesto()
         {
             InitializeComponent();
@@ -91,27 +92,10 @@ namespace ParcialApp41002016.Vistas
 
             if (ValidarDatos())
             {
-                DataRowView item = (DataRowView)cboProductos.SelectedItem;
+                CrearFila(resultado);
 
-                oPresupuesto.Cod_presupuesto = oBDHelper.ObtenerId("SP_PROXIMO_ID");
-                int cod_presupuesto = oPresupuesto.Cod_presupuesto;
-                int cod_articulo = Convert.ToInt32(item.Row.ItemArray[0]);
-                string producto = item.Row.ItemArray[1].ToString();
-                double precio = Convert.ToDouble(item.Row.ItemArray[2]);
-                int cantidad = Convert.ToInt32(txtCantidad.Text);
 
-                Articulo articulo = new Articulo(cod_articulo, producto, precio);
-                DetallePresupuesto dp = new DetallePresupuesto(cod_presupuesto, articulo, cantidad);
-
-                oPresupuesto.Fecha = Convert.ToDateTime(txtFecha.Text).ToLocalTime();
-                oPresupuesto.Cliente = txtCliente.Text;
-                oPresupuesto.Descuento = Convert.ToInt32(txtDescuento.Text);
-
-                oPresupuesto.AgregarDetalle(dp);
-
-                dgvDetalle.Rows.Add(new object[] { cod_articulo, producto, precio, cantidad, "Quitar" });
-
-                txtSubtotal.Text = dp.CalcularSubtotales().ToString();
+                //txtSubtotal.Text = dp.CalcularSubtotales().ToString();
 
                 Total();
 
@@ -156,29 +140,56 @@ namespace ParcialApp41002016.Vistas
             return true;
         }
 
+        private void CrearFila(int sumarCantidades)
+        {
+            DataRowView item = (DataRowView)cboProductos.SelectedItem;
+
+            oPresupuesto.Cod_presupuesto = oBDHelper.ObtenerId("SP_PROXIMO_ID");
+            int cod_presupuesto = oPresupuesto.Cod_presupuesto;
+            int cod_articulo = Convert.ToInt32(item.Row.ItemArray[0]);
+            string producto = item.Row.ItemArray[1].ToString();
+            double precio = Convert.ToDouble(item.Row.ItemArray[2]);
+            int cantidad = Convert.ToInt32(txtCantidad.Text) + resultado;
+
+            Articulo articulo = new Articulo(cod_articulo, producto, precio);
+            DetallePresupuesto dp = new DetallePresupuesto(cod_presupuesto, articulo, cantidad);
+
+            oPresupuesto.Fecha = Convert.ToDateTime(txtFecha.Text).ToLocalTime();
+            oPresupuesto.Cliente = txtCliente.Text;
+            oPresupuesto.Descuento = Convert.ToInt32(txtDescuento.Text);
+
+            oPresupuesto.AgregarDetalle(dp);
+
+            dgvDetalle.Rows.Add(new object[] { cod_articulo, producto, precio, cantidad, "Quitar" });
+        }
         private void Repite()
         {
+            
             foreach (DataGridViewRow row in dgvDetalle.Rows)
             {
                 if (row.Cells["ColCod"].Value.Equals(cboProductos.SelectedValue))
                 {
+                    int indice = dgvDetalle.CurrentRow.Index;
+                    int aux = Convert.ToInt32(txtCantidad.Text);
                     if (MessageBox.Show("El producto ya ha sido agregado, DESEA SUMAR LAS CANTIDADES?", "Control", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2) == DialogResult.Yes)
                     {
-                        foreach (DetallePresupuesto dt in oPresupuesto.Detalle)
-                        {
-                            if (dt.Articulo.Cod_articulo.Equals(cboProductos.SelectedValue))
-                            {
-                                dt.Cantidad += Convert.ToInt32(txtCantidad.Text);
-                                txtCantidad.Text = 0.ToString();
-                                txtCantidad.Focus();
-                            }
 
-                        }
+                        dgvDetalle.Rows.RemoveAt(indice);
+                        oPresupuesto.QuitarDetalle(indice);
+
+                        resultado = aux; 
+                        break;
+                        
+
+
+
                     }
                 }
             }
 
         }
+
+        
 
         private void btnAceptar_Click(object sender, EventArgs e)
         {

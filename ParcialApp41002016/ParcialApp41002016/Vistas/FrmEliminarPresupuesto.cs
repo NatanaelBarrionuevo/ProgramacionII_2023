@@ -132,7 +132,7 @@ namespace ParcialApp41002016.Vistas
                     articulo = new Articulo(cod_articulo, nombre_prod, pre_unitario);
                     detalle = new DetallePresupuesto(cod_presupuesto, articulo, cantidad);
 
-                    dgvDetalle.Rows.Add(new object[] { cod_articulo, nombre_prod, detalle.PrecioVenta(), cantidad });
+                    dgvDetalle.Rows.Add(new object[] { cod_articulo, nombre_prod, detalle.Articulo.Precio * 1.3, cantidad });
                     totales += total;
                     descuentos += descuento;
                     fecha = fec_alta;
