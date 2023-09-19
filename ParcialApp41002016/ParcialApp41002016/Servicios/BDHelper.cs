@@ -80,7 +80,7 @@ namespace ParcialApp41002016.Servicios
                 cmd.CommandType = CommandType.StoredProcedure;
 
                 cmd.Parameters.AddWithValue("@cliente", oP.Cliente);
-                cmd.Parameters.AddWithValue("@cto", oP.Descuento);
+                cmd.Parameters.AddWithValue("@dto", oP.Descuento);
                 cmd.Parameters.AddWithValue("@total", oP.Monto);
                 //cmd.Parameters.AddWithValue("@fecha", oP.Fecha.ToString());                
 
@@ -99,7 +99,7 @@ namespace ParcialApp41002016.Servicios
                 {
                     cmdDetalle = new SqlCommand(SP_D, conexion, t);
                     cmdDetalle.CommandType = CommandType.StoredProcedure;
-                    cmdDetalle.Parameters.AddWithValue("@presupuesto_nr", cod_presupuesto);
+                    cmdDetalle.Parameters.AddWithValue("presupuesto_nro", cod_presupuesto);
                     cmdDetalle.Parameters.AddWithValue("@detalle", cod_detalle);
                     cmdDetalle.Parameters.AddWithValue("@id_producto", detallePresupuesto.Articulo.Cod_articulo);
                     cmdDetalle.Parameters.AddWithValue("@cantidad", detallePresupuesto.Cantidad);

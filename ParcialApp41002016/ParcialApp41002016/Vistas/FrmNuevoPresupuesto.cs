@@ -16,12 +16,13 @@ namespace ParcialApp41002016.Vistas
     {
         private BDHelper oBDHelper;
         private Presupuesto oPresupuesto;
-        int resultado = 0;
+        private int resultado = 0;
         public FrmNuevoPresupuesto()
         {
             InitializeComponent();
             oBDHelper = new BDHelper();
             oPresupuesto = new Presupuesto();
+            
         }
 
         private void btnSalir_Click(object sender, EventArgs e)
@@ -87,11 +88,12 @@ namespace ParcialApp41002016.Vistas
         }
 
         private void btnAgregar_Click(object sender, EventArgs e)
-        {
-            Repite();
+        {            
 
             if (ValidarDatos())
             {
+                Repite();
+
                 CrearFila(resultado);
 
 
@@ -99,7 +101,7 @@ namespace ParcialApp41002016.Vistas
 
                 Total();
 
-
+                resultado = 0;
             }
         }
         private void Total()
@@ -140,7 +142,7 @@ namespace ParcialApp41002016.Vistas
             return true;
         }
 
-        private void CrearFila(int sumarCantidades)
+        private void CrearFila(int x)
         {
             DataRowView item = (DataRowView)cboProductos.SelectedItem;
 
@@ -149,8 +151,15 @@ namespace ParcialApp41002016.Vistas
             int cod_articulo = Convert.ToInt32(item.Row.ItemArray[0]);
             string producto = item.Row.ItemArray[1].ToString();
             double precio = Convert.ToDouble(item.Row.ItemArray[2]);
-            int cantidad = Convert.ToInt32(txtCantidad.Text) + resultado;
-
+            int cantidad;
+            if (x == 0)
+            {                
+                cantidad = Convert.ToInt32(txtCantidad.Text);                
+            }
+            else
+            {
+                cantidad = x;
+            }
             Articulo articulo = new Articulo(cod_articulo, producto, precio);
             DetallePresupuesto dp = new DetallePresupuesto(cod_presupuesto, articulo, cantidad);
 
@@ -164,39 +173,39 @@ namespace ParcialApp41002016.Vistas
         }
         private void Repite()
         {
-            
+
             foreach (DataGridViewRow row in dgvDetalle.Rows)
             {
                 if (row.Cells["ColCod"].Value.Equals(cboProductos.SelectedValue))
                 {
                     int indice = dgvDetalle.CurrentRow.Index;
-                    int aux = Convert.ToInt32(txtCantidad.Text);
+                    object []aux = new object[] { dgvDetalle.Rows[indice].Clone() };
+
                     if (MessageBox.Show("El producto ya ha sido agregado, DESEA SUMAR LAS CANTIDADES?", "Control", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2) == DialogResult.Yes)
                     {
 
                         dgvDetalle.Rows.RemoveAt(indice);
+                        foreach(DetallePresupuesto dt in oPresupuesto.Detalle)
+                        {
+                            if (row.Cells[0].Value.Equals(dt.Articulo.Cod_articulo))
+                            {
+                                resultado = Convert.ToInt32(txtCantidad.Text) + dt.Cantidad;
+                            }
+                        }
                         oPresupuesto.QuitarDetalle(indice);
-
-                        resultado = aux; 
-                        break;
                         
-
-
-
                     }
                 }
             }
 
         }
-
-        
-
         private void btnAceptar_Click(object sender, EventArgs e)
         {
+            oPresupuesto.Monto = Convert.ToDouble(txtTotal.Text);
             if (ValidarDetalle())
             {
 
-                if (oBDHelper.AgregarPresupuesto("SP_INSERTAR_MAESTRO", oPresupuesto, "SP_INSERTAR_DETALLE "))
+                if (oBDHelper.AgregarPresupuesto("SP_INSERTAR_MAESTRO", oPresupuesto, "SP_INSERTAR_DETALLE"))
                 {
                     MessageBox.Show("El presupuesto ha sido cargado exitosamente!! Que tenga un buen día.", "Información", MessageBoxButtons.OK, MessageBoxIcon.Information, MessageBoxDefaultButton.Button1);
                     Limpiar();
