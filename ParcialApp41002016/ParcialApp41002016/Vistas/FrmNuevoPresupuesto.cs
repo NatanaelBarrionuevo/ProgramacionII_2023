@@ -14,16 +14,19 @@ namespace ParcialApp41002016.Vistas
 {
     public partial class FrmNuevoPresupuesto : Form
     {
-        private BDHelper oBDHelper;
+        //private BDHelper gestor;
         private Presupuesto oPresupuesto;
         private int resultado = 0;
+        
         public FrmNuevoPresupuesto()
         {
             InitializeComponent();
-            oBDHelper = new BDHelper();
+            
             oPresupuesto = new Presupuesto();
             
         }
+
+       
 
         private void btnSalir_Click(object sender, EventArgs e)
         {
@@ -36,48 +39,29 @@ namespace ParcialApp41002016.Vistas
         private void FrmNuevoPresupuesto_Load(object sender, EventArgs e)
         {
             //new FrmConnecion().ShowDialog();
-            Habilitar(false);
-            cboProductos.Focus();
-            lblNuevoPresupuesto.Text = lblNuevoPresupuesto.Text + oBDHelper.ObtenerId("SP_PROXIMO_ID");
+            
+            lblNuevoPresupuesto.Text = lblNuevoPresupuesto.Text + BDHelper.ObetenerInstancia().ObtenerId("SP_PROXIMO_ID");
             txtFecha.Text = DateTime.Now.ToShortDateString();
+            LoaderPantalla();
+        }
+        private void LoaderPantalla()
+        {
+            Habilitar(false);
+            cboProductos.Focus();         
+            
             txtDescuento.Text = 0.ToString();
             txtDescuento.MaxLength = 3;
             txtCliente.Text = "Consumidor Final";
             txtCliente.MaxLength = 255;
             CargarProductos();
         }
-
         private void CargarProductos()
         {
-            DataTable tabla = oBDHelper.Consultar("SP_CONSULTAR_PRODUCTOS");
+            DataTable tabla = BDHelper.ObetenerInstancia().Consultar("SP_CONSULTAR_PRODUCTOS");
             cboProductos.DataSource = tabla;
             cboProductos.ValueMember = tabla.Columns[0].ColumnName;
             cboProductos.DisplayMember = tabla.Columns[1].ColumnName;
-        }/*
-        /*CargarCombo(cboProductos, "SP_CONSULTAR_PRODUCTOS");
-
-    }
-    private void CargarCombo(ComboBox cbo, string SP)
-    {
-        DataTable tabla = oBDHelper.Consultar(SP); ;
-
-        cbo.DataSource = tabla;
-        if(tabla.Rows.Count > 0)
-        {
-            cbo.ValueMember = tabla.Columns[0].ColumnName;
-            cbo.DisplayMember = tabla.Columns[1].ColumnName;
-            cbo.DropDownStyle = ComboBoxStyle.DropDownList;
-            foreach(DataRow row in tabla.Rows )
-            {
-                if ((int)row.ItemArray[3] == 0)
-                {
-                    cboProductos.Items.RemoveAt((int)row.ItemArray[0] - 1);
-                }
-            }
-        }*/
-
-
-
+        }
         private void Habilitar(bool b)
         {
             txtFecha.Enabled = b;
@@ -93,20 +77,14 @@ namespace ParcialApp41002016.Vistas
             if (ValidarDatos())
             {
                 Repite();
-
                 CrearFila(resultado);
-
-
-                //txtSubtotal.Text = dp.CalcularSubtotales().ToString();
-
+                
                 Total();
-
                 resultado = 0;
             }
         }
         private void Total()
         {
-
             txtSubtotal.Text = oPresupuesto.CalcularTotales().ToString();
             if (!string.IsNullOrEmpty(txtDescuento.Text) && int.TryParse(txtDescuento.Text, out _))
             {
@@ -115,7 +93,6 @@ namespace ParcialApp41002016.Vistas
             }
 
         }
-
 
         private bool ValidarDatos()
         {
@@ -142,11 +119,11 @@ namespace ParcialApp41002016.Vistas
             return true;
         }
 
-        private void CrearFila(int x)
+        public void CrearFila(int x)
         {
             DataRowView item = (DataRowView)cboProductos.SelectedItem;
 
-            oPresupuesto.Cod_presupuesto = oBDHelper.ObtenerId("SP_PROXIMO_ID");
+            oPresupuesto.Cod_presupuesto = BDHelper.ObetenerInstancia().ObtenerId("SP_PROXIMO_ID");
             int cod_presupuesto = oPresupuesto.Cod_presupuesto;
             int cod_articulo = Convert.ToInt32(item.Row.ItemArray[0]);
             string producto = item.Row.ItemArray[1].ToString();
@@ -205,7 +182,7 @@ namespace ParcialApp41002016.Vistas
             if (ValidarDetalle())
             {
 
-                if (oBDHelper.AgregarPresupuesto("SP_INSERTAR_MAESTRO", oPresupuesto, "SP_INSERTAR_DETALLE"))
+                if (BDHelper.ObetenerInstancia().AgregarMaestroDetalle("SP_INSERTAR_MAESTRO", oPresupuesto, "SP_INSERTAR_DETALLE"))
                 {
                     MessageBox.Show("El presupuesto ha sido cargado exitosamente!! Que tenga un buen día.", "Información", MessageBoxButtons.OK, MessageBoxIcon.Information, MessageBoxDefaultButton.Button1);
                     Limpiar();
@@ -244,6 +221,76 @@ namespace ParcialApp41002016.Vistas
                 MessageBox.Show("El detalle a sido removido", "Control", MessageBoxButtons.OK, MessageBoxIcon.Information, MessageBoxDefaultButton.Button1);
                 dgvDetalle.Focus();
             }
+        }
+
+        private void txtTotal_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label5_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void txtSubtotal_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label6_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label4_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void txtCantidad_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void cboProductos_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void txtDescuento_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void txtCliente_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void txtFecha_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label3_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label2_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void lblNuevoPresupuesto_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

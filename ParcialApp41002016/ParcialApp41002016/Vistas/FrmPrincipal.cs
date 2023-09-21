@@ -20,7 +20,7 @@ namespace ParcialApp41002016
 
         private void conectarbdToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            new FrmConnecion().ShowDialog();
+            
         }
 
         private void nuevoPresupuestoToolStripMenuItem_Click(object sender, EventArgs e)
@@ -30,12 +30,12 @@ namespace ParcialApp41002016
 
         private void modiificarPresupuestosToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            new FrmModificarPresupuesto().ShowDialog();
+            
         }
 
         private void eliminarPresupuestosToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            new FrmEliminarPresupuesto().ShowDialog();
+            
         }
 
         private void cerrarToolStripMenuItem1_Click(object sender, EventArgs e)
@@ -44,6 +44,16 @@ namespace ParcialApp41002016
             {
                 this.Close();
             }
+        }
+
+        private void cargarPresupuestosToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            new FrmConsultarPresupuesto().ShowDialog();
+        }
+
+        private void FrmPrincipal_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }

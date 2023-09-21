@@ -15,12 +15,12 @@ namespace ParcialApp41002016.Vistas
 {
     public partial class FrmConsultarPresupuesto : Form
     {
-        BDHelper gestor;
+        //BDHelper gestor;
         Presupuesto oPresupuesto;
         public FrmConsultarPresupuesto()
         {
             InitializeComponent();
-            gestor = new BDHelper();
+            //gestor = new BDHelper();
         }
 
         private void FrmModificarPresupuesto_Load(object sender, EventArgs e)
@@ -40,10 +40,11 @@ namespace ParcialApp41002016.Vistas
                 Parametros param2 = new Parametros("@fecha_hasta", dtpHasta.Value);
                 Parametros param3 = new Parametros("@cliente", txtCliente.Text.ToString());
 
-                List<Parametros> lista = new List<Parametros>() {param1, param2, param3};
-                
-                DataTable tabla = gestor.ConsultarTabla("SP_CONSTULTAR_PRESUPUESTOS", lista);
-                
+                List<Parametros> lista = new List<Parametros>() { param1, param2, param3 };
+
+
+                DataTable tabla = BDHelper.ObetenerInstancia().Consultar("SP_CONSTULTAR_PRESUPUESTOS", lista);
+
                 dgvDetalle.DataSource = lista;
                 for (int i = 0; i < tabla.Rows.Count; i++)
                 {
@@ -53,10 +54,10 @@ namespace ParcialApp41002016.Vistas
                     int descuento = Convert.ToInt32(tabla.Rows[i].ItemArray[3]);//Descuento
                     string fechaBaja = tabla.Rows[i].ItemArray[4].ToString();//FechaBaja
                     double total = (double)tabla.Rows[i].ItemArray[5];
-                    dgvDetalle.Rows.Add(new object[] {cod_presupuesto, fechaAlta, cliente, descuento, fechaBaja, total, "Detalle"});
-                    
+                    dgvDetalle.Rows.Add(new object[] { cod_presupuesto, fechaAlta, cliente, descuento, fechaBaja, total, "Detalle" });
+
                 }
-                
+
             }
 
             /*CREATE PROCEDURE [dbo].[SP_CONSULTAR_PRESUPUESTOS]
@@ -82,7 +83,7 @@ END*/
                 txtCliente.Focus();
                 return false;
             }
-            if(dtpDesde.Checked && dtpHasta.Checked )
+            if (dtpDesde.Checked && dtpHasta.Checked)
             {
                 MessageBox.Show("Debe SELECCIONAR UNA FECHA.", "Control", MessageBoxButtons.OK, MessageBoxIcon.Exclamation, MessageBoxDefaultButton.Button1);
                 dtpHasta.Focus();
@@ -97,7 +98,7 @@ END*/
                 return false;
             }
 
-                return true;
+            return true;
         }
 
         private void dgvDetalle_CellContentClick(object sender, DataGridViewCellEventArgs e)
@@ -105,8 +106,64 @@ END*/
 
             if (dgvDetalle.CurrentCell.ColumnIndex == 6)
             {
-                object []fila = new object[]{ dgvDetalle.CurrentRow.Clone()};
+                object[] fila = new object[] { dgvDetalle.CurrentRow.Clone() };
                 new FrmConsultarDetalle(fila).ShowDialog();
+            }
+        }
+
+        private void btnEliminar_Click(object sender, EventArgs e)
+        {
+            int cod_presupuesto = 0;
+            if (dgvDetalle.CurrentRow != null)
+            {
+                cod_presupuesto = (int)dgvDetalle.Rows[dgvDetalle.CurrentRow.Index].Cells[0].Value;
+                if (MessageBox.Show("Esta seguro que desea ELIMINAR ESTE PRESUPUESTO?", "Control", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2) == DialogResult.Yes)
+                {
+                    if (cod_presupuesto > 0 && BDHelper.ObetenerInstancia().BajaPresupuesto(cod_presupuesto))
+                    {
+                        MessageBox.Show("El Presupuesto a sido eliminado exitosamente, que tenga un buen dia !.", "Notificacion", MessageBoxButtons.OK, MessageBoxIcon.Information, MessageBoxDefaultButton.Button1);
+                    }
+                    else
+                    {
+                        MessageBox.Show("El Presupuesto NO AH PODIDO SER ELIMINADO, disculpe las molestias. Intente nuevamente o consulte con el administrador.", "Notificacion", MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1);
+                    }
+                }
+
+
+            }
+
+
+
+        }
+
+        private void btnSalir_Click(object sender, EventArgs e)
+        {
+            if (MessageBox.Show("Desea SALIR?", "Control", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2) == DialogResult.Yes)
+            {
+                this.Dispose();
+            }
+        }
+
+        private void btnModificar_Click(object sender, EventArgs e)
+        {
+            int cod_presupuesto = 0;
+            if (dgvDetalle.CurrentRow != null)
+            {
+                cod_presupuesto = (int)dgvDetalle.Rows[dgvDetalle.CurrentRow.Index].Cells[0].Value;
+                new FrmModificarPresupuesto(cod_presupuesto).ShowDialog();
+                /*if (MessageBox.Show("Esta seguro que desea ELIMINAR ESTE PRESUPUESTO?", "Control", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2) == DialogResult.Yes)
+                {
+                    if (cod_presupuesto > 0 && BDHelper.ObetenerInstancia().BajaPresupuesto(cod_presupuesto))
+                    {
+                        MessageBox.Show("El Presupuesto a sido eliminado exitosamente, que tenga un buen dia !.", "Notificacion", MessageBoxButtons.OK, MessageBoxIcon.Information, MessageBoxDefaultButton.Button1);
+                    }
+                    else
+                    {
+                        MessageBox.Show("El Presupuesto NO AH PODIDO SER ELIMINADO, disculpe las molestias. Intente nuevamente o consulte con el administrador.", "Notificacion", MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1);
+                    }
+                }*/
+
+
             }
         }
     }

@@ -49,25 +49,13 @@
     <Compile Include="Entidades\Articulo.cs" />
     <Compile Include="Entidades\DetallePresupuesto.cs" />
     <Compile Include="Entidades\Presupuesto.cs" />
-    <Compile Include="Servicios\BDHelper.cs" />
-    <Compile Include="Servicios\Parametros.cs" />
-    <Compile Include="Vistas\FrmConnecion.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Vistas\FrmConnecion.Designer.cs">
-      <DependentUpon>FrmConnecion.cs</DependentUpon>
-    </Compile>
+    <Compile Include="Datos\BDHelper.cs" />
+    <Compile Include="Datos\Parametros.cs" />
     <Compile Include="Vistas\FrmConsultarDetalle.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Vistas\FrmConsultarDetalle.Designer.cs">
       <DependentUpon>FrmConsultarDetalle.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Vistas\FrmEliminarPresupuesto.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Vistas\FrmEliminarPresupuesto.Designer.cs">
-      <DependentUpon>FrmEliminarPresupuesto.cs</DependentUpon>
     </Compile>
     <Compile Include="Vistas\FrmConsultarPresupuesto.cs">
       <SubType>Form</SubType>
@@ -95,17 +83,14 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <EmbeddedResource Include="Vistas\FrmConnecion.resx">
-      <DependentUpon>FrmConnecion.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="Vistas\FrmConsultarDetalle.resx">
       <DependentUpon>FrmConsultarDetalle.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Vistas\FrmEliminarPresupuesto.resx">
-      <DependentUpon>FrmEliminarPresupuesto.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="Vistas\FrmConsultarPresupuesto.resx">
       <DependentUpon>FrmConsultarPresupuesto.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Vistas\FrmModificarPresupuesto.resx">
+      <DependentUpon>FrmModificarPresupuesto.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Vistas\FrmNuevoPresupuesto.resx">
       <DependentUpon>FrmNuevoPresupuesto.cs</DependentUpon>
@@ -121,6 +106,7 @@
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
     </Compile>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>

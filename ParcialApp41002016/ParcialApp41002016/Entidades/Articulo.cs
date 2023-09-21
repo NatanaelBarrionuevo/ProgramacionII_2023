@@ -21,6 +21,7 @@ namespace ParcialApp41002016.Entidades
 
         public bool Activo { get { return activo; } set { activo = value; } }
 
+        public Articulo() { }
         public Articulo(int cod_articulo, string nombre, double precio)
         {
             this.codigo_articulo = cod_articulo;

@@ -15,13 +15,13 @@ namespace ParcialApp41002016.Vistas
     public partial class FrmConsultarDetalle : Form
     {
         private object[] fila;
-        private BDHelper gestor;
+       // private BDHelper gestor;
         private Presupuesto oPresupuesto;
         public FrmConsultarDetalle(object[] fila)
         {
             InitializeComponent();
             this.fila = fila;
-            gestor = new BDHelper();
+            //gestor = new BDHelper();
         }
 
         private void btbSalir_Click(object sender, EventArgs e)
@@ -45,7 +45,7 @@ namespace ParcialApp41002016.Vistas
         {
             Parametros param = new Parametros("@cod_presupuesto", (int)fila[0]);
             List<Parametros> lista = new List<Parametros>() { param };
-            DataTable tabla = gestor.ConsultarTabla("SP_CONSULTAR_DETALLES_PRESUPUESTO", lista);
+            DataTable tabla = BDHelper.ObetenerInstancia().Consultar("SP_CONSULTAR_DETALLES_PRESUPUESTO", lista);
             foreach(DataRow fila in tabla.Rows)
             {
                 int presupuesto = (int)fila.ItemArray[0];

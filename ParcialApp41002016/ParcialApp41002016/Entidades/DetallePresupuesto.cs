@@ -21,6 +21,10 @@ namespace ParcialApp41002016.Entidades
         public Articulo Articulo { get { return articulo; } set { articulo = value; } }
         public int Cantidad { get { return cantidad; } set { cantidad = value; } }
 
+        public DetallePresupuesto()
+        {
+
+        }
         public DetallePresupuesto(int cod_presuuesto, Articulo articulo, int cantidad)
         {
             this.cod_presupuesto = cod_presuuesto;
