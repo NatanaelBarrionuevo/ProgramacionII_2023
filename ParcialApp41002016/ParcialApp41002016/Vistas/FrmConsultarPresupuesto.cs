@@ -26,9 +26,10 @@ namespace ParcialApp41002016.Vistas
         private void FrmModificarPresupuesto_Load(object sender, EventArgs e)
         {
             txtCliente.MaxLength = 255;
-            txtCliente.Text = string.Empty;
-            dtpDesde.Value = DateTime.Now;
-            dtpHasta.Value = DateTime.Now.AddDays(-7);
+            //txtCliente.Text = string.Empty;
+            txtCliente.Text = "Consumidor Final";
+            dtpDesde.Value = DateTime.Now.AddDays(-7);
+            dtpHasta.Value = DateTime.Now;
 
         }
 
@@ -45,7 +46,7 @@ namespace ParcialApp41002016.Vistas
 
                 DataTable tabla = gestor.Consultar("SP_CONSULTAR_PRESUPUESTOS", lista);
 
-                dgvDetalle.DataSource = lista;
+                //dgvDetalle.DataSource = lista;
                 foreach(DataRow fila in tabla.Rows)
                 {
                     int cod_presupuesto = Convert.ToInt32(fila.ItemArray[0]);
@@ -53,7 +54,7 @@ namespace ParcialApp41002016.Vistas
                     string cliente = fila.ItemArray[2].ToString();
                     int descuento = Convert.ToInt32(fila.ItemArray[3]);
                     string fechaBaja = fila.ItemArray[4].ToString();
-                    double total = (double)fila.ItemArray[5];
+                    double total = Convert.ToDouble(fila.ItemArray[5]);
                     dgvDetalle.Rows.Add(new object[] { cod_presupuesto, fechaAlta, cliente, descuento, fechaBaja, total, "Ver Detalle" });
                 }
                 /*for (int i = 0; i < tabla.Rows.Count; i++)

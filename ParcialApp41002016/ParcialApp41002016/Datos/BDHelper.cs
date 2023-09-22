@@ -21,7 +21,7 @@ namespace ParcialApp41002016.Servicios
 
         public BDHelper()
         {
-            conexion = new SqlConnection(Properties.Resources.cnnstring);
+            conexion = new SqlConnection(Properties.Resources.cnnstring1);
 
 
         }
@@ -61,7 +61,7 @@ namespace ParcialApp41002016.Servicios
 
         public DataTable Consultar(string SP, List<Parametros> parametro)
         {
-            
+
             conexion.Open();
             cmd = new SqlCommand(SP, conexion);
             cmd.CommandType = CommandType.StoredProcedure;
@@ -154,15 +154,14 @@ namespace ParcialApp41002016.Servicios
                 conexion.Close();
                 t.Commit();
             }
-            catch
+
+            catch (Exception)
             {
                 if (t != null)
-                {
                     t.Rollback();
-                    resultado = false;
-
-                }
+                resultado = false;
             }
+
             finally
             {
                 if (conexion != null && conexion.State == ConnectionState.Open)
@@ -175,8 +174,9 @@ namespace ParcialApp41002016.Servicios
 
         public bool Modificar(string SP, List<Parametros> lista)
         {
-            SqlTransaction t = null;
             bool resultado = true;
+            SqlTransaction t = null;
+
             try
             {
                 conexion.Open();
@@ -185,24 +185,22 @@ namespace ParcialApp41002016.Servicios
                 cmd.CommandType = CommandType.StoredProcedure;
                 foreach (Parametros p in lista) { cmd.Parameters.AddWithValue(p.Key, p.Value); }
                 cmd.ExecuteNonQuery();
+                conexion.Close();
 
                 t.Commit();
             }
-            catch
+
+            catch (Exception)
             {
                 if (t != null)
-                {
                     t.Rollback();
-                    resultado = false;
-                }
-
+                resultado = false;
             }
+
             finally
             {
-                if(conexion != null && conexion.State == ConnectionState.Open)
-                {
+                if (conexion != null && conexion.State == ConnectionState.Open)
                     conexion.Close();
-                }
             }
             return resultado;
         }
@@ -211,12 +209,11 @@ namespace ParcialApp41002016.Servicios
         {
             bool resultado = true;
             SqlTransaction t = null;
-
             try
             {
                 conexion.Open();
-                t = conexion.BeginTransaction();                              
-                                
+                t = conexion.BeginTransaction();
+
                 int cod_detalle = 1;
 
                 foreach (DetallePresupuesto detallePresupuesto in oP.Detalle)
@@ -229,22 +226,76 @@ namespace ParcialApp41002016.Servicios
                     cmd.Parameters.AddWithValue("@cantidad", detallePresupuesto.Cantidad);
                     cmd.ExecuteNonQuery();
                     cod_detalle++;
-                }               
-
-                cmd.ExecuteNonQuery();
+                }
 
                 t.Commit();
 
             }
-            catch
+
+            catch (Exception)
             {
-                if(t != null) { t.Rollback(); resultado = false; }
+                if (t != null)
+                    t.Rollback();
+                resultado = false;
             }
+
             finally
             {
-                if(conexion != null && conexion.State == ConnectionState.Open) { conexion.Close(); }
+                if (conexion != null && conexion.State == ConnectionState.Open) { conexion.Close(); }
             }
             return resultado;
+        }
+
+        public bool ModificarPresupuesto(Presupuesto oPresupuesto)
+        {
+            bool ok = true;
+            SqlTransaction t = null;
+            SqlCommand cmd = new SqlCommand();
+            try
+            {
+                conexion.Open();
+                t = conexion.BeginTransaction();
+                cmd.Connection = conexion;
+                cmd.Transaction = t;
+                cmd.CommandText = "SP_MODIFICAR_MAESTRO";
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("@cliente", oPresupuesto.Cliente);
+                cmd.Parameters.AddWithValue("@dto", oPresupuesto.Descuento);
+                cmd.Parameters.AddWithValue("@total", oPresupuesto.CalcularTotalConDescuento());
+                cmd.Parameters.AddWithValue("@presupuesto_nro", oPresupuesto.Cod_presupuesto);
+                cmd.ExecuteNonQuery();
+
+                SqlCommand cmdDetalle;
+                int detalleNro = 1;
+                foreach (DetallePresupuesto item in oPresupuesto.Detalle)
+                {
+                    cmdDetalle = new SqlCommand("SP_INSERTAR_DETALLE", conexion, t);
+                    cmdDetalle.CommandType = CommandType.StoredProcedure;
+                    cmdDetalle.Parameters.AddWithValue("@presupuesto_nro", oPresupuesto.Cod_presupuesto);
+                    cmdDetalle.Parameters.AddWithValue("@detalle", detalleNro);
+                    cmdDetalle.Parameters.AddWithValue("@id_producto", item.Articulo.Cod_articulo);
+                    cmdDetalle.Parameters.AddWithValue("@cantidad", item.Cantidad);
+                    cmdDetalle.ExecuteNonQuery();
+
+                    detalleNro++;
+                }
+                t.Commit();
+            }
+
+            catch (Exception)
+            {
+                if (t != null)
+                    t.Rollback();
+                ok = false;
+            }
+
+            finally
+            {
+                if (conexion != null && conexion.State == ConnectionState.Open)
+                    conexion.Close();
+            }
+
+            return ok;
         }
     }
 }

@@ -61,6 +61,11 @@ namespace ParcialApp41002016.Entidades
             return total;
         }
 
+        public double CalcularTotalConDescuento()
+        {
+            return CalcularTotales() - (CalcularTotales() * (Descuento / 100));
+        }
+
         public void AgregarDetalle(DetallePresupuesto dt)
         {
             Detalle.Add(dt);

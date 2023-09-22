@@ -41,7 +41,7 @@ namespace ParcialApp41002016.Vistas
         
         private void MaestroDetalle()
         {
-            Parametros param = new Parametros("@cod_presupuesto", cod_presupuesto);
+            Parametros param = new Parametros("@presupuesto_nro", cod_presupuesto);
             List<Parametros> lista = new List<Parametros>() { param };
             DataTable tabla = gestor.Consultar("SP_CONSULTAR_DETALLES_PRESUPUESTO", lista);
 
@@ -54,27 +54,23 @@ namespace ParcialApp41002016.Vistas
                 int presupuesto = (int)fila.ItemArray[0];
                 int detalle = (int)fila.ItemArray[1];
                 string producto = fila.ItemArray[4].ToString();
-                double precio = (double)fila.ItemArray[5];
+                double precio = Convert.ToDouble(fila.ItemArray[5]);
                 int cantidad = (int)fila.ItemArray[3];
                 //maestro
                 cliente = fila.ItemArray[6].ToString();
                 fecha = fila.ItemArray[7].ToString();
-                total = fila.ItemArray[7].ToString();
-                descuento = fila.ItemArray[7].ToString();
+                total = fila.ItemArray[8].ToString();
+                descuento = fila.ItemArray[9].ToString();
                 dgvDetalle.Rows.Add(new object[] {presupuesto, detalle, producto, precio, cantidad });
             }
-            lblCliente.Text = cliente;
-            lblFecha.Text = fecha;
-            lblTotal.Text = total;
-            lblDescuento.Text = descuento;
+            lblCliente.Text = "Cliente: " + cliente;
+            lblFecha.Text = "Fecha: " + fecha; 
+            lblTotal.Text = "Total: " + total;
+            lblDescuento.Text = "Descuento: " + descuento;
         }
 
     }
 }
-/*SELECT t.*, t2.n_producto, t2.precio, t3.cliente, t3.fecha, t3.total, t3.descuento
-	FROM T_DETALLES_PRESUPUESTO t, T_PRODUCTOS t2, T_PRESUPUESTOS t3
-	WHERE t.id_producto = t2.id_producto
-	AND t.presupuesto_nro = t3.presupuesto_nro
-	AND t.presupuesto_nro = @presupuesto_nro;*/
+
 
 

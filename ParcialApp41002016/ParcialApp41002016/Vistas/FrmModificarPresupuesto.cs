@@ -11,6 +11,7 @@ using System.Windows.Forms;
 using ParcialApp41002016.Vistas;
 using ParcialApp41002016.Servicios;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement.ListView;
+using System.Net.NetworkInformation;
 
 namespace ParcialApp41002016.Vistas
 {
@@ -34,13 +35,16 @@ namespace ParcialApp41002016.Vistas
         {
             lblNuevoPresupuesto.Text = "Presupuesto Numero: " + cod_presupuesto;
             LoaderPantalla();
-            Parametros param = new Parametros("@cod_presupuesto", cod_presupuesto);
+            Parametros param = new Parametros("@presupuesto_nro", cod_presupuesto);
             List<Parametros> lista = new List<Parametros>() { param };
             DataTable tabla = gestor.Consultar("SP_CONSULTAR_DETALLES_PRESUPUESTO", lista);
 
             Articulo articulo;
             DetallePresupuesto dt;
-
+            string cliente = string.Empty;
+            DateTime fecha = DateTime.Now;
+            string total = string.Empty;
+            int descuento = 0;
             foreach (DataRow fila in tabla.Rows)
             {
 
@@ -48,8 +52,13 @@ namespace ParcialApp41002016.Vistas
                 int detalle = (int)fila.ItemArray[1];
                 int cod_art = (int)fila.ItemArray[2];
                 string producto = fila.ItemArray[4].ToString();
-                double precio = (double)fila.ItemArray[5];
+                double precio = Convert.ToDouble(fila.ItemArray[5]);
                 int cantidad = (int)fila.ItemArray[3];
+
+                cliente = fila.ItemArray[6].ToString();
+                fecha = Convert.ToDateTime(fila.ItemArray[7]);
+                total = fila.ItemArray[8].ToString();
+                descuento = Convert.ToInt32(fila.ItemArray[9]);
 
                 articulo = new Articulo();
                 articulo.Cod_articulo = cod_art;
@@ -65,17 +74,23 @@ namespace ParcialApp41002016.Vistas
                 oPresupuesto.AgregarDetalle(dt);
                 dgvDetalle.Rows.Add(new object[] { cod_art, producto, precio, cantidad, "Quitar" });
             }
-            
+            txtFecha.Text = fecha.ToShortDateString();
+            txtCliente.Text = cliente;
+            txtDescuento.Text = descuento.ToString();
             Total();
+
+            oPresupuesto.Cod_presupuesto = cod_presupuesto;
+            oPresupuesto.Descuento = descuento;
+            oPresupuesto.Fecha = fecha;
         }
         private void LoaderPantalla()
         {
             Habilitar(false);
             cboProductos.Focus();
 
-            txtDescuento.Text = 0.ToString();
+
             txtDescuento.MaxLength = 3;
-            txtCliente.Text = "Consumidor Final";
+
             txtCliente.MaxLength = 255;
             CargarProductos();
         }
@@ -163,10 +178,11 @@ namespace ParcialApp41002016.Vistas
             }
             Articulo articulo = new Articulo(cod_articulo, producto, precio);
             DetallePresupuesto dp = new DetallePresupuesto(cod_presupuesto, articulo, cantidad);
-
+            /*
             oPresupuesto.Fecha = Convert.ToDateTime(txtFecha.Text).ToLocalTime();
             oPresupuesto.Cliente = txtCliente.Text;
             oPresupuesto.Descuento = Convert.ToInt32(txtDescuento.Text);
+            oPresupuesto.Cod_presupuesto = cod_presupuesto;*/
 
             oPresupuesto.AgregarDetalle(dp);
 
@@ -205,23 +221,30 @@ namespace ParcialApp41002016.Vistas
         private void btnModificar_Click_1(object sender, EventArgs e)
         {
             oPresupuesto.Monto = Convert.ToDouble(txtTotal.Text);
+            oPresupuesto.Cliente = txtCliente.Text;
             if (ValidarDetalle())
             {
-                if (MessageBox.Show("Esta a punto de confirmar la modificacion del resupuesto, DESEA SEGUIR ADELANTE?", "Control", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2) == DialogResult.Yes)
-                {
-                    List<Parametros> lista = new List<Parametros>(){
-                    new Parametros("@cliente", txtCliente.Text),
-                    new Parametros("@dto", Convert.ToInt32(txtDescuento.Text)),
-                    new Parametros("@total", Convert.ToDouble(txtTotal.Text)),
-                    new Parametros("@presupuesto_nro", cod_presupuesto)
+               /* if (MessageBox.Show("Esta a punto de confirmar la modificacion del resupuesto, DESEA SEGUIR ADELANTE?", "Control", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2) == DialogResult.Yes)
+                {*/
+                    /*List<Parametros> lista = new List<Parametros>(){
+                    new Parametros("@cliente", oPresupuesto.Cliente),
+                    new Parametros("@dto", Convert.ToInt32(oPresupuesto.Descuento)),
+                    new Parametros("@total", Convert.ToDouble(oPresupuesto.Monto)),
+                    new Parametros("@presupuesto_nro", oPresupuesto.Cod_presupuesto)
 
                 };
 
                     List<Parametros> lst = new List<Parametros>() {
-                        new Parametros("@presupuesto_nro", cod_presupuesto) };
-                       
+                        new Parametros("@presupuesto_nro", oPresupuesto.Cod_presupuesto) };
 
-                    if (gestor.Modificar("SP_MODIFICAR_MAESTRO", lista) && gestor.AgregarDetalle("SP_INSERTAR_DETALLES_PRESUPUESTO", cod_presupuesto, oPresupuesto))
+
+                    if (gestor.Modificar("SP_MODIFICAR_MAESTRO", lista) && gestor.AgregarDetalle("SP_INSERTAR_DETALLE", cod_presupuesto, oPresupuesto))
+                    {
+                        MessageBox.Show("El presupuesto nro " + cod_presupuesto + "fue MODIFICADO EXITOSAMENTE, que tenga un buen dia", "Notificacion", MessageBoxButtons.OK, MessageBoxIcon.Information, MessageBoxDefaultButton.Button1);
+                        Limpiar();
+                        this.Dispose();
+                    }*/
+                    if (gestor.ModificarPresupuesto(oPresupuesto))
                     {
                         MessageBox.Show("El presupuesto nro " + cod_presupuesto + "fue MODIFICADO EXITOSAMENTE, que tenga un buen dia", "Notificacion", MessageBoxButtons.OK, MessageBoxIcon.Information, MessageBoxDefaultButton.Button1);
                         Limpiar();
@@ -234,39 +257,51 @@ namespace ParcialApp41002016.Vistas
                     }
 
 
+                //}
+
+            }
+
+        }
+            private bool ValidarDetalle()
+            {
+                if (dgvDetalle.Rows.Count <= 0)
+                {
+                    MessageBox.Show("Debe AGREGAR AL MENOS UN DETALLE PARA INGRESAR EL PRESUPUESTO");
+                    dgvDetalle.Focus();
+                    return false;
                 }
-
+                return true;
             }
-        }
 
-        private bool ValidarDetalle()
-        {
-            if (dgvDetalle.Rows.Count <= 0)
+            private void Limpiar()
             {
-                MessageBox.Show("Debe AGREGAR AL MENOS UN DETALLE PARA INGRESAR EL PRESUPUESTO");
-                dgvDetalle.Focus();
-                return false;
+                dgvDetalle.Rows.Clear();
+                txtCantidad.Text = 0.ToString();
             }
-            return true;
-        }
-
-        private void Limpiar()
-        {
-            dgvDetalle.Rows.Clear();
-            txtCantidad.Text = 0.ToString();
-        }
 
 
-        private void btnSalir_Click(object sender, EventArgs e)
-        {
-            if (MessageBox.Show("Desea SALIR?", "CONTROL", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2) == DialogResult.Yes)
+            private void btnSalir_Click(object sender, EventArgs e)
             {
-                this.Close();
+                if (MessageBox.Show("Desea SALIR?", "CONTROL", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2) == DialogResult.Yes)
+                {
+                    this.Close();
+                }
+            }
+
+            private void dgvDetalle_CellContentClick(object sender, DataGridViewCellEventArgs e)
+            {
+                {
+                    if (dgvDetalle.CurrentCell.ColumnIndex == 4)
+                    {
+                        oPresupuesto.QuitarDetalle(dgvDetalle.CurrentRow.Index);
+                        dgvDetalle.Rows.RemoveAt(dgvDetalle.CurrentRow.Index);
+                        MessageBox.Show("El detalle a sido removido", "Control", MessageBoxButtons.OK, MessageBoxIcon.Information, MessageBoxDefaultButton.Button1);
+                        Total();
+                        dgvDetalle.Focus();
+                    }
+                }
             }
         }
-
-
     }
-}
 
 

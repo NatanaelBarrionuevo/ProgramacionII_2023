@@ -146,7 +146,7 @@ namespace ParcialApp41002016.Vistas
 
             oPresupuesto.AgregarDetalle(dp);
 
-            dgvDetalle.Rows.Add(new object[] { cod_articulo, producto, dp.Articulo.Precio, cantidad, "Quitar" });
+            dgvDetalle.Rows.Add(new object[] { cod_articulo, producto, dp.Articulo.Precio * 1.3, cantidad, "Quitar" });
         }
         private void Repite()
         {
