@@ -14,16 +14,16 @@ namespace ParcialApp41002016.Vistas
 {
     public partial class FrmNuevoPresupuesto : Form
     {
-        //private BDHelper gestor;
+        private BDHelper gestor;
         private Presupuesto oPresupuesto;
         private int resultado = 0;
         
         public FrmNuevoPresupuesto()
         {
             InitializeComponent();
-            
             oPresupuesto = new Presupuesto();
-            
+            gestor = new BDHelper();
+;            
         }
 
        
@@ -40,7 +40,7 @@ namespace ParcialApp41002016.Vistas
         {
             //new FrmConnecion().ShowDialog();
             
-            lblNuevoPresupuesto.Text = lblNuevoPresupuesto.Text + BDHelper.ObetenerInstancia().ObtenerId("SP_PROXIMO_ID");
+            lblNuevoPresupuesto.Text = lblNuevoPresupuesto.Text + gestor.ObtenerId("SP_PROXIMO_ID");
             txtFecha.Text = DateTime.Now.ToShortDateString();
             LoaderPantalla();
         }
@@ -57,7 +57,7 @@ namespace ParcialApp41002016.Vistas
         }
         private void CargarProductos()
         {
-            DataTable tabla = BDHelper.ObetenerInstancia().Consultar("SP_CONSULTAR_PRODUCTOS");
+            DataTable tabla = gestor.Consultar("SP_CONSULTAR_PRODUCTOS");
             cboProductos.DataSource = tabla;
             cboProductos.ValueMember = tabla.Columns[0].ColumnName;
             cboProductos.DisplayMember = tabla.Columns[1].ColumnName;
@@ -123,7 +123,7 @@ namespace ParcialApp41002016.Vistas
         {
             DataRowView item = (DataRowView)cboProductos.SelectedItem;
 
-            oPresupuesto.Cod_presupuesto = BDHelper.ObetenerInstancia().ObtenerId("SP_PROXIMO_ID");
+            oPresupuesto.Cod_presupuesto = gestor.ObtenerId("SP_PROXIMO_ID");
             int cod_presupuesto = oPresupuesto.Cod_presupuesto;
             int cod_articulo = Convert.ToInt32(item.Row.ItemArray[0]);
             string producto = item.Row.ItemArray[1].ToString();
@@ -146,7 +146,7 @@ namespace ParcialApp41002016.Vistas
 
             oPresupuesto.AgregarDetalle(dp);
 
-            dgvDetalle.Rows.Add(new object[] { cod_articulo, producto, precio, cantidad, "Quitar" });
+            dgvDetalle.Rows.Add(new object[] { cod_articulo, producto, dp.Articulo.Precio, cantidad, "Quitar" });
         }
         private void Repite()
         {
@@ -182,7 +182,7 @@ namespace ParcialApp41002016.Vistas
             if (ValidarDetalle())
             {
 
-                if (BDHelper.ObetenerInstancia().AgregarMaestroDetalle("SP_INSERTAR_MAESTRO", oPresupuesto, "SP_INSERTAR_DETALLE"))
+                if (gestor.AgregarMaestroDetalle("SP_INSERTAR_MAESTRO", oPresupuesto, "SP_INSERTAR_DETALLE"))
                 {
                     MessageBox.Show("El presupuesto ha sido cargado exitosamente!! Que tenga un buen día.", "Información", MessageBoxButtons.OK, MessageBoxIcon.Information, MessageBoxDefaultButton.Button1);
                     Limpiar();
@@ -210,6 +210,8 @@ namespace ParcialApp41002016.Vistas
         {
             dgvDetalle.Rows.Clear();
             txtCantidad.Text = 0.ToString();
+            txtTotal.Text = 0.ToString();
+            txtSubtotal.Text = 0.ToString();
         }
 
         private void dgvDetalle_CellContentClick(object sender, DataGridViewCellEventArgs e)
@@ -219,6 +221,7 @@ namespace ParcialApp41002016.Vistas
                 oPresupuesto.QuitarDetalle(dgvDetalle.CurrentRow.Index);
                 dgvDetalle.Rows.RemoveAt(dgvDetalle.CurrentRow.Index);
                 MessageBox.Show("El detalle a sido removido", "Control", MessageBoxButtons.OK, MessageBoxIcon.Information, MessageBoxDefaultButton.Button1);
+                Total();
                 dgvDetalle.Focus();
             }
         }

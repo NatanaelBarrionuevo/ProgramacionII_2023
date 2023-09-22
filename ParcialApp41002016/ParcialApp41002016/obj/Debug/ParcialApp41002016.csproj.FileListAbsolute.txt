@@ -28,7 +28,6 @@ C:\Users\vivib\Desktop\Repo_progII\ProgramacionII_2023\ParcialApp41002016\Parcia
 C:\Users\vivib\Desktop\Repo_progII\ProgramacionII_2023\ParcialApp41002016\ParcialApp41002016\obj\Debug\ParcialApp41002016.exe
 C:\Users\vivib\Desktop\Repo_progII\ProgramacionII_2023\ParcialApp41002016\ParcialApp41002016\obj\Debug\ParcialApp41002016.pdb
 C:\Users\Usuario\Desktop\repo_progII\Repo_nato\ProgramacionII_2023\ParcialApp41002016\ParcialApp41002016\obj\Debug\ParcialApp41002016.csproj.AssemblyReference.cache
-C:\Users\Usuario\Desktop\repo_progII\Repo_nato\ProgramacionII_2023\ParcialApp41002016\ParcialApp41002016\obj\Debug\ParcialApp41002016.Vistas.FrmConnecion.resources
 C:\Users\Usuario\Desktop\repo_progII\Repo_nato\ProgramacionII_2023\ParcialApp41002016\ParcialApp41002016\obj\Debug\ParcialApp41002016.Vistas.FrmConsultarDetalle.resources
 C:\Users\Usuario\Desktop\repo_progII\Repo_nato\ProgramacionII_2023\ParcialApp41002016\ParcialApp41002016\obj\Debug\ParcialApp41002016.Vistas.FrmConsultarPresupuesto.resources
 C:\Users\Usuario\Desktop\repo_progII\Repo_nato\ProgramacionII_2023\ParcialApp41002016\ParcialApp41002016\obj\Debug\ParcialApp41002016.Vistas.FrmNuevoPresupuesto.resources
@@ -39,3 +38,6 @@ C:\Users\Usuario\Desktop\repo_progII\Repo_nato\ProgramacionII_2023\ParcialApp410
 C:\Users\Usuario\Desktop\repo_progII\Repo_nato\ProgramacionII_2023\ParcialApp41002016\ParcialApp41002016\obj\Debug\ParcialApp41002016.exe
 C:\Users\Usuario\Desktop\repo_progII\Repo_nato\ProgramacionII_2023\ParcialApp41002016\ParcialApp41002016\obj\Debug\ParcialApp41002016.pdb
 C:\Users\Usuario\Desktop\repo_progII\Repo_nato\ProgramacionII_2023\ParcialApp41002016\ParcialApp41002016\obj\Debug\ParcialApp41002016.Vistas.FrmModificarPresupuesto.resources
+C:\Users\Usuario\Desktop\repo_progII\Repo_nato\ProgramacionII_2023\ParcialApp41002016\ParcialApp41002016\bin\Debug\ParcialApp41002016.exe.config
+C:\Users\Usuario\Desktop\repo_progII\Repo_nato\ProgramacionII_2023\ParcialApp41002016\ParcialApp41002016\bin\Debug\ParcialApp41002016.exe
+C:\Users\Usuario\Desktop\repo_progII\Repo_nato\ProgramacionII_2023\ParcialApp41002016\ParcialApp41002016\bin\Debug\ParcialApp41002016.pdb

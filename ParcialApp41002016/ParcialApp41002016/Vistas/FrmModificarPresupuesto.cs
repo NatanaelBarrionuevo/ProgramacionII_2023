@@ -19,7 +19,7 @@ namespace ParcialApp41002016.Vistas
         private Presupuesto oPresupuesto;
         private int cod_presupuesto;
         private int resultado;
-
+        private BDHelper gestor;
 
         public FrmModificarPresupuesto(int cod_presupuesto)
         {
@@ -27,6 +27,7 @@ namespace ParcialApp41002016.Vistas
             this.cod_presupuesto = cod_presupuesto;
             resultado = 0;
             oPresupuesto = new Presupuesto();
+            gestor = new BDHelper();
         }
 
         private void FrmModificarPresupuesto_Load(object sender, EventArgs e)
@@ -35,7 +36,7 @@ namespace ParcialApp41002016.Vistas
             LoaderPantalla();
             Parametros param = new Parametros("@cod_presupuesto", cod_presupuesto);
             List<Parametros> lista = new List<Parametros>() { param };
-            DataTable tabla = BDHelper.ObetenerInstancia().Consultar("SP_CONSULTAR_DETALLES_PRESUPUESTO", lista);
+            DataTable tabla = gestor.Consultar("SP_CONSULTAR_DETALLES_PRESUPUESTO", lista);
 
             Articulo articulo;
             DetallePresupuesto dt;
@@ -88,7 +89,7 @@ namespace ParcialApp41002016.Vistas
         }
         private void CargarProductos()
         {
-            DataTable tabla = BDHelper.ObetenerInstancia().Consultar("SP_CONSULTAR_PRODUCTOS");
+            DataTable tabla = gestor.Consultar("SP_CONSULTAR_PRODUCTOS");
             cboProductos.DataSource = tabla;
             cboProductos.ValueMember = tabla.Columns[0].ColumnName;
             cboProductos.DisplayMember = tabla.Columns[1].ColumnName;
@@ -146,7 +147,7 @@ namespace ParcialApp41002016.Vistas
         {
             DataRowView item = (DataRowView)cboProductos.SelectedItem;
 
-            oPresupuesto.Cod_presupuesto = BDHelper.ObetenerInstancia().ObtenerId("SP_PROXIMO_ID");
+            oPresupuesto.Cod_presupuesto = gestor.ObtenerId("SP_PROXIMO_ID");
             int cod_presupuesto = oPresupuesto.Cod_presupuesto;
             int cod_articulo = Convert.ToInt32(item.Row.ItemArray[0]);
             string producto = item.Row.ItemArray[1].ToString();
@@ -220,7 +221,7 @@ namespace ParcialApp41002016.Vistas
                         new Parametros("@presupuesto_nro", cod_presupuesto) };
                        
 
-                    if (BDHelper.ObetenerInstancia().Modificar("SP_MODIFICAR_MAESTRO", lista) && BDHelper.ObetenerInstancia().AgregarDetalle("SP_INSERTAR_DETALLES_PRESUPUESTO", cod_presupuesto, oPresupuesto))
+                    if (gestor.Modificar("SP_MODIFICAR_MAESTRO", lista) && gestor.AgregarDetalle("SP_INSERTAR_DETALLES_PRESUPUESTO", cod_presupuesto, oPresupuesto))
                     {
                         MessageBox.Show("El presupuesto nro " + cod_presupuesto + "fue MODIFICADO EXITOSAMENTE, que tenga un buen dia", "Notificacion", MessageBoxButtons.OK, MessageBoxIcon.Information, MessageBoxDefaultButton.Button1);
                         Limpiar();

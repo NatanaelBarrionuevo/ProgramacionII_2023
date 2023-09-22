@@ -15,12 +15,12 @@ namespace ParcialApp41002016.Vistas
 {
     public partial class FrmConsultarPresupuesto : Form
     {
-        //BDHelper gestor;
+        BDHelper gestor;
         Presupuesto oPresupuesto;
         public FrmConsultarPresupuesto()
         {
             InitializeComponent();
-            //gestor = new BDHelper();
+            gestor = new BDHelper();
         }
 
         private void FrmModificarPresupuesto_Load(object sender, EventArgs e)
@@ -43,10 +43,20 @@ namespace ParcialApp41002016.Vistas
                 List<Parametros> lista = new List<Parametros>() { param1, param2, param3 };
 
 
-                DataTable tabla = BDHelper.ObetenerInstancia().Consultar("SP_CONSTULTAR_PRESUPUESTOS", lista);
+                DataTable tabla = gestor.Consultar("SP_CONSULTAR_PRESUPUESTOS", lista);
 
                 dgvDetalle.DataSource = lista;
-                for (int i = 0; i < tabla.Rows.Count; i++)
+                foreach(DataRow fila in tabla.Rows)
+                {
+                    int cod_presupuesto = Convert.ToInt32(fila.ItemArray[0]);
+                    string fechaAlta = fila.ItemArray[1].ToString();
+                    string cliente = fila.ItemArray[2].ToString();
+                    int descuento = Convert.ToInt32(fila.ItemArray[3]);
+                    string fechaBaja = fila.ItemArray[4].ToString();
+                    double total = (double)fila.ItemArray[5];
+                    dgvDetalle.Rows.Add(new object[] { cod_presupuesto, fechaAlta, cliente, descuento, fechaBaja, total, "Ver Detalle" });
+                }
+                /*for (int i = 0; i < tabla.Rows.Count; i++)
                 {
                     int cod_presupuesto = Convert.ToInt32(tabla.Rows[i].ItemArray[0]);//Cod_presupuesto
                     string fechaAlta = tabla.Rows[i].ItemArray[1].ToString();//FechaAlta
@@ -54,9 +64,9 @@ namespace ParcialApp41002016.Vistas
                     int descuento = Convert.ToInt32(tabla.Rows[i].ItemArray[3]);//Descuento
                     string fechaBaja = tabla.Rows[i].ItemArray[4].ToString();//FechaBaja
                     double total = (double)tabla.Rows[i].ItemArray[5];
-                    dgvDetalle.Rows.Add(new object[] { cod_presupuesto, fechaAlta, cliente, descuento, fechaBaja, total, "Detalle" });
+                    
 
-                }
+                }*/
 
             }
 
@@ -83,7 +93,7 @@ END*/
                 txtCliente.Focus();
                 return false;
             }
-            if (dtpDesde.Checked && dtpHasta.Checked)
+            if (!dtpDesde.Checked && !dtpHasta.Checked)
             {
                 MessageBox.Show("Debe SELECCIONAR UNA FECHA.", "Control", MessageBoxButtons.OK, MessageBoxIcon.Exclamation, MessageBoxDefaultButton.Button1);
                 dtpHasta.Focus();
@@ -104,10 +114,10 @@ END*/
         private void dgvDetalle_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
 
-            if (dgvDetalle.CurrentCell.ColumnIndex == 6)
+            if (dgvDetalle.CurrentCell.ColumnIndex == 6 && dgvDetalle.CurrentRow != null)
             {
-                object[] fila = new object[] { dgvDetalle.CurrentRow.Clone() };
-                new FrmConsultarDetalle(fila).ShowDialog();
+                int cod_presupuesto = Convert.ToInt32(dgvDetalle.Rows[dgvDetalle.CurrentRow.Index].Cells[0].Value);
+                new FrmConsultarDetalle(cod_presupuesto).ShowDialog();
             }
         }
 
@@ -116,10 +126,10 @@ END*/
             int cod_presupuesto = 0;
             if (dgvDetalle.CurrentRow != null)
             {
-                cod_presupuesto = (int)dgvDetalle.Rows[dgvDetalle.CurrentRow.Index].Cells[0].Value;
+                cod_presupuesto = Convert.ToInt32(dgvDetalle.Rows[dgvDetalle.CurrentRow.Index].Cells[0].Value);
                 if (MessageBox.Show("Esta seguro que desea ELIMINAR ESTE PRESUPUESTO?", "Control", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2) == DialogResult.Yes)
                 {
-                    if (cod_presupuesto > 0 && BDHelper.ObetenerInstancia().BajaPresupuesto(cod_presupuesto))
+                    if (cod_presupuesto > 0 && gestor.BajaPresupuesto(cod_presupuesto))
                     {
                         MessageBox.Show("El Presupuesto a sido eliminado exitosamente, que tenga un buen dia !.", "Notificacion", MessageBoxButtons.OK, MessageBoxIcon.Information, MessageBoxDefaultButton.Button1);
                     }
@@ -149,7 +159,7 @@ END*/
             int cod_presupuesto = 0;
             if (dgvDetalle.CurrentRow != null)
             {
-                cod_presupuesto = (int)dgvDetalle.Rows[dgvDetalle.CurrentRow.Index].Cells[0].Value;
+                cod_presupuesto = Convert.ToInt32(dgvDetalle.Rows[dgvDetalle.CurrentRow.Index].Cells[0].Value);
                 new FrmModificarPresupuesto(cod_presupuesto).ShowDialog();
                 /*if (MessageBox.Show("Esta seguro que desea ELIMINAR ESTE PRESUPUESTO?", "Control", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2) == DialogResult.Yes)
                 {

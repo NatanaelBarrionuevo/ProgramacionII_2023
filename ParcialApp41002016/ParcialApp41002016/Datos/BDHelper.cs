@@ -13,27 +13,27 @@ namespace ParcialApp41002016.Servicios
 {
     public class BDHelper
     {
-        private static BDHelper instancia;
+        //private static BDHelper instancia;
         private SqlConnection conexion;
         private SqlCommand cmd;
 
+        /*private BDHelper() { }*/
 
-
-        private BDHelper()
+        public BDHelper()
         {
             conexion = new SqlConnection(Properties.Resources.cnnstring);
 
 
         }
 
-        public static BDHelper ObetenerInstancia()
+        /*public static BDHelper ObetenerInstancia()
         {
             if (instancia == null)
             {
                 instancia = new BDHelper();
                 return instancia;
             }
-        }
+        }*/
         public int ObtenerId(string SP)
         {
             conexion.Open();
@@ -61,6 +61,7 @@ namespace ParcialApp41002016.Servicios
 
         public DataTable Consultar(string SP, List<Parametros> parametro)
         {
+            
             conexion.Open();
             cmd = new SqlCommand(SP, conexion);
             cmd.CommandType = CommandType.StoredProcedure;
