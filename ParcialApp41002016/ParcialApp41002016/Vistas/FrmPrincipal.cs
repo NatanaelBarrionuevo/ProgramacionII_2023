@@ -55,5 +55,10 @@ namespace ParcialApp41002016
         {
 
         }
+
+        private void productosToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            new FrmProductos().ShowDialog();
+        }
     }
 }

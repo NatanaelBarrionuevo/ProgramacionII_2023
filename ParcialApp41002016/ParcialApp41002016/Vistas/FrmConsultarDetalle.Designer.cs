@@ -134,6 +134,7 @@
             this.lblCliente.Size = new System.Drawing.Size(51, 20);
             this.lblCliente.TabIndex = 3;
             this.lblCliente.Text = "label3";
+            
             // 
             // lblDescuento
             // 

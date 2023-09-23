@@ -160,33 +160,35 @@ namespace ParcialApp41002016.Vistas
 
         private void CrearFila(int x)
         {
-            DataRowView item = (DataRowView)cboProductos.SelectedItem;
-
-            oPresupuesto.Cod_presupuesto = gestor.ObtenerId("SP_PROXIMO_ID");
-            int cod_presupuesto = oPresupuesto.Cod_presupuesto;
-            int cod_articulo = Convert.ToInt32(item.Row.ItemArray[0]);
-            string producto = item.Row.ItemArray[1].ToString();
-            double precio = Convert.ToDouble(item.Row.ItemArray[2]);
-            int cantidad;
-            if (x == 0)
+            if (resultado >= 0)
             {
-                cantidad = Convert.ToInt32(txtCantidad.Text);
+                DataRowView item = (DataRowView)cboProductos.SelectedItem;
+
+                oPresupuesto.Cod_presupuesto = cod_presupuesto;
+
+                int cod_articulo = Convert.ToInt32(item.Row.ItemArray[0]);
+                string producto = item.Row.ItemArray[1].ToString();
+                double precio = Convert.ToDouble(item.Row.ItemArray[2]);
+                int cantidad;
+                if (x == 0)
+                {
+                    cantidad = Convert.ToInt32(txtCantidad.Text);
+                }
+                else
+                {
+                    cantidad = x;
+                }
+                Articulo articulo = new Articulo(cod_articulo, producto, precio);
+                DetallePresupuesto dp = new DetallePresupuesto(cod_presupuesto, articulo, cantidad);
+             
+                oPresupuesto.AgregarDetalle(dp);
+
+                dgvDetalle.Rows.Add(new object[] { cod_articulo, producto, dp.Articulo.Precio * 1.3, cantidad, "Quitar" });
             }
             else
             {
-                cantidad = x;
+                cboProductos.Focus();
             }
-            Articulo articulo = new Articulo(cod_articulo, producto, precio);
-            DetallePresupuesto dp = new DetallePresupuesto(cod_presupuesto, articulo, cantidad);
-            /*
-            oPresupuesto.Fecha = Convert.ToDateTime(txtFecha.Text).ToLocalTime();
-            oPresupuesto.Cliente = txtCliente.Text;
-            oPresupuesto.Descuento = Convert.ToInt32(txtDescuento.Text);
-            oPresupuesto.Cod_presupuesto = cod_presupuesto;*/
-
-            oPresupuesto.AgregarDetalle(dp);
-
-            dgvDetalle.Rows.Add(new object[] { cod_articulo, producto, precio, cantidad, "Quitar" });
         }
         private void Repite()
         {
@@ -212,21 +214,24 @@ namespace ParcialApp41002016.Vistas
                         oPresupuesto.QuitarDetalle(indice);
 
                     }
+                    else
+                    {
+                        resultado = -1;
+                    }
                 }
             }
 
         }
-
-
         private void btnModificar_Click_1(object sender, EventArgs e)
         {
-            oPresupuesto.Monto = Convert.ToDouble(txtTotal.Text);
-            oPresupuesto.Cliente = txtCliente.Text;
+            
             if (ValidarDetalle())
             {
-               /* if (MessageBox.Show("Esta a punto de confirmar la modificacion del resupuesto, DESEA SEGUIR ADELANTE?", "Control", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2) == DialogResult.Yes)
-                {*/
-                    /*List<Parametros> lista = new List<Parametros>(){
+                oPresupuesto.Monto = Convert.ToDouble(txtTotal.Text);
+                oPresupuesto.Cliente = txtCliente.Text;
+                if (MessageBox.Show("Esta a punto de confirmar la modificacion del resupuesto, DESEA SEGUIR ADELANTE?", "Control", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2) == DialogResult.Yes)
+                {
+                    List<Parametros> lista = new List<Parametros>(){
                     new Parametros("@cliente", oPresupuesto.Cliente),
                     new Parametros("@dto", Convert.ToInt32(oPresupuesto.Descuento)),
                     new Parametros("@total", Convert.ToDouble(oPresupuesto.Monto)),
@@ -243,13 +248,13 @@ namespace ParcialApp41002016.Vistas
                         MessageBox.Show("El presupuesto nro " + cod_presupuesto + "fue MODIFICADO EXITOSAMENTE, que tenga un buen dia", "Notificacion", MessageBoxButtons.OK, MessageBoxIcon.Information, MessageBoxDefaultButton.Button1);
                         Limpiar();
                         this.Dispose();
-                    }*/
-                    if (gestor.ModificarPresupuesto(oPresupuesto))
+                    }
+                    /*if (gestor.ModificarPresupuesto(oPresupuesto))
                     {
                         MessageBox.Show("El presupuesto nro " + cod_presupuesto + "fue MODIFICADO EXITOSAMENTE, que tenga un buen dia", "Notificacion", MessageBoxButtons.OK, MessageBoxIcon.Information, MessageBoxDefaultButton.Button1);
                         Limpiar();
                         this.Dispose();
-                    }
+                    }*/
                     else
                     {
                         MessageBox.Show("El presupuesto nro " + cod_presupuesto + " NO AH PODIDO SER MODIFICADO EXITOSAMENTE, intente nuevamente mas tarde o comuniquese con el administrador. Disculpe las molestias.", "Notificacion", MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1);
@@ -257,7 +262,7 @@ namespace ParcialApp41002016.Vistas
                     }
 
 
-                //}
+                }
 
             }
 
@@ -270,7 +275,13 @@ namespace ParcialApp41002016.Vistas
                     dgvDetalle.Focus();
                     return false;
                 }
-                return true;
+            if (string.IsNullOrEmpty(txtSubtotal.Text))
+            {
+                MessageBox.Show("Debe AGREGAR AL MENOS UN DETALLE PARA INGRESAR EL PRESUPUESTO");
+                cboProductos.Focus();
+                return false;
+            }
+            return true;
             }
 
             private void Limpiar()

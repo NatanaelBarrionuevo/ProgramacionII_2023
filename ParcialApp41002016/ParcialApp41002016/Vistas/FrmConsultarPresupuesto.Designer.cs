@@ -45,35 +45,38 @@
             this.ColAccion = new System.Windows.Forms.DataGridViewButtonColumn();
             this.btnBuscar = new System.Windows.Forms.Button();
             this.btnSalir = new System.Windows.Forms.Button();
-            this.button1 = new System.Windows.Forms.Button();
             this.btnEliminar = new System.Windows.Forms.Button();
             this.btnModificar = new System.Windows.Forms.Button();
+            this.btnReanudar = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dgvDetalle)).BeginInit();
             this.SuspendLayout();
             // 
             // dtpDesde
             // 
             this.dtpDesde.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dtpDesde.Location = new System.Drawing.Point(302, 42);
+            this.dtpDesde.Location = new System.Drawing.Point(453, 65);
+            this.dtpDesde.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.dtpDesde.Name = "dtpDesde";
-            this.dtpDesde.Size = new System.Drawing.Size(85, 20);
+            this.dtpDesde.Size = new System.Drawing.Size(126, 26);
             this.dtpDesde.TabIndex = 0;
             // 
             // dtpHasta
             // 
             this.dtpHasta.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dtpHasta.Location = new System.Drawing.Point(485, 42);
+            this.dtpHasta.Location = new System.Drawing.Point(728, 65);
+            this.dtpHasta.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.dtpHasta.Name = "dtpHasta";
-            this.dtpHasta.Size = new System.Drawing.Size(85, 20);
+            this.dtpHasta.Size = new System.Drawing.Size(126, 26);
             this.dtpHasta.TabIndex = 1;
             // 
             // label1
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(239, 46);
+            this.label1.Location = new System.Drawing.Point(358, 71);
+            this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(57, 16);
+            this.label1.Size = new System.Drawing.Size(81, 25);
             this.label1.TabIndex = 2;
             this.label1.Text = "Desde:";
             // 
@@ -81,9 +84,10 @@
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(427, 46);
+            this.label2.Location = new System.Drawing.Point(640, 71);
+            this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(52, 16);
+            this.label2.Size = new System.Drawing.Size(75, 25);
             this.label2.TabIndex = 3;
             this.label2.Text = "Hasta:";
             // 
@@ -91,26 +95,29 @@
             // 
             this.lblPresupuestoNumero.AutoSize = true;
             this.lblPresupuestoNumero.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblPresupuestoNumero.Location = new System.Drawing.Point(23, 9);
+            this.lblPresupuestoNumero.Location = new System.Drawing.Point(34, 14);
+            this.lblPresupuestoNumero.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblPresupuestoNumero.Name = "lblPresupuestoNumero";
-            this.lblPresupuestoNumero.Size = new System.Drawing.Size(195, 24);
+            this.lblPresupuestoNumero.Size = new System.Drawing.Size(298, 33);
             this.lblPresupuestoNumero.TabIndex = 4;
             this.lblPresupuestoNumero.Text = "Presupuesto Numero:";
             // 
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(194, 86);
+            this.label4.Location = new System.Drawing.Point(291, 132);
+            this.label4.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(42, 13);
+            this.label4.Size = new System.Drawing.Size(62, 20);
             this.label4.TabIndex = 5;
             this.label4.Text = "Cliente:";
             // 
             // txtCliente
             // 
-            this.txtCliente.Location = new System.Drawing.Point(242, 79);
+            this.txtCliente.Location = new System.Drawing.Point(363, 122);
+            this.txtCliente.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.txtCliente.Name = "txtCliente";
-            this.txtCliente.Size = new System.Drawing.Size(328, 20);
+            this.txtCliente.Size = new System.Drawing.Size(490, 26);
             this.txtCliente.TabIndex = 6;
             // 
             // dgvDetalle
@@ -126,16 +133,19 @@
             this.ColFechaBaja,
             this.ColTotal,
             this.ColAccion});
-            this.dgvDetalle.Location = new System.Drawing.Point(27, 137);
+            this.dgvDetalle.Location = new System.Drawing.Point(40, 211);
+            this.dgvDetalle.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.dgvDetalle.Name = "dgvDetalle";
             this.dgvDetalle.ReadOnly = true;
-            this.dgvDetalle.Size = new System.Drawing.Size(742, 244);
+            this.dgvDetalle.RowHeadersWidth = 62;
+            this.dgvDetalle.Size = new System.Drawing.Size(1113, 375);
             this.dgvDetalle.TabIndex = 7;
             this.dgvDetalle.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvDetalle_CellContentClick);
             // 
             // ColCodigo
             // 
             this.ColCodigo.HeaderText = "Presupuesto Nro";
+            this.ColCodigo.MinimumWidth = 8;
             this.ColCodigo.Name = "ColCodigo";
             this.ColCodigo.ReadOnly = true;
             this.ColCodigo.Width = 70;
@@ -143,6 +153,7 @@
             // ColFechaAlta
             // 
             this.ColFechaAlta.HeaderText = "Fecha Alta";
+            this.ColFechaAlta.MinimumWidth = 8;
             this.ColFechaAlta.Name = "ColFechaAlta";
             this.ColFechaAlta.ReadOnly = true;
             this.ColFechaAlta.Width = 70;
@@ -150,6 +161,7 @@
             // ColCliente
             // 
             this.ColCliente.HeaderText = "Cliente";
+            this.ColCliente.MinimumWidth = 8;
             this.ColCliente.Name = "ColCliente";
             this.ColCliente.ReadOnly = true;
             this.ColCliente.Width = 220;
@@ -157,6 +169,7 @@
             // ColDescuento
             // 
             this.ColDescuento.HeaderText = "Descuento";
+            this.ColDescuento.MinimumWidth = 8;
             this.ColDescuento.Name = "ColDescuento";
             this.ColDescuento.ReadOnly = true;
             this.ColDescuento.Width = 65;
@@ -164,6 +177,7 @@
             // ColFechaBaja
             // 
             this.ColFechaBaja.HeaderText = "Fecha Baja";
+            this.ColFechaBaja.MinimumWidth = 8;
             this.ColFechaBaja.Name = "ColFechaBaja";
             this.ColFechaBaja.ReadOnly = true;
             this.ColFechaBaja.Width = 70;
@@ -171,6 +185,7 @@
             // ColTotal
             // 
             this.ColTotal.HeaderText = "Total";
+            this.ColTotal.MinimumWidth = 8;
             this.ColTotal.Name = "ColTotal";
             this.ColTotal.ReadOnly = true;
             this.ColTotal.Width = 104;
@@ -178,43 +193,39 @@
             // ColAccion
             // 
             this.ColAccion.HeaderText = "Acciones";
+            this.ColAccion.MinimumWidth = 8;
             this.ColAccion.Name = "ColAccion";
             this.ColAccion.ReadOnly = true;
+            this.ColAccion.Width = 150;
             // 
             // btnBuscar
             // 
-            this.btnBuscar.Location = new System.Drawing.Point(593, 76);
+            this.btnBuscar.Location = new System.Drawing.Point(890, 117);
+            this.btnBuscar.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.btnBuscar.Name = "btnBuscar";
-            this.btnBuscar.Size = new System.Drawing.Size(75, 23);
+            this.btnBuscar.Size = new System.Drawing.Size(112, 35);
             this.btnBuscar.TabIndex = 8;
-            this.btnBuscar.Text = "Seleccionar";
+            this.btnBuscar.Text = "Busqueda";
             this.btnBuscar.UseVisualStyleBackColor = true;
             this.btnBuscar.Click += new System.EventHandler(this.btnBuscar_Click);
             // 
             // btnSalir
             // 
-            this.btnSalir.Location = new System.Drawing.Point(694, 406);
+            this.btnSalir.Location = new System.Drawing.Point(1041, 625);
+            this.btnSalir.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.btnSalir.Name = "btnSalir";
-            this.btnSalir.Size = new System.Drawing.Size(75, 23);
+            this.btnSalir.Size = new System.Drawing.Size(112, 35);
             this.btnSalir.TabIndex = 9;
             this.btnSalir.Text = "Salir";
             this.btnSalir.UseVisualStyleBackColor = true;
             this.btnSalir.Click += new System.EventHandler(this.btnSalir_Click);
             // 
-            // button1
-            // 
-            this.button1.Location = new System.Drawing.Point(593, 406);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 23);
-            this.button1.TabIndex = 10;
-            this.button1.Text = "Reanudar";
-            this.button1.UseVisualStyleBackColor = true;
-            // 
             // btnEliminar
             // 
-            this.btnEliminar.Location = new System.Drawing.Point(27, 406);
+            this.btnEliminar.Location = new System.Drawing.Point(40, 625);
+            this.btnEliminar.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.btnEliminar.Name = "btnEliminar";
-            this.btnEliminar.Size = new System.Drawing.Size(75, 23);
+            this.btnEliminar.Size = new System.Drawing.Size(112, 35);
             this.btnEliminar.TabIndex = 11;
             this.btnEliminar.Text = "Eliminar";
             this.btnEliminar.UseVisualStyleBackColor = true;
@@ -222,23 +233,35 @@
             // 
             // btnModificar
             // 
-            this.btnModificar.Location = new System.Drawing.Point(125, 406);
+            this.btnModificar.Location = new System.Drawing.Point(188, 625);
+            this.btnModificar.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.btnModificar.Name = "btnModificar";
-            this.btnModificar.Size = new System.Drawing.Size(75, 23);
+            this.btnModificar.Size = new System.Drawing.Size(112, 35);
             this.btnModificar.TabIndex = 12;
             this.btnModificar.Text = "Modificar";
             this.btnModificar.UseVisualStyleBackColor = true;
             this.btnModificar.Click += new System.EventHandler(this.btnModificar_Click);
             // 
+            // btnReanudar
+            // 
+            this.btnReanudar.Location = new System.Drawing.Point(1041, 117);
+            this.btnReanudar.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.btnReanudar.Name = "btnReanudar";
+            this.btnReanudar.Size = new System.Drawing.Size(112, 35);
+            this.btnReanudar.TabIndex = 13;
+            this.btnReanudar.Text = "Reanudar";
+            this.btnReanudar.UseVisualStyleBackColor = true;
+            this.btnReanudar.Click += new System.EventHandler(this.btnReanudar_Click);
+            // 
             // FrmConsultarPresupuesto
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.ClientSize = new System.Drawing.Size(1191, 666);
             this.ControlBox = false;
+            this.Controls.Add(this.btnReanudar);
             this.Controls.Add(this.btnModificar);
             this.Controls.Add(this.btnEliminar);
-            this.Controls.Add(this.button1);
             this.Controls.Add(this.btnSalir);
             this.Controls.Add(this.btnBuscar);
             this.Controls.Add(this.dgvDetalle);
@@ -249,11 +272,13 @@
             this.Controls.Add(this.label1);
             this.Controls.Add(this.dtpHasta);
             this.Controls.Add(this.dtpDesde);
+            this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.MaximizeBox = false;
-            this.MaximumSize = new System.Drawing.Size(816, 489);
+            this.MaximumSize = new System.Drawing.Size(1213, 722);
             this.MinimizeBox = false;
-            this.MinimumSize = new System.Drawing.Size(816, 489);
+            this.MinimumSize = new System.Drawing.Size(1213, 722);
             this.Name = "FrmConsultarPresupuesto";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "FrmModificarPresupuesto";
             this.Load += new System.EventHandler(this.FrmModificarPresupuesto_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dgvDetalle)).EndInit();
@@ -274,7 +299,6 @@
         private System.Windows.Forms.DataGridView dgvDetalle;
         private System.Windows.Forms.Button btnBuscar;
         private System.Windows.Forms.Button btnSalir;
-        private System.Windows.Forms.Button button1;
         private System.Windows.Forms.DataGridViewTextBoxColumn ColCodigo;
         private System.Windows.Forms.DataGridViewTextBoxColumn ColFechaAlta;
         private System.Windows.Forms.DataGridViewTextBoxColumn ColCliente;
@@ -284,5 +308,6 @@
         private System.Windows.Forms.DataGridViewButtonColumn ColAccion;
         private System.Windows.Forms.Button btnEliminar;
         private System.Windows.Forms.Button btnModificar;
+        private System.Windows.Forms.Button btnReanudar;
     }
 }

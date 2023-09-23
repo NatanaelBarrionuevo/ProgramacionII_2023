@@ -23,22 +23,16 @@ namespace ParcialApp41002016.Vistas
             this.cod_presupuesto = cod_presupuesto;
             gestor = new BDHelper();
         }
-
         private void btbSalir_Click(object sender, EventArgs e)
-        {
-            if (MessageBox.Show("Seguro que desea SALIR?", "Control", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2) == DialogResult.Yes)
-            {
-                this.Dispose();
-            }
+        {            
+                this.Dispose();            
         }
 
         private void FrmConsultarDetalle_Load(object sender, EventArgs e)
         {
-            lblDetalle.Text = "Detalle del Presupuesto Nro: " + cod_presupuesto;
-            
+            lblDetalle.Text = "Detalle del Presupuesto Nro: " + cod_presupuesto;            
             MaestroDetalle();  
-        }
-        
+        }        
         private void MaestroDetalle()
         {
             Parametros param = new Parametros("@presupuesto_nro", cod_presupuesto);
@@ -48,7 +42,7 @@ namespace ParcialApp41002016.Vistas
             string cliente = string.Empty;
             string fecha = string.Empty;
             string total = string.Empty;
-            string descuento = string.Empty;
+            int descuento = 0;
             foreach (DataRow fila in tabla.Rows)
             {//detalle
                 int presupuesto = (int)fila.ItemArray[0];
@@ -60,15 +54,14 @@ namespace ParcialApp41002016.Vistas
                 cliente = fila.ItemArray[6].ToString();
                 fecha = fila.ItemArray[7].ToString();
                 total = fila.ItemArray[8].ToString();
-                descuento = fila.ItemArray[9].ToString();
+                descuento = Convert.ToInt32(fila.ItemArray[9]);
                 dgvDetalle.Rows.Add(new object[] {presupuesto, detalle, producto, precio, cantidad });
             }
             lblCliente.Text = "Cliente: " + cliente;
             lblFecha.Text = "Fecha: " + fecha; 
             lblTotal.Text = "Total: " + total;
-            lblDescuento.Text = "Descuento: " + descuento;
-        }
-
+            lblDescuento.Text = "%Descuento: " + descuento;
+        }       
     }
 }
 

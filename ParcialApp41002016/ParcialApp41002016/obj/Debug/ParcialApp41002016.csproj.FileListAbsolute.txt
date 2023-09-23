@@ -40,3 +40,6 @@ C:\Users\Usuario\Desktop\repo_progII\Repo_nato\ProgramacionII_2023\ParcialApp410
 C:\Users\Usuario\Desktop\repo_progII\Repo_nato\ProgramacionII_2023\ParcialApp41002016\ParcialApp41002016\bin\Debug\ParcialApp41002016.exe
 C:\Users\Usuario\Desktop\repo_progII\Repo_nato\ProgramacionII_2023\ParcialApp41002016\ParcialApp41002016\bin\Debug\ParcialApp41002016.pdb
 C:\Users\vivib\Desktop\Repo_progII\ProgramacionII_2023\ParcialApp41002016\ParcialApp41002016\obj\Debug\ParcialApp41002016.Vistas.FrmModificarPresupuesto.resources
+C:\Users\vivib\Desktop\Repo_progII\ProgramacionII_2023\ParcialApp41002016\ParcialApp41002016\obj\Debug\ParcialApp41002016.Vistas.Productos.FrmAgregarProductos.resources
+C:\Users\vivib\Desktop\Repo_progII\ProgramacionII_2023\ParcialApp41002016\ParcialApp41002016\obj\Debug\ParcialApp41002016.Vistas.Productos.FrmModificarProducto.resources
+C:\Users\vivib\Desktop\Repo_progII\ProgramacionII_2023\ParcialApp41002016\ParcialApp41002016\obj\Debug\ParcialApp41002016.Vistas.FrmProductos.resources
