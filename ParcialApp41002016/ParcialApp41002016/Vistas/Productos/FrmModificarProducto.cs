@@ -50,7 +50,7 @@ namespace ParcialApp41002016.Vistas.Productos
                 {
                     txtNombre.Text = row.ItemArray[1].ToString(); ;
                     txtPrecio.Text = row.ItemArray[2].ToString(); ;
-                    if (row.ItemArray[3].ToString() == "S") { rbtActivo.Checked = true; } else { rbtInactivo.Checked = true; }
+                    
                 }                
             }
 
@@ -61,8 +61,7 @@ namespace ParcialApp41002016.Vistas.Productos
             lblProductoNro.Text = "Producto Numero: " + cod_producto;
             txtNombre.MaxLength = 255;
             txtPrecio.MaxLength = 10;
-            rbtActivo.Checked = false;
-            rbtInactivo.Checked = false;
+           
         }
 
         private void btnModificar_Click(object sender, EventArgs e)
@@ -72,8 +71,7 @@ namespace ParcialApp41002016.Vistas.Productos
                 a.Cod_articulo = cod_producto;
                 a.Nombre = txtNombre.Text;
                 a.Precio = Convert.ToDouble(txtPrecio.Text);
-                a.Activo = false;
-                if (rbtActivo.Checked == true) { a.Activo = true; }
+                a.Activo = true;                
                 
                 if (gestor.ModificarProducto("SP_MODIFICAR_PRODUCTOS", a))
                 {
@@ -106,12 +104,7 @@ namespace ParcialApp41002016.Vistas.Productos
                 txtNombre.Focus();
                 return false;
             }
-            if (rbtActivo.Checked == false && rbtInactivo.Checked == false || rbtActivo.Checked == true && rbtInactivo.Checked == true)
-            {
-                MessageBox.Show("El producto esta disponible o inactivo ?", "Control", MessageBoxButtons.OK, MessageBoxIcon.Information, MessageBoxDefaultButton.Button1);
-                rbtActivo.Focus();
-                return false;
-            }
+            
             return true;
         }
     }

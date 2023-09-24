@@ -35,13 +35,11 @@
             this.label1 = new System.Windows.Forms.Label();
             this.lblProductoNro = new System.Windows.Forms.Label();
             this.txtNombre = new System.Windows.Forms.TextBox();
-            this.rbtActivo = new System.Windows.Forms.RadioButton();
-            this.rbtInactivo = new System.Windows.Forms.RadioButton();
             this.SuspendLayout();
             // 
             // btnSalir
             // 
-            this.btnSalir.Location = new System.Drawing.Point(527, 287);
+            this.btnSalir.Location = new System.Drawing.Point(506, 269);
             this.btnSalir.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.btnSalir.Name = "btnSalir";
             this.btnSalir.Size = new System.Drawing.Size(112, 35);
@@ -52,7 +50,7 @@
             // 
             // btnModificar
             // 
-            this.btnModificar.Location = new System.Drawing.Point(354, 287);
+            this.btnModificar.Location = new System.Drawing.Point(333, 269);
             this.btnModificar.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.btnModificar.Name = "btnModificar";
             this.btnModificar.Size = new System.Drawing.Size(112, 35);
@@ -103,36 +101,12 @@
             this.txtNombre.Size = new System.Drawing.Size(595, 26);
             this.txtNombre.TabIndex = 14;
             // 
-            // rbtActivo
-            // 
-            this.rbtActivo.AutoSize = true;
-            this.rbtActivo.Location = new System.Drawing.Point(230, 198);
-            this.rbtActivo.Name = "rbtActivo";
-            this.rbtActivo.Size = new System.Drawing.Size(108, 24);
-            this.rbtActivo.TabIndex = 22;
-            this.rbtActivo.TabStop = true;
-            this.rbtActivo.Text = "Disponible";
-            this.rbtActivo.UseVisualStyleBackColor = true;
-            // 
-            // rbtInactivo
-            // 
-            this.rbtInactivo.AutoSize = true;
-            this.rbtInactivo.Location = new System.Drawing.Point(391, 198);
-            this.rbtInactivo.Name = "rbtInactivo";
-            this.rbtInactivo.Size = new System.Drawing.Size(89, 24);
-            this.rbtInactivo.TabIndex = 23;
-            this.rbtInactivo.TabStop = true;
-            this.rbtInactivo.Text = "Inactivo";
-            this.rbtInactivo.UseVisualStyleBackColor = true;
-            // 
             // FrmModificarProducto
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(950, 341);
             this.ControlBox = false;
-            this.Controls.Add(this.rbtInactivo);
-            this.Controls.Add(this.rbtActivo);
             this.Controls.Add(this.btnSalir);
             this.Controls.Add(this.btnModificar);
             this.Controls.Add(this.txtPrecio);
@@ -143,6 +117,7 @@
             this.MaximumSize = new System.Drawing.Size(972, 397);
             this.MinimumSize = new System.Drawing.Size(972, 397);
             this.Name = "FrmModificarProducto";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "FrmModificarProducto";
             this.Load += new System.EventHandler(this.FrmModificarProducto_Load);
             this.ResumeLayout(false);
@@ -159,7 +134,5 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label lblProductoNro;
         private System.Windows.Forms.TextBox txtNombre;
-        private System.Windows.Forms.RadioButton rbtActivo;
-        private System.Windows.Forms.RadioButton rbtInactivo;
     }
 }

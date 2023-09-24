@@ -1,4 +1,5 @@
 ﻿using ParcialApp41002016.Vistas;
+using ParcialApp41002016.Vistas.Clientes;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -59,6 +60,11 @@ namespace ParcialApp41002016
         private void productosToolStripMenuItem_Click(object sender, EventArgs e)
         {
             new FrmProductos().ShowDialog();
+        }
+
+        private void clientesToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            new FrmClientes().ShowDialog();
         }
     }
 }

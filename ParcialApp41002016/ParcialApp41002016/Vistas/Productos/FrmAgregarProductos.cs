@@ -27,8 +27,8 @@ namespace ParcialApp41002016.Vistas.Productos
 
         private void FrmAgregarProductos_Load(object sender, EventArgs e)
         {
-            nro = gestor.ObtenerId("SP_PROXIMO_PRODUCTO");
-            lblProductoNro.Text = "Producto Numero: " + nro;
+            
+            lblProductoNro.Text = "Producto Numero: " + gestor.ObtenerId("SP_PROXIMO_PRODUCTO"); 
             txtNombre.MaxLength = 255;
             txtPrecio.MaxLength = 11;
         }
@@ -46,7 +46,7 @@ namespace ParcialApp41002016.Vistas.Productos
                 articulo.Precio = Convert.ToDouble(txtPrecio.Text);
                 articulo.Activo = true;
 
-                if (gestor.AgregarProducto("SP_AGREGAR_PRODUCTO", articulo))
+                if (gestor.AgregarProducto("SP_INSERTAR_PRODUCTO", articulo))
                 {
                     MessageBox.Show("El producto fue agregado exitosamente, que tenga un buen dia!", "Notificacion", MessageBoxButtons.OK, MessageBoxIcon.Information, MessageBoxDefaultButton.Button1);
                     Limpiar();
@@ -78,7 +78,7 @@ namespace ParcialApp41002016.Vistas.Productos
         private void Limpiar()
         {
             lblProductoNro.Text = string.Empty;
-            lblProductoNro.Text = "Producto Numero: " + nro;
+            lblProductoNro.Text = "Producto Numero: " + gestor.ObtenerId("SP_PROXIMO_PRODUCTO"); 
             txtNombre.Text = string.Empty;
             txtPrecio.Text = string.Empty;
         }

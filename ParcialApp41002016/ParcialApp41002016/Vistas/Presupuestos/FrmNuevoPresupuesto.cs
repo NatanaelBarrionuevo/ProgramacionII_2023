@@ -194,13 +194,13 @@ namespace ParcialApp41002016.Vistas
         {
             if (dgvDetalle.Rows.Count <= 0)
             {
-                MessageBox.Show("Debe AGREGAR AL MENOS UN DETALLE PARA INGRESAR EL PRESUPUESTO");
+                MessageBox.Show("Debe AGREGAR AL MENOS UN DETALLE PARA INGRESAR EL PRESUPUESTO", "Control", MessageBoxButtons.OK, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button1);
                 cboProductos.Focus();
                 return false;
             }
             if (string.IsNullOrEmpty(txtSubtotal.Text))
             {
-                MessageBox.Show("Debe AGREGAR AL MENOS UN DETALLE PARA INGRESAR EL PRESUPUESTO");
+                MessageBox.Show("Debe AGREGAR AL MENOS UN DETALLE PARA INGRESAR EL PRESUPUESTO", "Control", MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1);
                 cboProductos.Focus();
                 return false;
             }

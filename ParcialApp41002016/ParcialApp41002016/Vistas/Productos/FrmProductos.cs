@@ -80,27 +80,27 @@ namespace ParcialApp41002016.Vistas
                         dgvProductos.Rows.Clear();
                         CargarProductos();
                     }
+                    else
+                    {
+                        MessageBox.Show("El productos NO AH PODIDO SER ELIMINADO, porfavor intente nuevamente mas tarde o contacte con el adminsitrador", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1);
+                    }
                 }
-                else
-                {
-                    MessageBox.Show("El productos NO AH PODIDO SER ELIMINADO, porfavor intente nuevamente mas tarde o contacte con el adminsitrador", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1);
-                }
+                
 
             }
         }
-
-        private void btnModificar_Click(object sender, EventArgs e)
-        {
-            int cod_producto = Convert.ToInt32(dgvProductos.Rows[dgvProductos.CurrentRow.Index].Cells[0].Value);
-            new FrmModificarProducto(cod_producto).ShowDialog();
-        }
-
         private void btnSalir_Click(object sender, EventArgs e)
         {
-            if(MessageBox.Show("Estas segur@ que DESEAS SALIR?", "Control", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2) == DialogResult.Yes)
+            if (MessageBox.Show("Estas segur@ que DESEAS SALIR?", "Control", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2) == DialogResult.Yes)
             {
                 this.Dispose();
             }
+        }
+
+        private void btnRefresh_Click(object sender, EventArgs e)
+        {
+            dgvProductos.Rows.Clear();
+            CargarProductos();
         }
     }
 }

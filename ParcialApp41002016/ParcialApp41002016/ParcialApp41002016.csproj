@@ -47,32 +47,39 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Entidades\Articulo.cs" />
+    <Compile Include="Entidades\Clientes.cs" />
     <Compile Include="Entidades\DetallePresupuesto.cs" />
     <Compile Include="Entidades\Presupuesto.cs" />
     <Compile Include="Datos\BDHelper.cs" />
     <Compile Include="Datos\Parametros.cs" />
-    <Compile Include="Vistas\FrmConsultarDetalle.cs">
+    <Compile Include="Vistas\Clientes\FrmClientes.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Vistas\FrmConsultarDetalle.Designer.cs">
+    <Compile Include="Vistas\Clientes\FrmClientes.Designer.cs">
+      <DependentUpon>FrmClientes.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Vistas\Presupuestos\FrmConsultarDetalle.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Vistas\Presupuestos\FrmConsultarDetalle.Designer.cs">
       <DependentUpon>FrmConsultarDetalle.cs</DependentUpon>
     </Compile>
-    <Compile Include="Vistas\FrmConsultarPresupuesto.cs">
+    <Compile Include="Vistas\Presupuestos\FrmConsultarPresupuesto.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Vistas\FrmConsultarPresupuesto.Designer.cs">
+    <Compile Include="Vistas\Presupuestos\FrmConsultarPresupuesto.Designer.cs">
       <DependentUpon>FrmConsultarPresupuesto.cs</DependentUpon>
     </Compile>
-    <Compile Include="Vistas\FrmModificarPresupuesto.cs">
+    <Compile Include="Vistas\Presupuestos\FrmModificarPresupuesto.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Vistas\FrmModificarPresupuesto.Designer.cs">
+    <Compile Include="Vistas\Presupuestos\FrmModificarPresupuesto.Designer.cs">
       <DependentUpon>FrmModificarPresupuesto.cs</DependentUpon>
     </Compile>
-    <Compile Include="Vistas\FrmNuevoPresupuesto.cs">
+    <Compile Include="Vistas\Presupuestos\FrmNuevoPresupuesto.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Vistas\FrmNuevoPresupuesto.Designer.cs">
+    <Compile Include="Vistas\Presupuestos\FrmNuevoPresupuesto.Designer.cs">
       <DependentUpon>FrmNuevoPresupuesto.cs</DependentUpon>
     </Compile>
     <Compile Include="Vistas\FrmPrincipal.cs">
@@ -101,16 +108,19 @@
     <Compile Include="Vistas\Productos\FrmProductos.Designer.cs">
       <DependentUpon>FrmProductos.cs</DependentUpon>
     </Compile>
-    <EmbeddedResource Include="Vistas\FrmConsultarDetalle.resx">
+    <EmbeddedResource Include="Vistas\Clientes\FrmClientes.resx">
+      <DependentUpon>FrmClientes.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Vistas\Presupuestos\FrmConsultarDetalle.resx">
       <DependentUpon>FrmConsultarDetalle.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Vistas\FrmConsultarPresupuesto.resx">
+    <EmbeddedResource Include="Vistas\Presupuestos\FrmConsultarPresupuesto.resx">
       <DependentUpon>FrmConsultarPresupuesto.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Vistas\FrmModificarPresupuesto.resx">
+    <EmbeddedResource Include="Vistas\Presupuestos\FrmModificarPresupuesto.resx">
       <DependentUpon>FrmModificarPresupuesto.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Vistas\FrmNuevoPresupuesto.resx">
+    <EmbeddedResource Include="Vistas\Presupuestos\FrmNuevoPresupuesto.resx">
       <DependentUpon>FrmNuevoPresupuesto.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Vistas\FrmPrincipal.resx">
@@ -148,5 +158,6 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

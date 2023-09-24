@@ -8,6 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Xml.Schema;
+using System.Xml.XPath;
 
 namespace ParcialApp41002016.Servicios
 {
@@ -151,7 +152,7 @@ namespace ParcialApp41002016.Servicios
                 cmd.CommandType = CommandType.StoredProcedure;
                 cmd.Parameters.AddWithValue("@presupuesto_nro", presupuesto_nro);
                 cmd.ExecuteNonQuery();
-                
+
                 t.Commit();
             }
 
@@ -185,7 +186,7 @@ namespace ParcialApp41002016.Servicios
                 cmd.CommandType = CommandType.StoredProcedure;
                 foreach (Parametros p in lista) { cmd.Parameters.AddWithValue(p.Key, p.Value); }
                 cmd.ExecuteNonQuery();
-                
+
 
                 t.Commit();
             }
@@ -307,7 +308,7 @@ namespace ParcialApp41002016.Servicios
                 t = conexion.BeginTransaction();
                 cmd = new SqlCommand(SP, conexion, t);
                 cmd.CommandType = CommandType.StoredProcedure;
-                cmd.Parameters.AddWithValue("@cod_producto", cod_producto);
+                cmd.Parameters.AddWithValue("@id_producto", cod_producto);
                 cmd.ExecuteNonQuery();
 
                 t.Commit();
@@ -319,8 +320,46 @@ namespace ParcialApp41002016.Servicios
 
         public bool AgregarProducto(string SP, Articulo a)
         {
-            SqlTransaction t = null;
             bool resultado = true;
+            SqlTransaction t = null;
+
+            try
+            {
+                conexion.Open();
+                t = conexion.BeginTransaction();
+                cmd = new SqlCommand(SP, conexion, t);
+                cmd.CommandType = CommandType.StoredProcedure;
+
+                cmd.Parameters.AddWithValue("@n_producto", a.Nombre);
+                cmd.Parameters.AddWithValue("@precio", a.Precio);
+                cmd.Parameters.AddWithValue("@activo", "S");
+                int aux = cmd.ExecuteNonQuery();
+                t.Commit();
+            }
+            catch (Exception ex)
+            {
+                if (t != null)
+                {
+                    t.Rollback();
+                }
+                resultado = false;
+            }
+            finally
+            {
+                if (conexion != null && conexion.State == ConnectionState.Open)
+                {
+                    conexion.Close();
+                }
+            }
+
+            return resultado;
+
+        }
+
+        public bool ModificarProducto(string SP, Articulo a)
+        {
+            bool resultado = true;
+            SqlTransaction t = null;
             try
             {
                 conexion.Open();
@@ -330,58 +369,21 @@ namespace ParcialApp41002016.Servicios
                 cmd.Parameters.AddWithValue("@id_producto", a.Cod_articulo);
                 cmd.Parameters.AddWithValue("@n_producto", a.Nombre);
                 cmd.Parameters.AddWithValue("@precio", a.Precio);
-                cmd.Parameters.AddWithValue("@activo", "N'S'");
+                cmd.Parameters.AddWithValue("@activo", "S");
                 cmd.ExecuteNonQuery();
+
                 t.Commit();
             }
-            catch(Exception ex) 
-            { 
-                if (t != null) 
-                { 
-                    t.Rollback(); 
-                } 
-                resultado = false; }
-            finally 
-            { if (conexion != null && conexion.State == ConnectionState.Open) 
-                { 
-                    conexion.Close(); 
-                } 
-            }
-            return resultado;        
-                       
-        }
-
-        public bool ModificarProducto(string SP, Articulo a)
-        {
-            bool resultado = true;
-            SqlTransaction t = null;
-            try 
-            { 
-                conexion.Open(); 
-                t = conexion.BeginTransaction();
-                cmd = new SqlCommand(SP, conexion, t);
-                cmd.CommandType = CommandType.StoredProcedure;
-                cmd.Parameters.AddWithValue("@id_producto", a.Cod_articulo);
-                cmd.Parameters.AddWithValue("@n_producto", a.Nombre);
-                cmd.Parameters.AddWithValue("@precio", a.Precio);
-                if (a.Activo == true) 
-                {
-                    cmd.Parameters.AddWithValue("@activo", "'S'"); 
-                }
-                else { cmd.Parameters.AddWithValue("@activo", "'N'"); }
-                cmd.ExecuteNonQuery();
-            }
-            catch(Exception ex)
+            catch (Exception ex)
             {
-                if(t != null)
+                if (t != null)
                 {
                     t.Rollback();
                 }
-                resultado = false;
             }
             finally
             {
-                if(conexion != null && conexion.State == ConnectionState.Open ) { conexion.Close(); }
+                if (conexion != null && conexion.State == ConnectionState.Open) { conexion.Close(); }
             }
             return resultado;
         }
