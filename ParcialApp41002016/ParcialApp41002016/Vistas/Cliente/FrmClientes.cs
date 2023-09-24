@@ -79,7 +79,8 @@ namespace ParcialApp41002016.Vistas.Cliente
                 }
                 else 
                 {
-                    MessageBox.Show("El cliente NO AH PODIDO SER ELIMINADO, porfavor intente de nuevo mas tarde o contacte con al administrador", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1);
+                    MessageBox.Show("El cliente NO AH PODIDO SER ELIMINADO, porfavor intente de nuevo mas tarde o contacte con al administrador", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error
+                        , MessageBoxDefaultButton.Button1);
                 }
             }
         }

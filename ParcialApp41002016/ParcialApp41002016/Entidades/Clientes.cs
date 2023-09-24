@@ -2,6 +2,7 @@
 using System.CodeDom;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -38,6 +39,7 @@ namespace ParcialApp41002016.Entidades
                 
         }
 
+        
         public double CalcularFidelidad()
         {
             return Convert.ToDouble(DateTime.Now - fecha_alta);
