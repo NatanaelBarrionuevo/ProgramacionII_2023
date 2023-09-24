@@ -1,5 +1,5 @@
 ﻿using ParcialApp41002016.Vistas;
-using ParcialApp41002016.Vistas.Clientes;
+using ParcialApp41002016.Vistas.Cliente;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;

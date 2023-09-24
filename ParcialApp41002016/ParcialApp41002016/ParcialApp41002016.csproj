@@ -52,10 +52,10 @@
     <Compile Include="Entidades\Presupuesto.cs" />
     <Compile Include="Datos\BDHelper.cs" />
     <Compile Include="Datos\Parametros.cs" />
-    <Compile Include="Vistas\Clientes\FrmClientes.cs">
+    <Compile Include="Vistas\Cliente\FrmClientes.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Vistas\Clientes\FrmClientes.Designer.cs">
+    <Compile Include="Vistas\Cliente\FrmClientes.Designer.cs">
       <DependentUpon>FrmClientes.cs</DependentUpon>
     </Compile>
     <Compile Include="Vistas\Presupuestos\FrmConsultarDetalle.cs">
@@ -108,7 +108,7 @@
     <Compile Include="Vistas\Productos\FrmProductos.Designer.cs">
       <DependentUpon>FrmProductos.cs</DependentUpon>
     </Compile>
-    <EmbeddedResource Include="Vistas\Clientes\FrmClientes.resx">
+    <EmbeddedResource Include="Vistas\Cliente\FrmClientes.resx">
       <DependentUpon>FrmClientes.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Vistas\Presupuestos\FrmConsultarDetalle.resx">

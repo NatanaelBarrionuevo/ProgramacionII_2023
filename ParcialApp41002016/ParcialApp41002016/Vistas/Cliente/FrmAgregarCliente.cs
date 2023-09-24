@@ -1,5 +1,4 @@
-﻿using ParcialApp41002016.Servicios;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -9,18 +8,18 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace ParcialApp41002016.Vistas.Clientes
+namespace ParcialApp41002016.Vistas.Cliente
 {
-    public partial class FrmClientes : Form
+    public partial class FrmAgregarCliente : Form
     {
-        BDHelper gestor;
-        Clientes cliente;
-        public FrmClientes()
+        
+        public FrmAgregarCliente()
         {
             InitializeComponent();
+            
         }
 
-        private void FrmClientes_Load(object sender, EventArgs e)
+        private void FrmAgregarCliente_Load(object sender, EventArgs e)
         {
 
         }
