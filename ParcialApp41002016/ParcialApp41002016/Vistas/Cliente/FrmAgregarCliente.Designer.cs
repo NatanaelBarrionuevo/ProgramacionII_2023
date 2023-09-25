@@ -49,6 +49,8 @@
             this.label8 = new System.Windows.Forms.Label();
             this.btnAgregar = new System.Windows.Forms.Button();
             this.btnSalir = new System.Windows.Forms.Button();
+            this.txtAltura = new System.Windows.Forms.TextBox();
+            this.label9 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // lblCliente
@@ -117,7 +119,7 @@
             // 
             this.txtDomicilio.Location = new System.Drawing.Point(211, 306);
             this.txtDomicilio.Name = "txtDomicilio";
-            this.txtDomicilio.Size = new System.Drawing.Size(442, 26);
+            this.txtDomicilio.Size = new System.Drawing.Size(240, 26);
             this.txtDomicilio.TabIndex = 8;
             // 
             // label4
@@ -234,6 +236,7 @@
             this.btnAgregar.TabIndex = 22;
             this.btnAgregar.Text = "&Agregar";
             this.btnAgregar.UseVisualStyleBackColor = true;
+            this.btnAgregar.Click += new System.EventHandler(this.btnAgregar_Click);
             // 
             // btnSalir
             // 
@@ -245,12 +248,31 @@
             this.btnSalir.Text = "&Salir";
             this.btnSalir.UseVisualStyleBackColor = true;
             // 
+            // txtAltura
+            // 
+            this.txtAltura.Location = new System.Drawing.Point(527, 306);
+            this.txtAltura.Name = "txtAltura";
+            this.txtAltura.Size = new System.Drawing.Size(126, 26);
+            this.txtAltura.TabIndex = 25;
+            // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label9.Location = new System.Drawing.Point(466, 310);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(67, 22);
+            this.label9.TabIndex = 24;
+            this.label9.Text = "Altura: ";
+            // 
             // FrmAgregarCliente
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(824, 528);
             this.ControlBox = false;
+            this.Controls.Add(this.txtAltura);
+            this.Controls.Add(this.label9);
             this.Controls.Add(this.btnSalir);
             this.Controls.Add(this.btnAgregar);
             this.Controls.Add(this.label8);
@@ -303,5 +325,7 @@
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.Button btnAgregar;
         private System.Windows.Forms.Button btnSalir;
+        private System.Windows.Forms.TextBox txtAltura;
+        private System.Windows.Forms.Label label9;
     }
 }

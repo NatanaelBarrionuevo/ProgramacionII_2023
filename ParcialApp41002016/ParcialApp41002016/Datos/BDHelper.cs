@@ -387,5 +387,34 @@ namespace ParcialApp41002016.Servicios
             }
             return resultado;
         }
+
+        public bool EliminarCliente(string SP, int legajo)
+        {
+            SqlTransaction t = null;
+            bool resultado = true;
+            try
+            {
+                conexion.Open();
+                t  = conexion.BeginTransaction();
+                cmd = new SqlCommand(SP, conexion, t);
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("@legajo", legajo);
+                cmd.ExecuteNonQuery();
+                t.Commit();
+            }
+            catch(Exception ex)
+            {
+                if(t != null)
+                {
+                    t.Rollback();
+                }
+                resultado = false;
+            }
+            finally
+            {
+                if(conexion != null && conexion.State == ConnectionState.Open) { conexion.Close(); }
+            }
+            return resultado;
+        }
     }
 }

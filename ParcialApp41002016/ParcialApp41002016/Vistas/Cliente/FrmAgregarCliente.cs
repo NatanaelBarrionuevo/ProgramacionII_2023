@@ -26,9 +26,44 @@ namespace ParcialApp41002016.Vistas.Cliente
 
         private void FrmAgregarCliente_Load(object sender, EventArgs e)
         {
-            lblCliente.Text = "Cliente: " + gestor.ObtenreId("SP_PROXIMO_CLIENTE");
+            lblCliente.Text = "Cliente: " + gestor.ObtenerId("SP_PROXIMO_CLIENTE");
+            Loader();
+            
         }
 
-       
+        private void Loader()
+        {
+            txtApellido.MaxLength = 50;
+            txtNombre.MaxLength = 50;
+            txtDomicilio.MaxLength = 50;
+            txtAltura.MaxLength = 4;
+            txtTelefono.MaxLength = 12;
+            txtEmail.MaxLength = 50;            
+        }
+
+        private void btnAgregar_Click(object sender, EventArgs e)
+        {
+            if (ValidarDatos())
+            {
+
+            }
+        }
+
+        private bool ValidarDatos()
+        {
+            if (string.IsNullOrEmpty(txtAltura.Text) || !int.TryParse(txtAltura.Text, out _) || string.IsNullOrWhiteSpace(txtAltura.Text))
+            {
+                MessageBox.Show("La altura ingresada no es valida", "Control", MessageBoxButtons.OK, MessageBoxIcon.Information, MessageBoxDefaultButton.Button1);
+                txtAltura.Focus();
+                return false;
+            }
+            if (string.IsNullOrEmpty(txt.Text) || !int.TryParse(txtAltura.Text, out _) || string.IsNullOrWhiteSpace(txtAltura.Text))
+            {
+                MessageBox.Show("La altura ingresada no es valida", "Control", MessageBoxButtons.OK, MessageBoxIcon.Information, MessageBoxDefaultButton.Button1);
+                txtAltura.Focus();
+                return false;
+            }
+            return true;
+        }
     }
 }
