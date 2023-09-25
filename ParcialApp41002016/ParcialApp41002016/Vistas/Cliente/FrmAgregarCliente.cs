@@ -45,7 +45,15 @@ namespace ParcialApp41002016.Vistas.Cliente
         {
             if (ValidarDatos())
             {
-
+                if (gestor.AgregarCliente("SP_AGREGAR_CLIENTE", cliente))
+                {
+                    MessageBox.Show("El cliente ah sido ingresado exitosamente, que tenga buen dia!", "Notificacion", MessageBoxButtons.OK, MessageBoxIcon.Information, MessageBoxDefaultButton.Button1);
+                    Limpiar();
+                }
+                else
+                {
+                    MessageBox.Show("El cliente NO AH PODIDO SER INGRESADO, intente nuevamente mas tarde o comuniquese con el administrador", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1);
+                }
             }
         }
 
@@ -192,6 +200,27 @@ namespace ParcialApp41002016.Vistas.Cliente
             }            
             return true;
 
+        }
+
+        private void Limpiar()
+        {
+            txtApellido.Clear();
+            txtNombre.Clear();
+            rbtFemenino.Checked = false;
+            rbtMasculino.Checked = false;
+            rbtIndefinido.Checked = false;
+            dtpFechaNac.Value = DateTime.Now.AddYears(-18);
+            txtDomicilio.Clear();
+            txtAltura.Clear();
+            txtTelefono.Clear();
+            txtEmail.Clear();
+        }
+        private void btnSalir_Click(object sender, EventArgs e)
+        {
+            if (MessageBox.Show("Estas segur@ que DESEAS SALIR?", "Control", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2) == DialogResult.Yes)
+            {
+                this.Dispose();
+            }
         }
     }
 }

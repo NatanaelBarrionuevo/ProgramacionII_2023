@@ -420,5 +420,20 @@ namespace ParcialApp41002016.Servicios
             }
             return resultado;
         }
+
+        public bool AgregarCliente(string SP, Clientes c)
+        {
+            SqlTransaction t = null;
+            bool resultado = true;
+            try
+            {
+                conexion.Open();
+                t = conexion.BeginTransaction();
+                cmd = new SqlCommand(SP, conexion, t);
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("@legajo", c.Legajo);
+            }
+            return resultado;
+        }
     }
 }
