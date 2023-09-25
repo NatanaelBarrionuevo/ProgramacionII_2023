@@ -1,4 +1,5 @@
 ﻿using ParcialApp41002016.Vistas;
+using ParcialApp41002016.Vistas.Cliente;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -17,7 +18,7 @@ namespace ParcialApp41002016
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new FrmPrincipal());
+            Application.Run(new FrmAgregarCliente());
         }
     }
 }

@@ -47,7 +47,11 @@ namespace ParcialApp41002016.Servicios
 
             cmd.ExecuteNonQuery();
             conexion.Close();
-            return (int)param.Value;
+            if(Convert.ToInt32(param.Value) == 0)
+            {
+                param.Value = 1;
+            }
+            return Convert.ToInt32(param.Value);
         }
         public DataTable Consultar(string nombreSP)
         {

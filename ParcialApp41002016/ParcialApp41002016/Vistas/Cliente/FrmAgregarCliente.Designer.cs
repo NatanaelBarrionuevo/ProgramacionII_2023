@@ -43,7 +43,7 @@
             this.rbtFemenino = new System.Windows.Forms.RadioButton();
             this.rbtMasculino = new System.Windows.Forms.RadioButton();
             this.txtEmail = new System.Windows.Forms.TextBox();
-            this.label7 = new System.Windows.Forms.Label();
+            this.lblSexo = new System.Windows.Forms.Label();
             this.rbtIndefinido = new System.Windows.Forms.RadioButton();
             this.dtpFechaNac = new System.Windows.Forms.DateTimePicker();
             this.label8 = new System.Windows.Forms.Label();
@@ -188,15 +188,15 @@
             this.txtEmail.Size = new System.Drawing.Size(442, 26);
             this.txtEmail.TabIndex = 14;
             // 
-            // label7
+            // lblSexo
             // 
-            this.label7.AutoSize = true;
-            this.label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label7.Location = new System.Drawing.Point(146, 171);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(61, 22);
-            this.label7.TabIndex = 15;
-            this.label7.Text = "Sexo: ";
+            this.lblSexo.AutoSize = true;
+            this.lblSexo.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblSexo.Location = new System.Drawing.Point(146, 171);
+            this.lblSexo.Name = "lblSexo";
+            this.lblSexo.Size = new System.Drawing.Size(61, 22);
+            this.lblSexo.TabIndex = 15;
+            this.lblSexo.Text = "Sexo: ";
             // 
             // rbtIndefinido
             // 
@@ -278,7 +278,7 @@
             this.Controls.Add(this.label8);
             this.Controls.Add(this.dtpFechaNac);
             this.Controls.Add(this.rbtIndefinido);
-            this.Controls.Add(this.label7);
+            this.Controls.Add(this.lblSexo);
             this.Controls.Add(this.txtEmail);
             this.Controls.Add(this.rbtMasculino);
             this.Controls.Add(this.rbtFemenino);
@@ -319,7 +319,7 @@
         private System.Windows.Forms.RadioButton rbtFemenino;
         private System.Windows.Forms.RadioButton rbtMasculino;
         private System.Windows.Forms.TextBox txtEmail;
-        private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.Label lblSexo;
         private System.Windows.Forms.RadioButton rbtIndefinido;
         private System.Windows.Forms.DateTimePicker dtpFechaNac;
         private System.Windows.Forms.Label label8;
