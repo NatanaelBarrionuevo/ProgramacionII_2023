@@ -55,8 +55,8 @@ namespace ParcialApp41002016.Vistas.Cliente
             {
                 cliente.Apellido = txtApellido.Text.ToUpper();
                 cliente.Nombre = txtNombre.Text.ToUpper();
-                if(rbtFemenino.Checked == true) { cliente.Sexo = "F"; }
-                if(rbtMasculino.Checked == true) { cliente.Sexo = "M"; }
+                if (rbtFemenino.Checked == true) { cliente.Sexo = "F"; }
+                if (rbtMasculino.Checked == true) { cliente.Sexo = "M"; }
                 else { cliente.Sexo = "X"; }
                 cliente.Fecha_nac = dtpFechaNac.Value.ToShortDateString();
                 cliente.Barrio = Convert.ToInt32(cboBarrio.SelectedValue);
@@ -75,59 +75,67 @@ namespace ParcialApp41002016.Vistas.Cliente
                 else
                 {
                     MessageBox.Show("El cliente NO AH PODIDO SER INGRESADO, intente nuevamente mas tarde o comuniquese con el administrador", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1);
-                }                
+                }
             }
         }
 
         private bool ValidarDatos()
         {
-            
+            bool aux = true;
             if (string.IsNullOrEmpty(txtApellido.Text) || string.IsNullOrWhiteSpace(txtApellido.Text))
+            {
+                aux = false;
+            }
+            else
+            {
+                char c = char.MaxValue;
+
+                for (int i = 0; i < txtApellido.Text.Length; i++)
+                {
+                    c = txtApellido.Text[i];
+                    if (Convert.ToInt32(txtApellido.Text[0]) <= 64 || Convert.ToInt32(txtApellido.Text[0]) >= 91 && Convert.ToInt32(txtApellido.Text[0]) <= 96 || Convert.ToInt32(txtApellido.Text[0]) >= 123)
+                    {
+                        aux = false;
+                    }
+
+                }
+
+            }
+            if (!aux)
             {
                 MessageBox.Show("El APELLIDO ingresada no es valida", "Control", MessageBoxButtons.OK, MessageBoxIcon.Information, MessageBoxDefaultButton.Button1);
                 txtApellido.Focus();
                 return false;
             }
-            else
-            {
-                for (int i = 1; i < txtApellido.Text.Length; i++)
-                {
-                    char c = txtApellido.Text[i];
-                    if (Convert.ToInt32(c) <= 64 || Convert.ToInt32(c) >= 91 && Convert.ToInt32(c) <= 96 || Convert.ToInt32(c) >= 123)
-                    {
-                        MessageBox.Show("El APELLIDO ingresada no es valida", "Control", MessageBoxButtons.OK, MessageBoxIcon.Information, MessageBoxDefaultButton.Button1);
-                        txtApellido.Focus();
-                        return false;
-                    }
-                }
-            }
-            
             if (string.IsNullOrEmpty(txtNombre.Text) || string.IsNullOrWhiteSpace(txtNombre.Text))
             {
-                MessageBox.Show("El NOMBRE ingresada no es valida", "Control", MessageBoxButtons.OK, MessageBoxIcon.Information, MessageBoxDefaultButton.Button1);
-                txtNombre.Focus();
-                return false;
+                aux = false;
             }
             else
             {
-                for (int i = 0; i < txtNombre.Text.Length; i++)
+                for (int i = 1; i < txtNombre.Text.Length; i++)
                 {
                     char c = txtNombre.Text[i];
-                    if (Convert.ToInt32(c) <= 64 || Convert.ToInt32(c) >= 91 && Convert.ToInt32(c) <= 96 || Convert.ToInt32(c) >= 123)
+                    if (Convert.ToInt32(c) <= 64 || Convert.ToInt32(c) >= 91 && Convert.ToInt32(c) <= 96 || Convert.ToInt32(c) >= 123 || Convert.ToInt32(c) != 32)
                     {
-                        MessageBox.Show("El APELLIDO ingresada no es valida", "Control", MessageBoxButtons.OK, MessageBoxIcon.Information, MessageBoxDefaultButton.Button1);
-                        txtApellido.Focus();
-                        return false;
+                        aux = false;
                     }
                 }
             }
-            if(rbtFemenino.Checked == false && rbtMasculino.Checked == false && rbtIndefinido.Checked == false || rbtFemenino.Checked == true && rbtMasculino.Checked == true && rbtIndefinido.Checked == true) 
+            if (!aux)
+            {
+                MessageBox.Show("El NOMBRE ingresado no es valido", "Control", MessageBoxButtons.OK, MessageBoxIcon.Information, MessageBoxDefaultButton.Button1);
+                txtApellido.Focus();
+                return false;
+            }
+            if (rbtFemenino.Checked == false && rbtMasculino.Checked == false && rbtIndefinido.Checked == false || rbtFemenino.Checked == true && rbtMasculino.Checked == true && rbtIndefinido.Checked == true)
             {
                 MessageBox.Show("Debe SELECCIONAR UNA SOLA OPCION EN CUANTO AL SEXO", "Control", MessageBoxButtons.OK, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button1);
                 lblSexo.Focus();
                 return false;
             }
-            if(!dtpFechaNac.Checked || dtpFechaNac.Value >= DateTime.Now.AddYears(-18))
+
+            if (!dtpFechaNac.Checked || dtpFechaNac.Value >= DateTime.Now.AddYears(-18))
             {
                 MessageBox.Show("Debe ser MAYOR DE EDAD para ser registrado", "Control", MessageBoxButtons.OK, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button1);
                 lblSexo.Focus();
@@ -135,47 +143,57 @@ namespace ParcialApp41002016.Vistas.Cliente
             }
             if (string.IsNullOrEmpty(txtDomicilio.Text) || string.IsNullOrWhiteSpace(txtDomicilio.Text))
             {
-                MessageBox.Show("El DOMICILIO ingresado no es valido", "Control", MessageBoxButtons.OK, MessageBoxIcon.Information, MessageBoxDefaultButton.Button1);
-                txtDomicilio.Focus();
-                return false;
+                aux = false;
             }
             else
             {
+
                 for (int i = 0; i < txtDomicilio.Text.Length; i++)
                 {
+
                     char c = txtDomicilio.Text[i];
-                    if (Convert.ToInt32(c) <= 64 || Convert.ToInt32(c) >= 91 && Convert.ToInt32(c) <= 96 || Convert.ToInt32(c) >= 123 && Convert.ToInt32(c) != 32)
+                    if (Convert.ToInt32(c) <= 64 || Convert.ToInt32(c) >= 91 && Convert.ToInt32(c) <= 96 || Convert.ToInt32(c) >= 123 || Convert.ToInt32(c) != 32)
                     {
-                        MessageBox.Show("El DOMICILIO ingresado no es valido", "Control", MessageBoxButtons.OK, MessageBoxIcon.Information, MessageBoxDefaultButton.Button1);
-                        txtDomicilio.Focus();
-                        return false;
+                        aux = false;
                     }
+                    if (Convert.ToInt32(c) != 32)
+                    {
+                        aux = false;
+                    }
+                }
+                if (!aux)
+                {
+                    MessageBox.Show("El DOMICILIO ingresado no es valido", "Control", MessageBoxButtons.OK, MessageBoxIcon.Information, MessageBoxDefaultButton.Button1);
+                    txtDomicilio.Focus();
+                    return false;
                 }
             }
             if (string.IsNullOrEmpty(txtAltura.Text) || !int.TryParse(txtAltura.Text, out _) || string.IsNullOrWhiteSpace(txtAltura.Text))
+            {
+                aux = false;
+            }
+            else
+            {
+
+                foreach (char c in txtAltura.Text)
+                {
+
+                    if (Convert.ToInt32(c) <= 47 || Convert.ToInt32(c) >= 59)
+                    {
+                        aux = false;
+                    }
+
+                }
+            }
+            if (!aux)
             {
                 MessageBox.Show("La ALTURA ingresada no es valida", "Control", MessageBoxButtons.OK, MessageBoxIcon.Information, MessageBoxDefaultButton.Button1);
                 txtAltura.Focus();
                 return false;
             }
-            else
-            {
-                foreach (char c in txtAltura.Text)
-                {
-                    if (Convert.ToInt32(c) <= 47 || Convert.ToInt32(c) >= 59)
-                    {
-                        MessageBox.Show("La ALTURA ingresada no es valida", "Control", MessageBoxButtons.OK, MessageBoxIcon.Information, MessageBoxDefaultButton.Button1);
-                        txtAltura.Focus();
-                        return false;
-                    }
-
-                }
-            }
             if (!int.TryParse(txtTelefono.Text, out _) || string.IsNullOrEmpty(txtTelefono.Text) || String.IsNullOrWhiteSpace(txtTelefono.Text))
             {
-                MessageBox.Show("El TELEFONO ingresado no es valido", "Control", MessageBoxButtons.OK, MessageBoxIcon.Information, MessageBoxDefaultButton.Button1);
-                txtTelefono.Focus();
-                return false;
+                aux = false;
             }
             else
             {
@@ -183,28 +201,30 @@ namespace ParcialApp41002016.Vistas.Cliente
                 {
                     if (Convert.ToInt32(c) <= 47 || Convert.ToInt32(c) >= 59)
                     {
-                        MessageBox.Show("El TELEFONO ingresado no es valido", "Control", MessageBoxButtons.OK, MessageBoxIcon.Information, MessageBoxDefaultButton.Button1);
-                        txtTelefono.Focus();
-                        return false;
+                        aux = false;
                     }
                 }
             }
+            if (!aux)
+            {
+                MessageBox.Show("El TELEFONO ingresado no es valido", "Control", MessageBoxButtons.OK, MessageBoxIcon.Information, MessageBoxDefaultButton.Button1);
+                txtTelefono.Focus();
+                return false;
+            }
             if (string.IsNullOrEmpty(txtEmail.Text) || String.IsNullOrWhiteSpace(txtEmail.Text))
             {
-                MessageBox.Show("El E-MAIL ingresado no es valido", "Control", MessageBoxButtons.OK, MessageBoxIcon.Information, MessageBoxDefaultButton.Button1);
-                txtEmail.Focus();
-                return false;
+                aux = false;
             }
             else
             {
                 int arroba = 0;
                 int punto = 0;
-                for(int i = 0; i < txtEmail.Text.Length; i++)
+                for (int i = 0; i < txtEmail.Text.Length; i++)
                 {
                     if (txtEmail.Text[i] == 64)
                     {
                         arroba++;
-                        for(int j = 0; j < txtEmail.Text.Length - (i + 1); j++)
+                        for (int j = 0; j < txtEmail.Text.Length - (i + 1); j++)
                         {
                             if (txtEmail.Text[j] == 46)
                             {
@@ -212,14 +232,19 @@ namespace ParcialApp41002016.Vistas.Cliente
                             }
                         }
                     }
-                }                
+                }
                 if (arroba != 1 || punto == 0)
                 {
-                    MessageBox.Show("El E-MAIL ingresado no es valido", "Control", MessageBoxButtons.OK, MessageBoxIcon.Information, MessageBoxDefaultButton.Button1);
-                    txtEmail.Focus();
-                    return false;
+                    aux = false;
                 }
-            }            
+            }
+            if (!aux)
+            {
+                MessageBox.Show("El E-MAIL ingresado no es valido", "Control", MessageBoxButtons.OK, MessageBoxIcon.Information, MessageBoxDefaultButton.Button1);
+                txtEmail.Focus();
+                return false;
+            }
+
             return true;
 
         }
