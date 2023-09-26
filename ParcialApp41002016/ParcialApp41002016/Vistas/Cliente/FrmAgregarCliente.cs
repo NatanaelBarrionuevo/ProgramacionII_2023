@@ -28,7 +28,7 @@ namespace ParcialApp41002016.Vistas.Cliente
         {
             //lblCliente.Text = "Cliente: " + gestor.ObtenerId("SP_PROXIMO_CLIENTE");
             Loader();
-
+            CargarBarrio();
         }
 
         private void Loader()
@@ -41,6 +41,14 @@ namespace ParcialApp41002016.Vistas.Cliente
             txtEmail.MaxLength = 50;
         }
 
+        private void CargarBarrio()
+        {
+            DataTable tabla = gestor.Consultar("SP_CONSULTAR_BARRIOS");
+            cboBarrio.DataSource = tabla;
+            cboBarrio.ValueMember = tabla.Columns[0].ColumnName;
+            cboBarrio.DisplayMember = tabla.Columns[2].ColumnName;
+            cboBarrio.DropDownStyle = ComboBoxStyle.DropDownList;
+        }
         private void btnAgregar_Click(object sender, EventArgs e)
         {
             if (ValidarDatos())
@@ -136,7 +144,7 @@ namespace ParcialApp41002016.Vistas.Cliente
                 for (int i = 0; i < txtDomicilio.Text.Length; i++)
                 {
                     char c = txtDomicilio.Text[i];
-                    if (Convert.ToInt32(c) <= 64 || Convert.ToInt32(c) >= 91 && Convert.ToInt32(c) <= 96 || Convert.ToInt32(c) >= 123)
+                    if (Convert.ToInt32(c) <= 64 || Convert.ToInt32(c) >= 91 && Convert.ToInt32(c) <= 96 || Convert.ToInt32(c) >= 123 && Convert.ToInt32(c) != 32)
                     {
                         MessageBox.Show("El DOMICILIO ingresado no es valido", "Control", MessageBoxButtons.OK, MessageBoxIcon.Information, MessageBoxDefaultButton.Button1);
                         txtDomicilio.Focus();
