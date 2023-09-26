@@ -47,7 +47,7 @@ namespace ParcialApp41002016.Servicios
 
             cmd.ExecuteNonQuery();
             conexion.Close();
-            if(Convert.ToInt32(param.Value) == 0)
+            if (Convert.ToInt32(param.Value) == 0)
             {
                 param.Value = 1;
             }
@@ -399,16 +399,16 @@ namespace ParcialApp41002016.Servicios
             try
             {
                 conexion.Open();
-                t  = conexion.BeginTransaction();
+                t = conexion.BeginTransaction();
                 cmd = new SqlCommand(SP, conexion, t);
                 cmd.CommandType = CommandType.StoredProcedure;
                 cmd.Parameters.AddWithValue("@legajo", legajo);
                 cmd.ExecuteNonQuery();
                 t.Commit();
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
-                if(t != null)
+                if (t != null)
                 {
                     t.Rollback();
                 }
@@ -416,7 +416,7 @@ namespace ParcialApp41002016.Servicios
             }
             finally
             {
-                if(conexion != null && conexion.State == ConnectionState.Open) { conexion.Close(); }
+                if (conexion != null && conexion.State == ConnectionState.Open) { conexion.Close(); }
             }
             return resultado;
         }
@@ -432,6 +432,29 @@ namespace ParcialApp41002016.Servicios
                 cmd = new SqlCommand(SP, conexion, t);
                 cmd.CommandType = CommandType.StoredProcedure;
                 cmd.Parameters.AddWithValue("@legajo", c.Legajo);
+                cmd.Parameters.AddWithValue("@nombre", c.Nombre);
+                cmd.Parameters.AddWithValue("@apellido", c.Apellido);
+                cmd.Parameters.AddWithValue("@@id_barrio", c.Barrio);
+                cmd.Parameters.AddWithValue("@domicilio", c.Domicilio);
+                cmd.Parameters.AddWithValue("@altura", c.Altura);
+                cmd.Parameters.AddWithValue("@telefono", c.Telefono);
+                cmd.Parameters.AddWithValue("@mail", c.Mail);
+                cmd.Parameters.AddWithValue("@fecha", c.Fecha_nac);
+                cmd.Parameters.AddWithValue("@activo", c.Activo);
+                cmd.Parameters.AddWithValue("@fec_alta", c.Fec_alta);
+                cmd.Parameters.AddWithValue("@sexo", c.Sexo);
+                
+
+                cmd.ExecuteNonQuery();
+                t.Commit();
+            }
+            catch(Exception ex)
+            {
+                if (t != null) { t.Rollback(); } resultado = false;
+            }
+            finally
+            {
+                if(conexion != null || conexion.State == ConnectionState.Open) { conexion.Close(); }
             }
             return resultado;
         }

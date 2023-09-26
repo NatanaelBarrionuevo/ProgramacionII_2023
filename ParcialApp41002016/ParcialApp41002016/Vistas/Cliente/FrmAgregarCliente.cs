@@ -45,7 +45,21 @@ namespace ParcialApp41002016.Vistas.Cliente
         {
             if (ValidarDatos())
             {
-                if (gestor.AgregarCliente("SP_AGREGAR_CLIENTE", cliente))
+                cliente.Apellido = txtApellido.Text.ToUpper();
+                cliente.Nombre = txtNombre.Text.ToUpper();
+                if(rbtFemenino.Checked == true) { cliente.Sexo = "F"; }
+                if(rbtMasculino.Checked == true) { cliente.Sexo = "M"; }
+                else { cliente.Sexo = "X"; }
+                cliente.Fecha_nac = dtpFechaNac.Value.ToShortDateString();
+                cliente.Barrio = Convert.ToInt32(cboBarrio.SelectedValue);
+                cliente.Domicilio = txtDomicilio.Text.ToUpper();
+                cliente.Altura = Convert.ToInt32(txtAltura.Text);
+                cliente.Activo = true;
+                cliente.Telefono = Convert.ToInt32(txtTelefono.Text);
+                cliente.Mail = txtEmail.Text;
+                cliente.Fec_alta = DateTime.Now.ToShortDateString();
+
+                if (gestor.AgregarCliente("SP_INSERTAR_CLIENTE", cliente))
                 {
                     MessageBox.Show("El cliente ah sido ingresado exitosamente, que tenga buen dia!", "Notificacion", MessageBoxButtons.OK, MessageBoxIcon.Information, MessageBoxDefaultButton.Button1);
                     Limpiar();
@@ -53,7 +67,7 @@ namespace ParcialApp41002016.Vistas.Cliente
                 else
                 {
                     MessageBox.Show("El cliente NO AH PODIDO SER INGRESADO, intente nuevamente mas tarde o comuniquese con el administrador", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1);
-                }
+                }                
             }
         }
 

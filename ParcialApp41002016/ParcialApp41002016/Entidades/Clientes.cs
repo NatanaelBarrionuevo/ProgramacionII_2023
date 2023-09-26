@@ -13,27 +13,33 @@ namespace ParcialApp41002016.Entidades
 		private int legajo;
 		private string nombre;
         private string apellido;
-        private string barrio;
+        private int barrio;
         private string domicilio;
         private int altura;
         private int telefono;
         private string mail;
-        private DateTime fecha_nac;
-        private DateTime fecha_alta;
+        private string fecha_nac;        
         private bool activo;
+        private string sexo;
+        private string fec_alta;
+        private string fec_baja;
 
         public int Legajo { get { return legajo; } set { legajo = value; } }
         public string Nombre { get { return nombre; } set { nombre = value; } }
         public string Apellido { get { return apellido; } set { apellido = value; } }
-        public string Barrio { get { return barrio; } set { barrio = value; } }
+        public int Barrio { get { return barrio; } set { barrio = value; } }
         public string Domicilio { get { return domicilio; } set { domicilio = value; } }
         public int Altura { get { return altura; } set { altura = value; } }
         public int Telefono { get { return telefono; } set { telefono = value; } }
         public string Mail { get { return mail; } set { mail = value; } }
-        public DateTime Fecha_nac { get { return fecha_nac; } set { fecha_nac = value; } }
-        public DateTime Fecha_alta { get { return fecha_alta; } set { fecha_alta = value; } }
+        public string Fecha_nac { get { return fecha_nac; } set { fecha_nac = value; } }        
         public bool Activo { get { return activo; } set { activo = value; } }
 
+        public string Sexo { get { return sexo; } set { sexo = value; } }   
+
+        public string Fec_alta { get { return fec_alta; } set { fec_alta = value; } }
+
+        public string Fec_baja { get { return fec_baja; } set { fec_baja = value; } }
         public Clientes()
         {
                 
@@ -42,7 +48,8 @@ namespace ParcialApp41002016.Entidades
         
         public double CalcularFidelidad()
         {
-            return Convert.ToDouble(DateTime.Now - fecha_alta);
+            
+            return Convert.ToDouble(DateTime.Now - Convert.ToDateTime(Fec_alta));
         }
 
         public override string ToString()
