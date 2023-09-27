@@ -26,7 +26,7 @@ namespace ParcialApp41002016.Vistas.Cliente
 
         private void FrmAgregarCliente_Load(object sender, EventArgs e)
         {
-            //lblCliente.Text = "Cliente: " + gestor.ObtenerId("SP_PROXIMO_CLIENTE");
+            lblCliente.Text = "Cliente: " + gestor.ObtenerId("SP_PROXIMO_CLIENTE");
             Loader();
             CargarBarrio();
         }
@@ -58,14 +58,14 @@ namespace ParcialApp41002016.Vistas.Cliente
                 if (rbtFemenino.Checked == true) { cliente.Sexo = "F"; }
                 if (rbtMasculino.Checked == true) { cliente.Sexo = "M"; }
                 else { cliente.Sexo = "X"; }
-                cliente.Fecha_nac = dtpFechaNac.Value.ToShortDateString();
+                cliente.Fecha_nac = dtpFechaNac.Value;
                 cliente.Barrio = Convert.ToInt32(cboBarrio.SelectedValue);
                 cliente.Domicilio = txtDomicilio.Text.ToUpper();
                 cliente.Altura = Convert.ToInt32(txtAltura.Text);
                 cliente.Activo = true;
-                cliente.Telefono = Convert.ToInt32(txtTelefono.Text);
+                cliente.Telefono = (int)Convert.ToInt64(txtTelefono.Text);
                 cliente.Mail = txtEmail.Text;
-                cliente.Fec_alta = DateTime.Now.ToShortDateString();
+                cliente.Fec_alta = Convert.ToDateTime(DateTime.Now.ToShortDateString());
 
                 if (gestor.AgregarCliente("SP_INSERTAR_CLIENTE", cliente))
                 {
@@ -113,10 +113,10 @@ namespace ParcialApp41002016.Vistas.Cliente
             }
             else
             {
-                for (int i = 1; i < txtNombre.Text.Length; i++)
+                for (int i = 0; i < txtNombre.Text.Length; i++)
                 {
                     char c = txtNombre.Text[i];
-                    if (Convert.ToInt32(c) <= 64 || Convert.ToInt32(c) >= 91 && Convert.ToInt32(c) <= 96 || Convert.ToInt32(c) >= 123 || Convert.ToInt32(c) != 32)
+                    if (Convert.ToInt32(c) <= 64 || Convert.ToInt32(c) >= 91 && Convert.ToInt32(c) <= 96 || Convert.ToInt32(c) >= 123)
                     {
                         aux = false;
                     }
@@ -148,15 +148,10 @@ namespace ParcialApp41002016.Vistas.Cliente
             else
             {
 
-                for (int i = 0; i < txtDomicilio.Text.Length; i++)
+                foreach(char c in txtDomicilio.Text)
                 {
-
-                    char c = txtDomicilio.Text[i];
-                    if (Convert.ToInt32(c) <= 64 || Convert.ToInt32(c) >= 91 && Convert.ToInt32(c) <= 96 || Convert.ToInt32(c) >= 123 || Convert.ToInt32(c) != 32)
-                    {
-                        aux = false;
-                    }
-                    if (Convert.ToInt32(c) != 32)
+                    Convert.ToInt32(c);
+                    if(c != 32 && c < 65 || c > 91 && c < 96 && c > 122)
                     {
                         aux = false;
                     }
@@ -191,7 +186,7 @@ namespace ParcialApp41002016.Vistas.Cliente
                 txtAltura.Focus();
                 return false;
             }
-            if (!int.TryParse(txtTelefono.Text, out _) || string.IsNullOrEmpty(txtTelefono.Text) || String.IsNullOrWhiteSpace(txtTelefono.Text))
+            if (string.IsNullOrEmpty(txtTelefono.Text) || !Int64.TryParse(txtTelefono.Text, out _) || string.IsNullOrWhiteSpace(txtTelefono.Text))
             {
                 aux = false;
             }

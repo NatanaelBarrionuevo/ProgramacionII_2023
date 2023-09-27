@@ -48,9 +48,12 @@ namespace ParcialApp41002016.Vistas.Cliente
             DataTable tabla = gestor.Consultar("SP_CONSULTAR_CLIENTES");
             foreach (DataRow row in tabla.Rows)
             {
-                int cod_cliente = Convert.ToInt32(row.ItemArray[0]);
-                string cliente = row.ItemArray[1] + ", " + row.ItemArray[2];
-                dgvClientes.Rows.Add(new object[] { cod_cliente, cliente, "Ver Detalle" });
+                if (Convert.ToInt32(row.ItemArray[9]) == 1)
+                {
+                    int cod_cliente = Convert.ToInt32(row.ItemArray[0]);
+                    string cliente = row.ItemArray[1] + ", " + row.ItemArray[2];
+                    dgvClientes.Rows.Add(new object[] { cod_cliente, cliente, "Ver Detalle" });
+                }
             }
         }
 
@@ -72,7 +75,7 @@ namespace ParcialApp41002016.Vistas.Cliente
         {
             if (MessageBox.Show("Desea ELIMINAR ESTE CLIENTE?", "Control", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2) == DialogResult.Yes)
             {
-                int legajo = Convert.ToInt32(dgvClientes.Rows[dgvClientes.CurrentRow.Index].Cells[0]);
+                int legajo = Convert.ToInt32(dgvClientes.Rows[dgvClientes.CurrentRow.Index].Cells[0].Value);
                 if (gestor.EliminarCliente("SP_ELIMINAR_CLIENTE", legajo))
                 {
                     MessageBox.Show("El cliente ah sido elimado exitosamente, que tenga un buen dia!", "Notificacion", MessageBoxButtons.OK, MessageBoxIcon.Information, MessageBoxDefaultButton.Button1);
