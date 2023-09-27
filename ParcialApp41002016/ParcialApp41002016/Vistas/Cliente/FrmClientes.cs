@@ -48,12 +48,12 @@ namespace ParcialApp41002016.Vistas.Cliente
             DataTable tabla = gestor.Consultar("SP_CONSULTAR_CLIENTES");
             foreach (DataRow row in tabla.Rows)
             {
-                if (Convert.ToInt32(row.ItemArray[9]) == 1)
-                {
+                //if (Convert.ToInt32(row.ItemArray[9]) == 1)
+                //{
                     int cod_cliente = Convert.ToInt32(row.ItemArray[0]);
                     string cliente = row.ItemArray[1] + ", " + row.ItemArray[2];
                     dgvClientes.Rows.Add(new object[] { cod_cliente, cliente, "Modificar" });
-                }
+                //}
             }
         }
 

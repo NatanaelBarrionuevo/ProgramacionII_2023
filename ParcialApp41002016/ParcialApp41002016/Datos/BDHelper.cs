@@ -423,41 +423,77 @@ namespace ParcialApp41002016.Servicios
 
         public bool AgregarCliente(string SP, Clientes c)
         {
-            // SqlTransaction t = null;
+            SqlTransaction t = null;
             bool resultado = true;
-            // try
-            //{
-            conexion.Open();
-            //t = conexion.BeginTransaction();
-            cmd = new SqlCommand(SP, conexion);//, t);
-            cmd.CommandType = CommandType.StoredProcedure;
-            cmd.Parameters.AddWithValue("@legajo", c.Legajo);
-            cmd.Parameters.AddWithValue("@nombre", c.Nombre);
-            cmd.Parameters.AddWithValue("@apellido", c.Apellido);
-            cmd.Parameters.AddWithValue("@id_barrio", c.Barrio);
-            cmd.Parameters.AddWithValue("@domicilio", c.Domicilio);
-            cmd.Parameters.AddWithValue("@altura", c.Altura);
-            cmd.Parameters.AddWithValue("@telefono", c.Telefono);
-            cmd.Parameters.AddWithValue("@mail", c.Mail);
-            cmd.Parameters.AddWithValue("@fecha", c.Fecha_nac);
-            cmd.Parameters.AddWithValue("@activo", c.Activo);
-            cmd.Parameters.AddWithValue("@fec_alta", c.Fec_alta);
-            cmd.Parameters.AddWithValue("@sexo", c.Sexo);
-
-
-            int aux = cmd.ExecuteNonQuery();
-            //t.Commit();
-            /*}
-            catch(Exception ex)
+            try
             {
-                if (t != null) { t.Rollback(); } resultado = false;
+                conexion.Open();
+                t = conexion.BeginTransaction();
+                cmd = new SqlCommand(SP, conexion, t);
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("@legajo", c.Legajo);
+                cmd.Parameters.AddWithValue("@nombre", c.Nombre);
+                cmd.Parameters.AddWithValue("@apellido", c.Apellido);
+                cmd.Parameters.AddWithValue("@id_barrio", c.Barrio);
+                cmd.Parameters.AddWithValue("@domicilio", c.Domicilio);
+                cmd.Parameters.AddWithValue("@altura", c.Altura);
+                cmd.Parameters.AddWithValue("@telefono", c.Telefono);
+                cmd.Parameters.AddWithValue("@mail", c.Mail);
+                cmd.Parameters.AddWithValue("@fecha", c.Fecha_nac);
+                cmd.Parameters.AddWithValue("@activo", c.Activo);
+                cmd.Parameters.AddWithValue("@fec_alta", c.Fec_alta);
+                cmd.Parameters.AddWithValue("@sexo", c.Sexo);
+
+
+                int aux = cmd.ExecuteNonQuery();
+                t.Commit();
+            }
+            catch (Exception ex)
+            {
+                if (t != null) { t.Rollback(); }
+                resultado = false;
             }
             finally
             {
-                if(conexion != null || conexion.State == ConnectionState.Open) { conexion.Close(); }
-            }*/
-            if (aux != 1) { resultado = false; }
+                if (conexion != null || conexion.State == ConnectionState.Open) { conexion.Close(); }
+            }
+
             return resultado;
         }
+
+        public bool ModificarCliente(string SP, Clientes c)
+        {
+            SqlTransaction t = null;
+            bool resultado = true;
+            try
+            {
+                conexion.Open();
+                t = conexion.BeginTransaction();
+                cmd = new SqlCommand(SP, conexion, t);
+                cmd.Parameters.AddWithValue("@legajo", c.Legajo);
+                cmd.Parameters.AddWithValue("@nombre", c.Nombre);
+                cmd.Parameters.AddWithValue("@apellido", c.Apellido);
+                cmd.Parameters.AddWithValue("@id_barrio", c.Barrio);
+                cmd.Parameters.AddWithValue("@domicilio", c.Domicilio);
+                cmd.Parameters.AddWithValue("@altura", c.Altura);
+                cmd.Parameters.AddWithValue("@telefono", c.Telefono);
+                cmd.Parameters.AddWithValue("@mail", c.Mail);
+                cmd.Parameters.AddWithValue("@fecha", c.Fecha_nac);
+
+                cmd.ExecuteNonQuery();
+                t.Commit();
+            }
+            catch (Exception ex)
+            {
+                if (t != null) { t.Rollback(); }
+                resultado = false;
+            }
+            finally
+            {
+                if (conexion != null && conexion.State == ConnectionState.Open) { conexion.Close(); }
+            }
+            return resultado;
+        }
+
     }
 }

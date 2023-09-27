@@ -45,3 +45,4 @@ C:\Users\vivib\Desktop\Repo_progII\ProgramacionII_2023\ParcialApp41002016\Parcia
 C:\Users\vivib\Desktop\Repo_progII\ProgramacionII_2023\ParcialApp41002016\ParcialApp41002016\obj\Debug\ParcialApp41002016.Vistas.FrmProductos.resources
 C:\Users\vivib\Desktop\Repo_progII\ProgramacionII_2023\ParcialApp41002016\ParcialApp41002016\obj\Debug\ParcialApp41002016.Vistas.Cliente.FrmClientes.resources
 C:\Users\vivib\Desktop\Repo_progII\ProgramacionII_2023\ParcialApp41002016\ParcialApp41002016\obj\Debug\ParcialApp41002016.Vistas.Cliente.FrmAgregarCliente.resources
+C:\Users\vivib\Desktop\Repo_progII\ProgramacionII_2023\ParcialApp41002016\ParcialApp41002016\obj\Debug\ParcialApp41002016.Vistas.Cliente.FrmModificarCliente.resources
