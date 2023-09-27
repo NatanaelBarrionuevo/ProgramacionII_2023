@@ -16,5 +16,10 @@ namespace ParcialApp41002016.Vistas.Cliente
         {
             InitializeComponent();
         }
+
+        private void FrmModificarCliente_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }

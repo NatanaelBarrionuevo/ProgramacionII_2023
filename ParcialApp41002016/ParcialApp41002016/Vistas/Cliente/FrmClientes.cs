@@ -52,7 +52,7 @@ namespace ParcialApp41002016.Vistas.Cliente
                 {
                     int cod_cliente = Convert.ToInt32(row.ItemArray[0]);
                     string cliente = row.ItemArray[1] + ", " + row.ItemArray[2];
-                    dgvClientes.Rows.Add(new object[] { cod_cliente, cliente, "Ver Detalle" });
+                    dgvClientes.Rows.Add(new object[] { cod_cliente, cliente, "Modificar" });
                 }
             }
         }
@@ -66,7 +66,8 @@ namespace ParcialApp41002016.Vistas.Cliente
         {
             if (dgvClientes.CurrentCell.ColumnIndex == 2 && dgvClientes.CurrentRow != null)
             {
-                dgvClientes.Rows.Remove(dgvClientes.Rows[dgvClientes.CurrentRow.Index]);
+                int legajo = Convert.ToInt32(dgvClientes.Rows[dgvClientes.CurrentRow.Index].Cells[0].Value);
+                new FrmModificarCliente(legajo).ShowDialog();
 
             }
         }

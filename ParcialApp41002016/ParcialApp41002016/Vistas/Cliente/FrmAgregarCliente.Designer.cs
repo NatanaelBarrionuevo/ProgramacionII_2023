@@ -295,6 +295,8 @@
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.lblCliente);
+            this.MaximumSize = new System.Drawing.Size(846, 584);
+            this.MinimumSize = new System.Drawing.Size(846, 584);
             this.Name = "FrmAgregarCliente";
             this.Text = "FrmAgregarCliente";
             this.Load += new System.EventHandler(this.FrmAgregarCliente_Load);
