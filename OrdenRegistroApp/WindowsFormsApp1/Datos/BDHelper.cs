@@ -14,12 +14,21 @@ namespace OrdenRetiro.Datos
 {
     public class BDHelper
     {
+        private static BDHelper instancia;
         private SqlConnection cnn;
         private SqlCommand cmd;
-        public BDHelper()
+        private BDHelper()
         {
-            cnn = new SqlConnection();
-            cnn.ConnectionString = Properties.Resources.cnnString;
+            cnn = new SqlConnection(Properties.Resources.cnnString);
+        }
+
+        public static BDHelper ObtenerInstancia()
+        {
+            if (instancia == null)
+            {
+                instancia = new BDHelper();
+            }
+            return instancia;
         }
 
         public DataTable Consultar(string sp)
@@ -87,7 +96,7 @@ namespace OrdenRetiro.Datos
         public int Insertar(Orden orden)
         {
             SqlTransaction t = null;
-            
+
             int n = 0;
             try
             {

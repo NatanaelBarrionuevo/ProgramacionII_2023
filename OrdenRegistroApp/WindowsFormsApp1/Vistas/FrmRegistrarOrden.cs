@@ -15,11 +15,11 @@ namespace OrdenRetiro
     public partial class FrmRegistrarOrden : Form
     {
         private Orden orden;
-        private BDHelper gestor;
+        
         public FrmRegistrarOrden()
         {
             InitializeComponent();
-            gestor = new BDHelper();
+            
             orden = new Orden();
         }
 
@@ -36,7 +36,7 @@ namespace OrdenRetiro
 
         private void CargarCombo()
         {
-            DataTable tabla = gestor.Consultar("SP_CONSULTAR_MATERIALES");
+            DataTable tabla = BDHelper.ObtenerInstancia().Consultar("SP_CONSULTAR_MATERIALES");
             cboMaterial.DataSource = tabla;
             cboMaterial.ValueMember = tabla.Columns[0].ColumnName;
             cboMaterial.DisplayMember = tabla.Columns[1].ColumnName;
@@ -140,7 +140,7 @@ namespace OrdenRetiro
                 orden.Fecha = dtpFecha.Value;
                 orden.Responsable = txtResponsable.Text.ToUpper();
 
-                if (gestor.Insertar(orden) == (orden.Detalle.Count + 1))
+                if (BDHelper.ObtenerInstancia().Insertar(orden) == (orden.Detalle.Count + 1))
                 {
                     MessageBox.Show("La orden nro " + orden.CodOrden + " ha sido cargada exitosamente, que tenga un buen dia!!", "Informacion", MessageBoxButtons.OK, MessageBoxIcon.Information, MessageBoxDefaultButton.Button1);
                     Limpiar();
