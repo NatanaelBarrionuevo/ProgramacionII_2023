@@ -1,0 +1,10 @@
+C:\Users\Usuario\source\repos\OrdenRegistroApp\WindowsFormsApp1\obj\Debug\OrdenRetiroApp.csproj.AssemblyReference.cache
+C:\Users\Usuario\source\repos\OrdenRegistroApp\WindowsFormsApp1\obj\Debug\OrdenRetiro.FrmRegistrarOrden.resources
+C:\Users\Usuario\source\repos\OrdenRegistroApp\WindowsFormsApp1\obj\Debug\OrdenRetiroApp.csproj.GenerateResource.cache
+C:\Users\Usuario\source\repos\OrdenRegistroApp\WindowsFormsApp1\obj\Debug\OrdenRetiroApp.csproj.CoreCompileInputs.cache
+C:\Users\Usuario\source\repos\OrdenRegistroApp\WindowsFormsApp1\bin\Debug\OrdenRetiroApp.exe.config
+C:\Users\Usuario\source\repos\OrdenRegistroApp\WindowsFormsApp1\bin\Debug\OrdenRetiroApp.exe
+C:\Users\Usuario\source\repos\OrdenRegistroApp\WindowsFormsApp1\bin\Debug\OrdenRetiroApp.pdb
+C:\Users\Usuario\source\repos\OrdenRegistroApp\WindowsFormsApp1\obj\Debug\OrdenRetiro.Properties.Resources.resources
+C:\Users\Usuario\source\repos\OrdenRegistroApp\WindowsFormsApp1\obj\Debug\OrdenRetiroApp.exe
+C:\Users\Usuario\source\repos\OrdenRegistroApp\WindowsFormsApp1\obj\Debug\OrdenRetiroApp.pdb

@@ -1,0 +1,188 @@
+﻿using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Data;
+using System.Drawing;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Windows.Forms;
+using OrdenRetiro.Entidades;
+using OrdenRetiro.Datos;
+
+namespace OrdenRetiro
+{
+    public partial class FrmRegistrarOrden : Form
+    {
+        private Orden orden;
+        private BDHelper gestor;
+        public FrmRegistrarOrden()
+        {
+            InitializeComponent();
+            gestor = new BDHelper();
+            orden = new Orden();
+        }
+
+        private void FrmRegistrarOrden_Load(object sender, EventArgs e)
+        {
+            txtResponsable.MaxLength = 100;
+            txtCantidad.MaxLength = 3;
+            dtpFecha.Value = DateTime.Now.ToLocalTime();
+            cboMaterial.Focus();
+            CargarCombo();
+
+
+        }
+
+        private void CargarCombo()
+        {
+            DataTable tabla = gestor.Consultar("SP_CONSULTAR_MATERIALES");
+            cboMaterial.DataSource = tabla;
+            cboMaterial.ValueMember = tabla.Columns[0].ColumnName;
+            cboMaterial.DisplayMember = tabla.Columns[1].ColumnName;
+            cboMaterial.DropDownStyle = ComboBoxStyle.DropDownList;
+        }
+
+        private void btnAgregar_Click(object sender, EventArgs e)
+        {
+            int resultado = Repite();
+            if (Validar() && resultado == 0)
+            {
+                DataRowView item = (DataRowView)cboMaterial.SelectedItem;
+                int codMat = Convert.ToInt32(item.Row[0]);
+                string nomMat = item.Row[1].ToString();
+                int stock = Convert.ToInt32(item.Row[2]);
+                int cantidad = Convert.ToInt32(txtCantidad.Text);
+
+                Material oMaterial = new Material(codMat, nomMat, stock);
+                DetalleOrden oDetalle = new DetalleOrden(oMaterial, cantidad);
+
+                orden.AgregarDetalle(oDetalle);
+                dgvDetalle.Rows.Add(new object[] { codMat, nomMat, stock, cantidad, "Quitar" });
+
+            }
+        }
+
+        private bool Validar()
+        {
+            int aux = 0;
+            if (string.IsNullOrEmpty(txtResponsable.Text) || string.IsNullOrWhiteSpace(txtResponsable.Text))
+            {
+                aux = 1;
+            }
+            else
+            {
+                foreach (char c in txtResponsable.Text)
+                {
+                    if (c <= 31 || c >= 33 && c <= 63 || c >= 91 && c <= 96 || c >= 123)
+                    {
+                        aux = 1;
+                    }
+                }
+            }
+            if (aux == 1)
+            {
+                MessageBox.Show("El Responsable ah sido cargado con un formato incorrecto, solo se permiten letras.", "Control", MessageBoxButtons.OK, MessageBoxIcon.Information, MessageBoxDefaultButton.Button1);
+                txtCantidad.Focus();
+                return false;
+            }
+            if (!int.TryParse(txtCantidad.Text, out _) || string.IsNullOrEmpty(txtCantidad.Text) || string.IsNullOrWhiteSpace(txtCantidad.Text) || Convert.ToInt32(txtCantidad.Text) <= 0)
+            {
+                MessageBox.Show("Debe cargar al menos 1 cantidad.", "Control", MessageBoxButtons.OK, MessageBoxIcon.Information, MessageBoxDefaultButton.Button1);
+                txtCantidad.Focus();
+                return false;
+            }
+            if (cboMaterial.SelectedIndex == -1)
+            {
+                MessageBox.Show("Debe seleccionar un material.", "Control", MessageBoxButtons.OK, MessageBoxIcon.Information, MessageBoxDefaultButton.Button1);
+                cboMaterial.Focus();
+                return false;
+            }
+            return true;
+        }
+
+        private int Repite()
+        {
+            int resultado = 0;
+            foreach (DataGridViewRow fila in dgvDetalle.Rows)
+            {
+                if (fila.Cells["ColMaterial"].Value.ToString().Equals(cboMaterial.Text))
+                {
+                    if (MessageBox.Show("El producto ya se encuentra en el detalle, desea sumar las cantidades ?", "Control", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2) == DialogResult.Yes) ;
+                    {
+                        foreach (DetalleOrden detalle in orden.Detalle)
+                        {
+                            if (Convert.ToInt32(fila.Cells[0].Value) == detalle.Material.Codigo)
+                            {
+                                detalle.Cantidad += Convert.ToInt32(txtCantidad.Text);
+                                fila.Cells["ColCantidad"].Value = Convert.ToInt32(fila.Cells["ColCantidad"].Value) + Convert.ToInt32(txtCantidad.Text);
+                                resultado++;
+                            }
+                        }
+                    }
+                }
+            }
+            return resultado;
+        }
+
+        private void brnCancelar_Click(object sender, EventArgs e)
+        {
+            if (MessageBox.Show("Segur@ que desea SALIR?", "Cerrar", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2) == DialogResult.Yes)
+            {
+                this.Close();
+            }
+        }
+
+        private void btnAceptar_Click(object sender, EventArgs e)
+        {
+            if (ValidarDetalle())
+            {
+                orden.Fecha = dtpFecha.Value;
+                orden.Responsable = txtResponsable.Text.ToUpper();
+
+                if (gestor.Insertar(orden) == (orden.Detalle.Count + 1))
+                {
+                    MessageBox.Show("La orden nro " + orden.CodOrden + " ha sido cargada exitosamente, que tenga un buen dia!!", "Informacion", MessageBoxButtons.OK, MessageBoxIcon.Information, MessageBoxDefaultButton.Button1);
+                    Limpiar();
+                }
+                else
+                {
+                    MessageBox.Show("La orden nro " + orden.CodOrden + " NO AH PODIDO SER CARGADA exitosamente, intente nuevamente o comuniquese con el adminsitrador.", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1);
+                    dgvDetalle.Focus();
+                    btnAceptar.Focus();
+                }
+            }
+        }
+
+        private bool ValidarDetalle()
+        {
+            if (dgvDetalle.Rows.Count <= 0)
+            {
+                MessageBox.Show("Debe agregar al menos un detalle.", "Control", MessageBoxButtons.OK, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button1);
+                dgvDetalle.Focus();
+                return false;
+            }
+            return true;
+        }
+        private void Limpiar()
+        {
+            txtCantidad.Clear();
+            txtResponsable.Clear();
+            cboMaterial.SelectedIndex = -1;
+            dgvDetalle.Rows.Clear();
+        }
+
+        private void dgvDetalle_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (dgvDetalle.CurrentCell.ColumnIndex == 4)
+            {
+                if (MessageBox.Show("Desea QUITAR EL DETALLE NRO " + (Convert.ToInt32(dgvDetalle.CurrentRow.Index) + 1) + "?", "Control", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2) == DialogResult.Yes)
+                {
+                    dgvDetalle.Rows.RemoveAt(dgvDetalle.CurrentRow.Index);
+                    orden.QuitarDetalle(dgvDetalle.CurrentRow.Index);
+                }
+
+            }
+        }
+    }
+}
