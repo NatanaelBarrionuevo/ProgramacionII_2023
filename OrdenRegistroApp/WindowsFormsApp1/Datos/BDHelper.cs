@@ -93,7 +93,8 @@ namespace OrdenRetiro.Datos
             return tabla;
         }
 
-        public int Insertar(Orden orden)
+
+        /*public int Insertar(Orden orden)
         {
             SqlTransaction t = null;
 
@@ -134,6 +135,66 @@ namespace OrdenRetiro.Datos
             finally { if (cnn != null && cnn.State == ConnectionState.Open) { cnn.Close(); } }
 
             return n;
+        }*/
+       
+        public int Insertar(string sp, List<Parametro> lst, string pOut)
+        {
+            SqlTransaction t = null;
+            int n = 0;
+            try
+            {
+                cnn.Open();
+                t = cnn.BeginTransaction();
+                cmd = new SqlCommand(sp, cnn, t);
+                cmd.CommandType = CommandType.StoredProcedure;
+                if (lst != null)
+                {
+                    foreach (Parametro p in lst)
+                    {
+                        cmd.Parameters.AddWithValue(p.Nombre, p.Key);
+                    }
+                }
+                SqlParameter param = new SqlParameter(pOut, SqlDbType.Int);
+                param.Direction = ParameterDirection.Output;
+                cmd.Parameters.Add(param);
+                cmd.ExecuteNonQuery();
+                n = Convert.ToInt32(param.Value);
+                t.Commit();
+            }
+            catch { if (t != null) { t.Rollback(); } n = 0; }
+            finally { if (cnn != null && cnn.State == ConnectionState.Open) { cnn.Close(); } }
+            return n;
         }
+        public int Insertar(string sp, List<Parametro> lst, List<DetalleOrden> detalles, string p)
+        {
+            SqlTransaction t = null;
+            int n = 0;
+            try
+            {
+                cnn.Open();
+                t = cnn.BeginTransaction();
+                int valor = 1;
+                if (detalles != null && lst != null)
+                {
+                    foreach (DetalleOrden d in detalles)
+                    {
+                        cmd = new SqlCommand(sp, cnn, t);
+                        cmd.CommandType = CommandType.StoredProcedure;
+                        foreach (Parametro x in lst)
+                        {
+                            cmd.Parameters.AddWithValue(x.Nombre, x.Key);
+                        }
+                        cmd.Parameters.AddWithValue(p, valor);
+                        n += cmd.ExecuteNonQuery();
+                        valor++;
+                    }
+                }
+                t.Commit();
+            }
+            catch { if (t != null) { t.Rollback(); } n = 0; }
+            finally { if (cnn != null && cnn.State == ConnectionState.Open) { cnn.Close(); } }
+            return n;
+        }
+
     }
 }

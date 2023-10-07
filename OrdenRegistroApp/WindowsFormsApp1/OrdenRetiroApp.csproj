@@ -47,10 +47,15 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Datos\BDHelper.cs" />
+    <Compile Include="Datos\Implementacion\ProductoDao.cs" />
+    <Compile Include="Datos\Interfaz\IProductoDao.cs" />
     <Compile Include="Datos\Parametro.cs" />
     <Compile Include="Entidades\DetalleOrden.cs" />
+    <Compile Include="Entidades\DTOs\DTOMaterial.cs" />
     <Compile Include="Entidades\Material.cs" />
     <Compile Include="Entidades\Orden.cs" />
+    <Compile Include="Servicios\Implementacion\Servicio.cs" />
+    <Compile Include="Servicios\Interfaz\IServicio.cs" />
     <Compile Include="Vistas\FrmRegistrarOrden.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -85,5 +90,6 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

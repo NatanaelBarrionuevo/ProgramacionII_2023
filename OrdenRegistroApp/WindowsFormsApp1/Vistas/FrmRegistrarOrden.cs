@@ -9,17 +9,21 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using OrdenRetiro.Entidades;
 using OrdenRetiro.Datos;
+using OrdenRetiro.Servicios.Interfaz;
+using OrdenRetiro.Servicios.Implementacion;
+using OrdenRetiro.Entidades.DTOs;
 
 namespace OrdenRetiro
 {
     public partial class FrmRegistrarOrden : Form
     {
+        private IServicio servicio;
         private Orden orden;
         
         public FrmRegistrarOrden()
         {
             InitializeComponent();
-            
+            servicio = new Servicio();
             orden = new Orden();
         }
 
@@ -36,10 +40,10 @@ namespace OrdenRetiro
 
         private void CargarCombo()
         {
-            DataTable tabla = BDHelper.ObtenerInstancia().Consultar("SP_CONSULTAR_MATERIALES");
-            cboMaterial.DataSource = tabla;
-            cboMaterial.ValueMember = tabla.Columns[0].ColumnName;
-            cboMaterial.DisplayMember = tabla.Columns[1].ColumnName;
+            
+            cboMaterial.DataSource = servicio.ObtenerMateriales();
+            cboMaterial.ValueMember = "Codigo";
+            cboMaterial.DisplayMember = "Nombre";
             cboMaterial.DropDownStyle = ComboBoxStyle.DropDownList;
         }
 
@@ -48,17 +52,18 @@ namespace OrdenRetiro
             int resultado = Repite();
             if (Validar() && resultado == 0)
             {
-                DataRowView item = (DataRowView)cboMaterial.SelectedItem;
-                int codMat = Convert.ToInt32(item.Row[0]);
-                string nomMat = item.Row[1].ToString();
-                int stock = Convert.ToInt32(item.Row[2]);
+                //DataRowView item = (DataRowView)cboMaterial.SelectedItem;
+                Material oMaterial = (Material)cboMaterial.SelectedItem;
+                //int codMat = Convert.ToInt32(item.Row[0]);
+                //string nomMat = item.Row[1].ToString();
+                //int stock = Convert.ToInt32(item.Row[2]);
                 int cantidad = Convert.ToInt32(txtCantidad.Text);
 
-                Material oMaterial = new Material(codMat, nomMat, stock);
+                //Material oMaterial = new Material(codMat, nomMat, stock);
                 DetalleOrden oDetalle = new DetalleOrden(oMaterial, cantidad);
 
                 orden.AgregarDetalle(oDetalle);
-                dgvDetalle.Rows.Add(new object[] { codMat, nomMat, stock, cantidad, "Quitar" });
+                dgvDetalle.Rows.Add(new object[] { oMaterial.Codigo, oMaterial.Nombre, oMaterial.Cantidad, cantidad, "Quitar" });
 
             }
         }
@@ -140,7 +145,7 @@ namespace OrdenRetiro
                 orden.Fecha = dtpFecha.Value;
                 orden.Responsable = txtResponsable.Text.ToUpper();
 
-                if (BDHelper.ObtenerInstancia().Insertar(orden) == (orden.Detalle.Count + 1))
+                if (servicio.InsertarMaestroDetalle(orden) == 1)
                 {
                     MessageBox.Show("La orden nro " + orden.CodOrden + " ha sido cargada exitosamente, que tenga un buen dia!!", "Informacion", MessageBoxButtons.OK, MessageBoxIcon.Information, MessageBoxDefaultButton.Button1);
                     Limpiar();
