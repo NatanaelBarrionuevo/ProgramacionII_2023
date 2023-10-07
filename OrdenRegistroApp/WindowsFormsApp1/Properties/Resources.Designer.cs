@@ -68,5 +68,14 @@ namespace OrdenRetiro.Properties {
                 return ResourceManager.GetString("cnnString", resourceCulture);
             }
         }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Data Source=LAPTOP-FC0TODPF\SQLEXPRESS;Initial Catalog=db_ordenes;Integrated Security=True.
+        /// </summary>
+        internal static string cnnString1 {
+            get {
+                return ResourceManager.GetString("cnnString1", resourceCulture);
+            }
+        }
     }
 }
