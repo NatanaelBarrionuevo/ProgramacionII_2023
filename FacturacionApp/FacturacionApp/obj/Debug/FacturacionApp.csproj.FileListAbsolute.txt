@@ -1,0 +1,10 @@
+C:\Users\Usuario\source\repos\FacturacionApp\FacturacionApp\bin\Debug\FacturacionApp.exe.config
+C:\Users\Usuario\source\repos\FacturacionApp\FacturacionApp\bin\Debug\FacturacionApp.exe
+C:\Users\Usuario\source\repos\FacturacionApp\FacturacionApp\bin\Debug\FacturacionApp.pdb
+C:\Users\Usuario\source\repos\FacturacionApp\FacturacionApp\obj\Debug\FacturacionApp.csproj.AssemblyReference.cache
+C:\Users\Usuario\source\repos\FacturacionApp\FacturacionApp\obj\Debug\FacturacionApp.FrmPrincipal.resources
+C:\Users\Usuario\source\repos\FacturacionApp\FacturacionApp\obj\Debug\FacturacionApp.Properties.Resources.resources
+C:\Users\Usuario\source\repos\FacturacionApp\FacturacionApp\obj\Debug\FacturacionApp.csproj.GenerateResource.cache
+C:\Users\Usuario\source\repos\FacturacionApp\FacturacionApp\obj\Debug\FacturacionApp.csproj.CoreCompileInputs.cache
+C:\Users\Usuario\source\repos\FacturacionApp\FacturacionApp\obj\Debug\FacturacionApp.exe
+C:\Users\Usuario\source\repos\FacturacionApp\FacturacionApp\obj\Debug\FacturacionApp.pdb
