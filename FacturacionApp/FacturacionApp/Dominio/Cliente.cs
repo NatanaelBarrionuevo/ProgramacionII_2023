@@ -15,6 +15,20 @@ namespace FacturacionApp.Dominio
 		private Barrio barrio;
 		private double telefono;
 		private string email;
+		private DateTime fecha_alta;
+		private DateTime fecha;
+
+        public DateTime Fecha
+        {
+            get { return fecha; }
+            set { fecha = value; }
+        }
+        public DateTime Fecha_alta
+		{
+			get { return fecha_alta; }
+			set { fecha_alta = value; }
+		}
+
 
 		public string Email
 		{
