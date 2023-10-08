@@ -46,10 +46,19 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Datos\DTOs\BarrioDTO.cs" />
+    <Compile Include="Datos\DTOs\ClienteDTO1.cs" />
+    <Compile Include="Datos\DTOs\ProvinciaDTO.cs" />
+    <Compile Include="Datos\HelperDao.cs" />
+    <Compile Include="Datos\Implementaciones\FacturaDao.cs" />
+    <Compile Include="Datos\Interfaz\IFacturaDao.cs" />
+    <Compile Include="Datos\Parametro.cs" />
+    <Compile Include="Dominio\Barrio.cs" />
     <Compile Include="Dominio\Cliente.cs" />
     <Compile Include="Dominio\detalleFactura.cs" />
     <Compile Include="Dominio\Factura.cs" />
     <Compile Include="Dominio\Producto.cs" />
+    <Compile Include="Dominio\Provincia.cs" />
     <Compile Include="FrmPrincipal.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -85,8 +94,6 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Datos\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

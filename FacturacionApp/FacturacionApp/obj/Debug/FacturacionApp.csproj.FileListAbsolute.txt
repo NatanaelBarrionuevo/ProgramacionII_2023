@@ -8,3 +8,10 @@ C:\Users\Usuario\source\repos\FacturacionApp\FacturacionApp\obj\Debug\Facturacio
 C:\Users\Usuario\source\repos\FacturacionApp\FacturacionApp\obj\Debug\FacturacionApp.csproj.CoreCompileInputs.cache
 C:\Users\Usuario\source\repos\FacturacionApp\FacturacionApp\obj\Debug\FacturacionApp.exe
 C:\Users\Usuario\source\repos\FacturacionApp\FacturacionApp\obj\Debug\FacturacionApp.pdb
+C:\Users\vivib\Desktop\Repo_progII\ProgramacionII_2023\FacturacionApp\FacturacionApp\obj\Debug\FacturacionApp.csproj.AssemblyReference.cache
+C:\Users\vivib\Desktop\Repo_progII\ProgramacionII_2023\FacturacionApp\FacturacionApp\obj\Debug\FacturacionApp.FrmPrincipal.resources
+C:\Users\vivib\Desktop\Repo_progII\ProgramacionII_2023\FacturacionApp\FacturacionApp\obj\Debug\FacturacionApp.Properties.Resources.resources
+C:\Users\vivib\Desktop\Repo_progII\ProgramacionII_2023\FacturacionApp\FacturacionApp\obj\Debug\FacturacionApp.csproj.GenerateResource.cache
+C:\Users\vivib\Desktop\Repo_progII\ProgramacionII_2023\FacturacionApp\FacturacionApp\obj\Debug\FacturacionApp.csproj.CoreCompileInputs.cache
+C:\Users\vivib\Desktop\Repo_progII\ProgramacionII_2023\FacturacionApp\FacturacionApp\obj\Debug\FacturacionApp.exe
+C:\Users\vivib\Desktop\Repo_progII\ProgramacionII_2023\FacturacionApp\FacturacionApp\obj\Debug\FacturacionApp.pdb

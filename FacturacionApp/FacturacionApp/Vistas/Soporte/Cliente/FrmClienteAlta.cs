@@ -8,18 +8,13 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace FacturacionApp
+namespace FacturacionApp.Vistas.Soporte.Cliente
 {
-    public partial class FrmPrincipal : Form
+    public partial class FrmClienteAlta : Form
     {
-        public FrmPrincipal()
+        public FrmClienteAlta()
         {
             InitializeComponent();
-        }
-
-        private void toolStripComboBox1_Click(object sender, EventArgs e)
-        {
-
         }
     }
 }
