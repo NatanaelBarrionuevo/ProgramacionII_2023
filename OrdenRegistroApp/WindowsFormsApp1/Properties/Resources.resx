@@ -120,4 +120,7 @@
   <data name="cnnString" xml:space="preserve">
     <value>Data Source=DESKTOP-DECHDJG\SQLEXPRESS;Initial Catalog=db_ordenes;Integrated Security=True</value>
   </data>
+  <data name="cnnString1" xml:space="preserve">
+    <value>Data Source=LAPTOP-FC0TODPF\SQLEXPRESS;Initial Catalog=db_ordenes;Integrated Security=True</value>
+  </data>
 </root>

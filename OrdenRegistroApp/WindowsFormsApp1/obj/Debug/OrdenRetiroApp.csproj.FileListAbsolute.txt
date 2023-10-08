@@ -18,3 +18,13 @@ C:\Users\Usuario\Desktop\repo_progII\Repo_nato\ProgramacionII_2023\OrdenRegistro
 C:\Users\Usuario\Desktop\repo_progII\Repo_nato\ProgramacionII_2023\OrdenRegistroApp\WindowsFormsApp1\obj\Debug\OrdenRetiroApp.csproj.CoreCompileInputs.cache
 C:\Users\Usuario\Desktop\repo_progII\Repo_nato\ProgramacionII_2023\OrdenRegistroApp\WindowsFormsApp1\obj\Debug\OrdenRetiroApp.exe
 C:\Users\Usuario\Desktop\repo_progII\Repo_nato\ProgramacionII_2023\OrdenRegistroApp\WindowsFormsApp1\obj\Debug\OrdenRetiroApp.pdb
+C:\Users\vivib\Desktop\Repo_progII\ProgramacionII_2023\OrdenRegistroApp\WindowsFormsApp1\bin\Debug\OrdenRetiroApp.exe.config
+C:\Users\vivib\Desktop\Repo_progII\ProgramacionII_2023\OrdenRegistroApp\WindowsFormsApp1\bin\Debug\OrdenRetiroApp.exe
+C:\Users\vivib\Desktop\Repo_progII\ProgramacionII_2023\OrdenRegistroApp\WindowsFormsApp1\bin\Debug\OrdenRetiroApp.pdb
+C:\Users\vivib\Desktop\Repo_progII\ProgramacionII_2023\OrdenRegistroApp\WindowsFormsApp1\obj\Debug\OrdenRetiroApp.csproj.AssemblyReference.cache
+C:\Users\vivib\Desktop\Repo_progII\ProgramacionII_2023\OrdenRegistroApp\WindowsFormsApp1\obj\Debug\OrdenRetiro.Properties.Resources.resources
+C:\Users\vivib\Desktop\Repo_progII\ProgramacionII_2023\OrdenRegistroApp\WindowsFormsApp1\obj\Debug\OrdenRetiro.FrmRegistrarOrden.resources
+C:\Users\vivib\Desktop\Repo_progII\ProgramacionII_2023\OrdenRegistroApp\WindowsFormsApp1\obj\Debug\OrdenRetiroApp.csproj.GenerateResource.cache
+C:\Users\vivib\Desktop\Repo_progII\ProgramacionII_2023\OrdenRegistroApp\WindowsFormsApp1\obj\Debug\OrdenRetiroApp.csproj.CoreCompileInputs.cache
+C:\Users\vivib\Desktop\Repo_progII\ProgramacionII_2023\OrdenRegistroApp\WindowsFormsApp1\obj\Debug\OrdenRetiroApp.exe
+C:\Users\vivib\Desktop\Repo_progII\ProgramacionII_2023\OrdenRegistroApp\WindowsFormsApp1\obj\Debug\OrdenRetiroApp.pdb

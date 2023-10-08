@@ -34,13 +34,10 @@ namespace OrdenRetiro
             dtpFecha.Value = DateTime.Now.ToLocalTime();
             cboMaterial.Focus();
             CargarCombo();
-
-
         }
 
         private void CargarCombo()
-        {
-            
+        {            
             cboMaterial.DataSource = servicio.ObtenerMateriales();
             cboMaterial.ValueMember = "Codigo";
             cboMaterial.DisplayMember = "Nombre";
@@ -51,20 +48,13 @@ namespace OrdenRetiro
         {
             int resultado = Repite();
             if (Validar() && resultado == 0)
-            {
-                //DataRowView item = (DataRowView)cboMaterial.SelectedItem;
-                Material oMaterial = (Material)cboMaterial.SelectedItem;
-                //int codMat = Convert.ToInt32(item.Row[0]);
-                //string nomMat = item.Row[1].ToString();
-                //int stock = Convert.ToInt32(item.Row[2]);
+            {                
+                DTOMaterial m = (DTOMaterial)cboMaterial.SelectedItem;                
                 int cantidad = Convert.ToInt32(txtCantidad.Text);
-
-                //Material oMaterial = new Material(codMat, nomMat, stock);
+                Material oMaterial = new Material(m.Codigo, m.Nombre, m.Stock);
                 DetalleOrden oDetalle = new DetalleOrden(oMaterial, cantidad);
-
                 orden.AgregarDetalle(oDetalle);
                 dgvDetalle.Rows.Add(new object[] { oMaterial.Codigo, oMaterial.Nombre, oMaterial.Cantidad, cantidad, "Quitar" });
-
             }
         }
 
@@ -113,7 +103,7 @@ namespace OrdenRetiro
             {
                 if (fila.Cells["ColMaterial"].Value.ToString().Equals(cboMaterial.Text))
                 {
-                    if (MessageBox.Show("El producto ya se encuentra en el detalle, desea sumar las cantidades ?", "Control", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2) == DialogResult.Yes) ;
+                    if (MessageBox.Show("El producto ya se encuentra en el detalle, desea sumar las cantidades ?", "Control", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2) == DialogResult.Yes)
                     {
                         foreach (DetalleOrden detalle in orden.Detalle)
                         {
@@ -124,6 +114,10 @@ namespace OrdenRetiro
                                 resultado++;
                             }
                         }
+                    }
+                    else
+                    {
+                        resultado = -1;
                     }
                 }
             }
@@ -182,9 +176,9 @@ namespace OrdenRetiro
             if (dgvDetalle.CurrentCell.ColumnIndex == 4)
             {
                 if (MessageBox.Show("Desea QUITAR EL DETALLE NRO " + (Convert.ToInt32(dgvDetalle.CurrentRow.Index) + 1) + "?", "Control", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2) == DialogResult.Yes)
-                {
-                    dgvDetalle.Rows.RemoveAt(dgvDetalle.CurrentRow.Index);
+                {                    
                     orden.QuitarDetalle(dgvDetalle.CurrentRow.Index);
+                    dgvDetalle.Rows.RemoveAt(dgvDetalle.CurrentRow.Index);
                 }
 
             }

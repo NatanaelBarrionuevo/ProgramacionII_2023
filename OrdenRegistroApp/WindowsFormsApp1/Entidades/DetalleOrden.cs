@@ -18,6 +18,7 @@ namespace OrdenRetiro.Entidades
         public DetalleOrden(Material material, int cantidad)
         {
             this.material = material;
+            this.cantidad = cantidad;
         }
     }
 }

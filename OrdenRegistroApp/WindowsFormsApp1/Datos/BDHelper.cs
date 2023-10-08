@@ -19,7 +19,7 @@ namespace OrdenRetiro.Datos
         private SqlCommand cmd;
         private BDHelper()
         {
-            cnn = new SqlConnection(Properties.Resources.cnnString);
+            cnn = new SqlConnection(Properties.Resources.cnnString1);
         }
 
         public static BDHelper ObtenerInstancia()
@@ -34,14 +34,13 @@ namespace OrdenRetiro.Datos
         public DataTable Consultar(string sp)
         {
             SqlTransaction t = null;
-
-            DataTable tabla;
+            DataTable tabla = null;
             try
             {
                 cnn.Open();
                 t = cnn.BeginTransaction();
                 cmd = new SqlCommand(sp, cnn, t);
-                cmd.CommandText = sp;
+                cmd.CommandType = CommandType.StoredProcedure;
 
                 tabla = new DataTable();
                 tabla.Load(cmd.ExecuteReader());
@@ -57,6 +56,7 @@ namespace OrdenRetiro.Datos
             {
                 if (cnn != null && cnn.State == ConnectionState.Open) { cnn.Close(); }
             }
+
             return tabla;
 
         }
@@ -94,49 +94,7 @@ namespace OrdenRetiro.Datos
         }
 
 
-        /*public int Insertar(Orden orden)
-        {
-            SqlTransaction t = null;
-
-            int n = 0;
-            try
-            {
-                cnn.Open();
-                t = cnn.BeginTransaction();
-                cmd = new SqlCommand("SP_INSERTAR_ORDEN", cnn, t);
-                cmd.CommandType = CommandType.StoredProcedure;
-                cmd.Parameters.AddWithValue("@responsable", orden.Responsable);
-                SqlParameter param = new SqlParameter("@nro", SqlDbType.Int);
-                param.Direction = ParameterDirection.Output;
-                cmd.Parameters.Add(param);
-
-                n = cmd.ExecuteNonQuery();
-
-                orden.CodOrden = Convert.ToInt32(param.Value);
-
-                SqlCommand cmdDetalle;
-                int codDet = 1;
-                foreach (DetalleOrden d in orden.Detalle)
-                {
-                    cmdDetalle = new SqlCommand("SP_INSERTAR_DETALLES", cnn, t);
-                    cmdDetalle.CommandType = CommandType.StoredProcedure;
-                    cmdDetalle.Parameters.AddWithValue("@nro_orden", orden.CodOrden);
-                    cmdDetalle.Parameters.AddWithValue("@detalle", codDet);
-                    cmdDetalle.Parameters.AddWithValue("@codigo", d.Material.Codigo);
-                    cmdDetalle.Parameters.AddWithValue("@cantidad", d.Cantidad);
-                    n += cmdDetalle.ExecuteNonQuery();
-                    codDet++;
-                }
-
-                t.Commit();
-            }
-            catch (Exception ex) { if (t != null) { t.Rollback(); n = 0; } }
-
-            finally { if (cnn != null && cnn.State == ConnectionState.Open) { cnn.Close(); } }
-
-            return n;
-        }*/
-       
+      
         public int Insertar(string sp, List<Parametro> lst, string pOut)
         {
             SqlTransaction t = null;
@@ -165,34 +123,33 @@ namespace OrdenRetiro.Datos
             finally { if (cnn != null && cnn.State == ConnectionState.Open) { cnn.Close(); } }
             return n;
         }
-        public int Insertar(string sp, List<Parametro> lst, List<DetalleOrden> detalles, string p)
+        public int Insertar(string sp, List<Parametro> lst)
         {
             SqlTransaction t = null;
             int n = 0;
             try
             {
-                cnn.Open();
-                t = cnn.BeginTransaction();
-                int valor = 1;
-                if (detalles != null && lst != null)
+            cnn.Open();
+            t = cnn.BeginTransaction();
+            cmd = new SqlCommand(sp, cnn, t);
+            cmd.CommandType = CommandType.StoredProcedure;
+            if (lst != null)
+            {
+                foreach (Parametro x in lst)
                 {
-                    foreach (DetalleOrden d in detalles)
-                    {
-                        cmd = new SqlCommand(sp, cnn, t);
-                        cmd.CommandType = CommandType.StoredProcedure;
-                        foreach (Parametro x in lst)
-                        {
-                            cmd.Parameters.AddWithValue(x.Nombre, x.Key);
-                        }
-                        cmd.Parameters.AddWithValue(p, valor);
-                        n += cmd.ExecuteNonQuery();
-                        valor++;
-                    }
+                    cmd.Parameters.AddWithValue(x.Nombre, x.Key);
                 }
-                t.Commit();
             }
-            catch { if (t != null) { t.Rollback(); } n = 0; }
-            finally { if (cnn != null && cnn.State == ConnectionState.Open) { cnn.Close(); } }
+            n = cmd.ExecuteNonQuery();
+            t.Commit();
+            }
+            catch
+            {
+            if (t != null) { t.Rollback(); }
+            n = 0;
+            }
+            finally { if (cnn != null && cnn.State == ConnectionState.Open) {  } }
+            cnn.Close();
             return n;
         }
 
