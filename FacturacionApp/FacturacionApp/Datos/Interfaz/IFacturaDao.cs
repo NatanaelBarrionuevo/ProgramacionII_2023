@@ -11,7 +11,7 @@ namespace FacturacionApp.Datos.Interfaz
     public interface IFacturaDao
     {
         List<Provincia> ConsultarProvincias();
-        List<Barrio> ConsultarBarrios(Provincia provincia);
+        List<BarrioDTO> ConsultarBarrios(Provincia provincia);
         
     }
 }

@@ -17,7 +17,7 @@ namespace FacturacionApp.Datos
 
         private HelperDao()
         {
-            cnn = new SqlConnection("");
+            cnn = new SqlConnection(Properties.Resources.cnnString);
         }
         
         public static HelperDao GetInstancia()

@@ -10,13 +10,13 @@ namespace FacturacionApp.Datos.DTOs
     {
         public int Codigo { get; set; }
         public string Nombre { get; set; }
-        public int Provincia { get; set; }
+        
 
-        public BarrioDTO(int codigo, string nombre, int provincia)
+        public BarrioDTO(int codigo, string nombre)
         {
             Codigo = codigo;
             Nombre = nombre;
-            Provincia = provincia;
+           
         }
     }
 }

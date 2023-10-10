@@ -16,12 +16,19 @@ namespace FacturacionApp.Dominio
 		private double telefono;
 		private string email;
 		private DateTime fecha_alta;
-		private DateTime fecha;
+		private DateTime fecha_nac;
+		private DateTime fecha_baja;
 
-        public DateTime Fecha
+		public DateTime Fecha_baja
+		{
+			get { return fecha_baja; }
+			set { fecha_baja = value; }
+		}
+
+		public DateTime Fecha_nac
         {
-            get { return fecha; }
-            set { fecha = value; }
+            get { return fecha_nac; }
+            set { fecha_nac = value; }
         }
         public DateTime Fecha_alta
 		{

@@ -11,7 +11,7 @@ namespace FacturacionApp.Servicios.Interfaz
     public interface IServicio
     {
         List<Provincia> ObtenerProvincias();
-        List<Barrio> ObtenerBarrios(Provincia oProvincia);
+        List<BarrioDTO> ObtenerBarrios(Provincia oProvincia);
         
     }
 }

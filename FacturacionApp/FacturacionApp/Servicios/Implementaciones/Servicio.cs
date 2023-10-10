@@ -24,7 +24,7 @@ namespace FacturacionApp.Servicios.Implementaciones
             return dao.ConsultarProvincias();
         }
 
-        public List<Barrio> ObtenerBarrios(Provincia oProvincia)
+        public List<BarrioDTO> ObtenerBarrios(Provincia oProvincia)
         {
             return dao.ConsultarBarrios(oProvincia);
         }

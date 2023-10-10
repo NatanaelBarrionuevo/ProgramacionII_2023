@@ -20,20 +20,20 @@ namespace FacturacionApp.Datos.Implementaciones
             Provincia provincia;
             foreach (DataRow item in tabla.Rows)
             {
-                provincia = new Provincia(Convert.ToInt32(item.ItemArray[0]), item.ItemArray[1].ToString());
+                provincia = new Provincia(Convert.ToInt32(item.ItemArray[0]), item.ItemArray[2].ToString());
                 lst.Add(provincia);
             }
             return lst;
         }
 
-        List<Barrio> IFacturaDao.ConsultarBarrios(Provincia provincia)
+        List<BarrioDTO> IFacturaDao.ConsultarBarrios(Provincia provincia)
         {
-            List<Barrio> lst = new List<Barrio>();
-            DataTable tabla = HelperDao.GetInstancia().ConsultarSql("SP_C_BARRIOS", new List<Parametro>());
-            Barrio barrio;
+            List<BarrioDTO> lst = new List<BarrioDTO>();
+            DataTable tabla = HelperDao.GetInstancia().ConsultarSql("SP_C_BARRIOS", new List<Parametro>() { new Parametro("@cod_provincia", provincia.Codigo)});
+            BarrioDTO barrio;
             foreach (DataRow item in tabla.Rows)
             {
-                barrio = new Barrio(Convert.ToInt32(item.ItemArray[0]), item.ItemArray[1].ToString(), provincia);
+                barrio = new BarrioDTO(Convert.ToInt32(item.ItemArray[0]), item.ItemArray[2].ToString());
                 lst.Add(barrio);
             }
             return lst;
