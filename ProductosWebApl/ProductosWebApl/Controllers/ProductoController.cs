@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using ProductosWebApl.Datos.DTOs;
 using ProductosWebApl.Datos.Implementaciones;
 using ProductosWebApl.Datos.Interfaz;
 using ProductosWebApl.Models;
@@ -11,56 +12,84 @@ namespace ProductosWebApl.Controllers
     [ApiController]
     public class ProductoController : ControllerBase
     {
-        private IProductoDao servicio;
+        private IServicio servicio;
 
 
         public ProductoController()
         {
-            this.servicio = new ProductoDao();
+            this.servicio = new Servicio();
         }
         // GET: api/<ProductoController>
         [HttpGet]
         public IActionResult Get()
         {
-            return Ok(servicio.ConsultarProductos());
+            return Ok(servicio.GetProductos());
         }
 
         // GET api/<ProductoController>/5
         [HttpGet("{id}")]
         public IActionResult GetById(int id)
         {
-            return Ok(servicio.ConsultarProductos(id));
+            ProductoDTO x = new ProductoDTO();
+            x = servicio.GetProductos(id);
+            if (x != null)
+            {
+                return Ok(x);
+            }
+
+            return NotFound("No hay ningun producto asociado al identificador ingresado");
         }
 
         // POST api/<ProductoController>
         [HttpPost("{oProducto}")]
-        public IActionResult Post(Producto oProducto)
+        public IActionResult Post(ProductoDTO oProducto)
         {
             switch (ValidarDatos(oProducto))
             {
+
                 case 1:
-                    return BadRequest("El codigo del producto debe ser mayor a 0");
-                    break;
-                case 2:
                     return BadRequest("El nombre del producto no puede ser una cadena vacia");
                     break;
-                case 3:
+                case 2:
                     return BadRequest("El nombre del producto solo puede contener letras");
-                case 4:
-                    return BadRequest("El precio del producto no puede ser menor a 0");
+                case 3:
+                    return BadRequest("El precio del producto debe ser mayor a 0");
                     break;
             }
-            if (servicio.CargarProductos(oProducto) == 1)
+            int x = servicio.AgregarProducto(oProducto);
+            if (x > 0)
             {
-                return Ok("Se ah cargado exitosamente el producto: \nNombre: " + oProducto.Nombre + "\nPrecio: " + oProducto.Precio + "\nCodigo: " + oProducto.Codigo);
+                return Ok("Se ah cargado exitosamente el producto: \nNombre: " + oProducto.Nombre + "\nPrecio: " + oProducto.Precio + "\nCodigo: " + (x - 1));
             }
             return BadRequest();
+        }
+
+        private int ValidarDatos(ProductoDTO oProducto)
+        {
+            int x = 0;
+
+            if (string.IsNullOrEmpty(oProducto.Nombre) || string.IsNullOrWhiteSpace(oProducto.Nombre))
+            {
+                x = 1;
+            }
+            foreach (Char c in oProducto.Nombre)
+            {
+                if (c <= 31 && c >= 33 || c < 65 && c > 90 || c < 97 && c > 122)
+                {
+                    x = 2;
+                }
+            }
+            if (oProducto.Precio <= 0)
+            {
+                x = 3;
+            }
+            return x;
         }
 
         private int ValidarDatos(Producto oProducto)
         {
             int x = 0;
-            if (oProducto.Codigo <= 0)
+            if(oProducto.Codigo <= 0)
             {
                 x = 1;
             }
@@ -75,7 +104,7 @@ namespace ProductosWebApl.Controllers
                     x = 3;
                 }
             }
-            if (oProducto.Precio < 0)
+            if (oProducto.Precio <= 0)
             {
                 x = 4;
             }
@@ -96,11 +125,11 @@ namespace ProductosWebApl.Controllers
                 case 3:
                     return BadRequest("El nombre del producto solo puede contener letras");
                 case 4:
-                    return BadRequest("El precio del producto no puede ser menor a 0");
+                    return BadRequest("El precio del producto debe ser mayor a 0");
                     break;
 
             }
-            if (servicio.CargarProductos(oProducto) == 1)
+            if (servicio.ActualizarProducto(oProducto) == 1)
             {
                 return Ok("Se ah cargado exitosamente el producto: \nNombre: " + oProducto.Nombre + "\nPrecio: " + oProducto.Precio + "\nCodigo: " + oProducto.Codigo);
             }
@@ -114,7 +143,7 @@ namespace ProductosWebApl.Controllers
         [HttpDelete("{id}")]
         public IActionResult Delete(int id)
         {
-            if (servicio.BajaProductos(id).Equals(1))
+            if (servicio.EliminarProducto(id).Equals(1))
             {
                 return Ok("El producto nro  " + id + " fue eliminado correctamente.");
             }

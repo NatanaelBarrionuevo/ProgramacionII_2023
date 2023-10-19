@@ -5,10 +5,10 @@ namespace TemperaturaWebApi.Datos
     public class TempSingletton
     {
         private static TempSingletton instance;
-        private List<Temperatura> lst;
+        private static readonly List<Temperatura> lst = new List<Temperatura>();
         private TempSingletton()
         {
-            lst = new List<Temperatura>();
+            instance = null;
         }
 
         public static TempSingletton getInstance()
@@ -26,39 +26,28 @@ namespace TemperaturaWebApi.Datos
         }
         public List<Temperatura> InsertTemp(Temperatura oTemperatura)
         {
-            for (int i = 0; i < lst.Count; i++)
-            {
-                if (lst[i] == null)
-                {
-                    lst.Add(oTemperatura);
-                }
-            }
+            lst.Add(oTemperatura);
             return lst;
         }
 
-        public List<Temperatura> GetTemp(int id, int iot)
+        public List<Temperatura> GetTemp(int cod)
         {
-            List<Temperatura> aux = new List<Temperatura>();
-            if(id == 0)
+            List<Temperatura> aux = null;
+            if (cod >= 0)
             {
-                foreach(Temperatura t in lst)
+                foreach (Temperatura t in lst)
                 {
-                    if(iot == t.Iot)
+                    if (cod == t.CodIOT)
                     {
+                        aux = new List<Temperatura>();
                         aux.Add(t);
                     }
                 }
             }
-            foreach (Temperatura t in lst)
-            {
-                if (t.Id == id)
-                {
-                    aux.Add(t);
-                }
-            }
+
             return aux;
         }
-        
+
         public List<Temperatura> EjecutarTemp(int id)
         {
             Temperatura temperatura = new Temperatura();
@@ -67,7 +56,7 @@ namespace TemperaturaWebApi.Datos
             {
                 foreach (Temperatura t in lst)
                 {
-                    if (t.Id == id)
+                    if (t.CodIOT == id)
                     {
                         temperatura = t;
                         lst.Remove(t);
@@ -78,25 +67,41 @@ namespace TemperaturaWebApi.Datos
             return aux;
         }
 
-        public List<Temperatura> EjecutarTemp(Temperatura oTemperatura)
+        public int ActualizarTemp(Temperatura oTemperatura)
         {
-            List<Temperatura> aux = new List<Temperatura>();
+            int x = 0;
             if (oTemperatura != null)
             {
                 foreach (Temperatura t in lst)
                 {
-                    if (oTemperatura.Id == t.Id)
+                    if (oTemperatura.CodIOT == t.CodIOT)
                     {
-                        aux.Add(t);
-                        aux.Add(oTemperatura);
-                        t.Iot = oTemperatura.Iot;
+                        t.CodIOT = oTemperatura.CodIOT;
                         t.FechaHora = oTemperatura.FechaHora;
                         t.Valor = oTemperatura.Valor;
+                        x++;
                     }
                 }
             }
 
-            return aux;
+            return x;
         }
+        public int EliminarTemp(int cod)
+        {
+            int x = 0;
+            if (cod > 0)
+            {
+                foreach (Temperatura t in lst)
+                {
+                    if (cod == t.CodIOT)
+                    {
+                        lst.Remove(t);
+                        x++;
+                    }
+                }
+            }
+            return x;
+        }
+
     }
 }

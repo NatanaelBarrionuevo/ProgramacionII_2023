@@ -5,10 +5,10 @@ namespace ProductosWebApl.Datos.Interfaz
 {
     public interface IProductoDao
     {
-        int CargarProductos(Producto oProducto);
-        List<Producto> ConsultarProductos();
-        ProductoDTO ConsultarProductos(int id);
-        int ActualizarProducto(Producto oProducto);
-        int BajaProductos(int id);
+        int IngProductos(ProductoDTO oProducto);
+        List<Producto> LstProductos();
+        ProductoDTO LstProductos(int id);
+        int ActProducto(Producto oProducto);
+        int BorrProductos(int id);
     }
 }

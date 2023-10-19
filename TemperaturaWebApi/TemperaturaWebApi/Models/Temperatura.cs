@@ -2,8 +2,7 @@
 {
     public class Temperatura
     {
-        private int id;
-        private int iot;
+        private int codIOT;
         private DateTime fechaHora;
         private double valor;
 
@@ -17,25 +16,19 @@
             get { return fechaHora; }
             set { fechaHora = value; }
         }
-        public int Iot
+        public int CodIOT
         {
-            get { return iot; }
-            set { iot = value; }
-        }
-        public int Id
-        {
-            get { return id; }
-            set { id = value; }
+            get { return codIOT; }
+            set { codIOT = value; }
         }
 
         public Temperatura()
         {
-                
+
         }
-        public Temperatura(int id, int iot, DateTime fechaHora, double valor)
+        public Temperatura(int codIOT, DateTime fechaHora, double valor)
         {
-            Id = id;
-            Iot = iot;
+            CodIOT = codIOT;
             FechaHora = fechaHora;
             Valor = valor;
         }

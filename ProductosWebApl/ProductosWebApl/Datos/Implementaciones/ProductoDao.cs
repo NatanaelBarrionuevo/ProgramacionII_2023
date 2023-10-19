@@ -1,66 +1,77 @@
 ﻿using ProductosWebApl.Datos.DTOs;
 using ProductosWebApl.Datos.Interfaz;
 using ProductosWebApl.Models;
+using System.Data;
 
 namespace ProductosWebApl.Datos.Implementaciones
 {
     public class ProductoDao : IProductoDao
     {
-        private List<Producto> lst;
+
 
         public ProductoDao()
         {
-            lst = new List<Producto>();
+
         }
-        public int ActualizarProducto(Producto oProducto)
+        public int ActProducto(Producto oProducto)
         {
-            foreach (Producto p in lst)
+            List<Parametro> lst = new List<Parametro>()
             {
-                if (oProducto.Codigo.Equals(p.Codigo))
-                {
-                    p.Nombre = oProducto.Nombre;
-                    p.Precio = p.Precio;
-                    return 1;
-                }
-            }
-            return 0;
+                new Parametro("@cod", oProducto.Codigo),
+                new Parametro("@nom", oProducto.Precio),
+                new Parametro("@pre", oProducto.Precio)
+            };
+            int x = HelperBD.Getinstancia().EjecutarSql("sp_actualizar_producto", lst);
+            return x;
         }
 
-        public int BajaProductos(int id)
+        public int BorrProductos(int id)
         {
-            foreach (Producto p in lst)
+            List<Parametro> lst = new List<Parametro>()
             {
-                if (p.Codigo.Equals(id))
-                {
-                    lst.Remove(p);
-                    return 1;
-                }
+               new Parametro("@cod", id)
+            };
+            int x = HelperBD.Getinstancia().EjecutarSql("sp_actualizar_producto", lst);
+            return x;
+        }
+        public int IngProductos(ProductoDTO oProducto)
+        {
+            List<Parametro> lst = new List<Parametro>()
+            {                
+                new Parametro("@nom", oProducto.Nombre),
+                new Parametro("@pre", oProducto.Precio)
+            };
+            int x = HelperBD.Getinstancia().Insertar("sp_insertar_producto", lst, "@cod");
+            return x;
+        }
+
+        public List<Producto> LstProductos()
+        {
+            DataTable tabla = HelperBD.Getinstancia().Select("sp_consultar_productos");
+            List<Producto> lst = new List<Producto>();
+            foreach (DataRow fila in tabla.Rows)
+            {
+                int codigo = Convert.ToInt32(fila.ItemArray[0]);
+                string nombre = fila.ItemArray[1].ToString();
+                double precio = Convert.ToDouble(fila.ItemArray[2]);
+                lst.Add(new Producto(codigo, nombre, precio));
+
             }
-            return 0;
-        }
-
-        public int CargarProductos(Producto oProducto)
-        {
-            lst.Add(oProducto);
-            return 1;
-        }
-
-        public List<Producto> ConsultarProductos()
-        {
             return lst;
         }
 
-        public ProductoDTO ConsultarProductos(int id)
+        public ProductoDTO LstProductos(int id)
         {
+            List<Parametro> lst = new List<Parametro>() { new Parametro("@cod", id) };
+            DataTable tabla = HelperBD.Getinstancia().Select("sp_consultar_producto", lst);
             ProductoDTO x = null;
-            foreach (Producto p in lst)
+            foreach (DataRow fila in tabla.Rows)
             {
-                if (p.Codigo.Equals(id))
-                {
-                    x = new ProductoDTO(p.Nombre, p.Precio);
-                }
+                x = new ProductoDTO(fila.ItemArray[1].ToString(), Convert.ToDouble( fila.ItemArray[1]));
             }
             return x;
         }
+
+
     }
 }

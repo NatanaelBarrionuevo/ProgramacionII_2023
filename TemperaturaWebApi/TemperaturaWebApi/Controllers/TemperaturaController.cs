@@ -22,24 +22,19 @@ namespace TemperaturaWebApi.Controllers
 
         // GET api/<TemperaturaController>/5
         [HttpGet("{id}")]
-        public IActionResult GetId(int id, int iot)
+        public IActionResult GetId(int cod)
         {
-            if (id >= 0 && iot > 0)
+            if (cod <= 0)
             {
-                List<Temperatura> lst = new List<Temperatura>();
-                lst = TempSingletton.getInstance().GetTemp(id, iot);
-                if (lst.Count < 0)
-                {
-                    return NotFound("El identificador ingresado no se ecuentra asociado a ninguna medición");
-                }
-                return Ok(lst);
+                return BadRequest("EL identificador de la medicion de teperatura debe ser mayor a cero.");
             }
-            return BadRequest("EL identificador de la medicion de teperatura debe ser mayor a cero. " +
-                "\nEn caso de qurer filtrar por el identificador de de dispositivo iot: \nEl identificador de la fecha debe ser igual a cero \nEl identificador del dispositivo, mayor a cero");
+            List<Temperatura> lst = new List<Temperatura>();
+            if (lst != null) { return Ok(lst); }
+            return NotFound("El codigo ingresado no tiene asociado ningun idspositivo IOT");
         }
 
         // POST api/<TemperaturaController>
-        [HttpPost]
+        [HttpPost("{oTemperatura}")]
         public IActionResult Post(Temperatura oTemperatura)
         {
             switch (ValidarDatos(oTemperatura))
@@ -51,7 +46,7 @@ namespace TemperaturaWebApi.Controllers
                     return BadRequest("El identificador de la temperatura debe ser mayor a cero");
                     break;
                 case 3:
-                    return BadRequest("El identificador del dispositivo IOT debe ser mayor a cero");
+                    return BadRequest("La temperatura debe oscilar entre -70° y 70°");
                     break;
                 case 4:
                     return BadRequest("La temperatura debe oscilar entre -70° y 70°");
@@ -63,11 +58,12 @@ namespace TemperaturaWebApi.Controllers
         {
             int n = 0;
             if (oTemperatura == null) { n = 1; }
-            if (oTemperatura.Id <= 0) { n = 2; }
-            if (oTemperatura.Iot <= 0) { n = 3; }
-            if (oTemperatura.Valor < -70 && oTemperatura.Valor > 70) { n = 4; }
+            if (oTemperatura.CodIOT <= 0) { n = 2; }
+            if (oTemperatura.Valor < -70 && oTemperatura.Valor > 70) { n = 3; }
+            if (!DateTime.TryParse(oTemperatura.FechaHora.ToString(), out _) || string.IsNullOrEmpty(oTemperatura.FechaHora.ToString())) { n = 4; }
             return n;
         }
+
         // PUT api/<TemperaturaController>/5
         [HttpPut("{id}")]
         public IActionResult Put(Temperatura oTemperatura)
@@ -81,14 +77,15 @@ namespace TemperaturaWebApi.Controllers
                     return BadRequest("El identificador de la temperatura debe ser mayor a cero");
                     break;
                 case 3:
-                    return BadRequest("El identificador del dispositivo IOT debe ser mayor a cero");
-                    break;
-                case 4:
                     return BadRequest("La temperatura debe oscilar entre -70° y 70°");
                     break;
             }
-            return Ok(TempSingletton.getInstance().EjecutarTemp(oTemperatura));
-
+            int x = TempSingletton.getInstance().ActualizarTemp(oTemperatura);
+            if (x == 1)
+            {
+                return Ok("Se actualizo correctamente");
+            }
+            return BadRequest("Intente de nuevo mas tarde, porfavor.");
         }
 
         // DELETE api/<TemperaturaController>/5
@@ -96,11 +93,11 @@ namespace TemperaturaWebApi.Controllers
         public IActionResult Delete(int id)
         {
             if (id <= 0) { return BadRequest("El identificador asociado a la temperatura debe ser mayor a 0"); }
-            List<Temperatura> lst = new List<Temperatura>();
-            lst = TempSingletton.getInstance().EjecutarTemp(id);
-            if (lst.Count > 0)
+            int x = 0;
+            x = TempSingletton.getInstance().EliminarTemp(id);
+            if (x > 0)
             {
-                return Ok(lst);
+                return Ok("Se elimino correctamente la temperatura");
             }
             return NotFound("No se encontro la medicion asociado al identificador ingresado");
         }

@@ -4,6 +4,11 @@
     {
         public string Nombre { get; set; }
         public double Precio { get; set; }
+
+        public ProductoDTO()
+        {
+                
+        }
         public ProductoDTO(string nombre, double precio)
         {
             Nombre = nombre;

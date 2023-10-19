@@ -1,15 +1,15 @@
 {
   "version": 2,
-  "dgSpecHash": "ZquekIn3wDuAvDrqCOuKsq3383NEsbw3l3fQY/fEOvJF19fwCBDnMtB2b/+0PNN3x+Yhfhzf++u99jsNNRB3ng==",
+  "dgSpecHash": "vu/TA7Gb7UoXUocUT5KW/2IpxPHOqXGe3MDtcLKqpXcvpqMHX/kuuYBAE+gbEjrEwExAID9ldQiM/K0z4NpHwA==",
   "success": true,
-  "projectFilePath": "C:\\Users\\Usuario\\source\\repos\\TemperaturaWebApi\\TemperaturaWebApi\\TemperaturaWebApi.csproj",
+  "projectFilePath": "C:\\Users\\vivib\\Desktop\\Repo_progII\\ProgramacionII_2023\\TemperaturaWebApi\\TemperaturaWebApi\\TemperaturaWebApi.csproj",
   "expectedPackageFiles": [
-    "C:\\Users\\Usuario\\.nuget\\packages\\microsoft.extensions.apidescription.server\\6.0.5\\microsoft.extensions.apidescription.server.6.0.5.nupkg.sha512",
-    "C:\\Users\\Usuario\\.nuget\\packages\\microsoft.openapi\\1.2.3\\microsoft.openapi.1.2.3.nupkg.sha512",
-    "C:\\Users\\Usuario\\.nuget\\packages\\swashbuckle.aspnetcore\\6.5.0\\swashbuckle.aspnetcore.6.5.0.nupkg.sha512",
-    "C:\\Users\\Usuario\\.nuget\\packages\\swashbuckle.aspnetcore.swagger\\6.5.0\\swashbuckle.aspnetcore.swagger.6.5.0.nupkg.sha512",
-    "C:\\Users\\Usuario\\.nuget\\packages\\swashbuckle.aspnetcore.swaggergen\\6.5.0\\swashbuckle.aspnetcore.swaggergen.6.5.0.nupkg.sha512",
-    "C:\\Users\\Usuario\\.nuget\\packages\\swashbuckle.aspnetcore.swaggerui\\6.5.0\\swashbuckle.aspnetcore.swaggerui.6.5.0.nupkg.sha512"
+    "C:\\Users\\vivib\\.nuget\\packages\\microsoft.extensions.apidescription.server\\6.0.5\\microsoft.extensions.apidescription.server.6.0.5.nupkg.sha512",
+    "C:\\Users\\vivib\\.nuget\\packages\\microsoft.openapi\\1.2.3\\microsoft.openapi.1.2.3.nupkg.sha512",
+    "C:\\Users\\vivib\\.nuget\\packages\\swashbuckle.aspnetcore\\6.5.0\\swashbuckle.aspnetcore.6.5.0.nupkg.sha512",
+    "C:\\Users\\vivib\\.nuget\\packages\\swashbuckle.aspnetcore.swagger\\6.5.0\\swashbuckle.aspnetcore.swagger.6.5.0.nupkg.sha512",
+    "C:\\Users\\vivib\\.nuget\\packages\\swashbuckle.aspnetcore.swaggergen\\6.5.0\\swashbuckle.aspnetcore.swaggergen.6.5.0.nupkg.sha512",
+    "C:\\Users\\vivib\\.nuget\\packages\\swashbuckle.aspnetcore.swaggerui\\6.5.0\\swashbuckle.aspnetcore.swaggerui.6.5.0.nupkg.sha512"
   ],
   "logs": []
 }

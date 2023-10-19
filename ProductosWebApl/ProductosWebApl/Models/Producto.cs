@@ -24,9 +24,11 @@
             set { precio = value; }
         }
 
-        public Producto()
+        public Producto(int codigo, string nombre, double precio)
         {
-                
+            Codigo = codigo;
+            Nombre = nombre;
+            Precio = precio;
         }
     }
 }
