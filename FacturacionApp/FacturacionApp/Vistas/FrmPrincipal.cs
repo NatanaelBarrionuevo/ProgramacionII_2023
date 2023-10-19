@@ -7,6 +7,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using FacturacionApp.Vistas.Soporte;
+using FacturacionApp.Vistas.Soporte.Cliente;
 
 namespace FacturacionApp
 {
@@ -20,6 +22,11 @@ namespace FacturacionApp
         private void toolStripComboBox1_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void nuevoToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            new FrmClienteAlta().ShowDialog();
         }
     }
 }

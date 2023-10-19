@@ -6,12 +6,12 @@ using System.Text;
 using System.Threading.Tasks;
 using FacturacionApp.Datos.DTOs;
 
-namespace FacturacionApp.Servicios.Interfaz
+namespace FacturacionApp.Datos.Interfaz
 {
-    public interface IServicio
+    public interface IFacturaDao
     {
-        List<Provincia> ObtenerProvincias();
-        List<BarrioDTO> ObtenerBarrios(Provincia oProvincia);
+        List<Provincia> ConsultarProvincias();
+        List<BarrioDTO> ConsultarBarrios(Provincia provincia);
         
     }
 }

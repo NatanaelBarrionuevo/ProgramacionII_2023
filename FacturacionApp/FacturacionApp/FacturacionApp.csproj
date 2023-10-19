@@ -46,21 +46,36 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Datos\DTOs\BarrioDTO.cs" />
+    <Compile Include="Datos\DTOs\ClienteDTO1.cs" />
+    <Compile Include="Datos\DTOs\ProvinciaDTO.cs" />
+    <Compile Include="Datos\HelperDao.cs" />
+    <Compile Include="Datos\Implementaciones\FacturaDao.cs" />
+    <Compile Include="Datos\Interfaz\IFacturaDao.cs" />
+    <Compile Include="Datos\Parametro.cs" />
+    <Compile Include="Dominio\Barrio.cs" />
     <Compile Include="Dominio\Cliente.cs" />
     <Compile Include="Dominio\detalleFactura.cs" />
     <Compile Include="Dominio\Factura.cs" />
     <Compile Include="Dominio\Producto.cs" />
-    <Compile Include="FrmPrincipal.cs">
+    <Compile Include="Dominio\Provincia.cs" />
+    <Compile Include="Vistas\FrmPrincipal.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="FrmPrincipal.Designer.cs">
+    <Compile Include="Vistas\FrmPrincipal.Designer.cs">
       <DependentUpon>FrmPrincipal.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Servicios\Implementaciones\Servicio.cs" />
     <Compile Include="Servicios\Interfaz\IServicio.cs" />
-    <EmbeddedResource Include="FrmPrincipal.resx">
+    <Compile Include="Vistas\Soporte\Cliente\FrmClienteAlta.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Vistas\Soporte\Cliente\FrmClienteAlta.Designer.cs">
+      <DependentUpon>FrmClienteAlta.cs</DependentUpon>
+    </Compile>
+    <EmbeddedResource Include="Vistas\FrmPrincipal.resx">
       <DependentUpon>FrmPrincipal.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
@@ -71,7 +86,11 @@
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
     </Compile>
+    <EmbeddedResource Include="Vistas\Soporte\Cliente\FrmClienteAlta.resx">
+      <DependentUpon>FrmClienteAlta.cs</DependentUpon>
+    </EmbeddedResource>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -85,8 +104,6 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Datos\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
