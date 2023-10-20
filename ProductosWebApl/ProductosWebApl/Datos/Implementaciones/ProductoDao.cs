@@ -18,7 +18,7 @@ namespace ProductosWebApl.Datos.Implementaciones
             List<Parametro> lst = new List<Parametro>()
             {
                 new Parametro("@cod", oProducto.Codigo),
-                new Parametro("@nom", oProducto.Precio),
+                new Parametro("@nom", oProducto.Nombre),
                 new Parametro("@pre", oProducto.Precio)
             };
             int x = HelperBD.Getinstancia().EjecutarSql("sp_actualizar_producto", lst);
@@ -31,7 +31,7 @@ namespace ProductosWebApl.Datos.Implementaciones
             {
                new Parametro("@cod", id)
             };
-            int x = HelperBD.Getinstancia().EjecutarSql("sp_actualizar_producto", lst);
+            int x = HelperBD.Getinstancia().EjecutarSql("sp_borrar_producto", lst);
             return x;
         }
         public int IngProductos(ProductoDTO oProducto)
@@ -67,7 +67,9 @@ namespace ProductosWebApl.Datos.Implementaciones
             ProductoDTO x = null;
             foreach (DataRow fila in tabla.Rows)
             {
-                x = new ProductoDTO(fila.ItemArray[1].ToString(), Convert.ToDouble( fila.ItemArray[1]));
+                string nombre = fila.ItemArray[1].ToString();
+                double precio = Convert.ToDouble(fila.ItemArray[2]);
+                x = new ProductoDTO(nombre, precio);
             }
             return x;
         }

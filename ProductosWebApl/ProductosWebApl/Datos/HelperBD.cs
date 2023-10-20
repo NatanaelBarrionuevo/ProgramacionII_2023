@@ -95,7 +95,8 @@ namespace ProductosWebApl.Datos
                 cnn.Open();
                 t = cnn.BeginTransaction();
                 SqlCommand cmd = new SqlCommand(sp, cnn, t);
-                cmd.CommandType = CommandType.Text;
+                cmd.CommandType = CommandType.StoredProcedure;
+
                 if (lst != null)
                 {
                     foreach (Parametro x in lst)
@@ -105,8 +106,11 @@ namespace ProductosWebApl.Datos
                 }
                 if (!string.IsNullOrEmpty(parameterOutput) && !string.IsNullOrWhiteSpace(parameterOutput))
                 {
-                    SqlParameter p = new SqlParameter(parameterOutput, SqlDbType.Int);
+                    SqlParameter p = new SqlParameter();
+                    p.ParameterName = parameterOutput;
+                    p.DbType = DbType.Int32;
                     p.Direction = ParameterDirection.Output;
+
                     cmd.Parameters.Add(p);
                     cmd.ExecuteNonQuery();
                     n = Convert.ToInt32(p.Value);
@@ -127,6 +131,7 @@ namespace ProductosWebApl.Datos
             {
                 if (cnn != null && cnn.State == ConnectionState.Open) { cnn.Close(); }
             }
+
             return n;
         }
 
@@ -136,30 +141,31 @@ namespace ProductosWebApl.Datos
             int n = 0;
             try
             {
-                cnn.Open();
-                t = cnn.BeginTransaction();
-                SqlCommand cmd = new SqlCommand(sp, cnn, t);
-                cmd.CommandType = CommandType.StoredProcedure;
+            cnn.Open();
+            t = cnn.BeginTransaction();
+            SqlCommand cmd = new SqlCommand(sp, cnn);//, t);
+            cmd.CommandType = CommandType.StoredProcedure;
 
-                if (lst != null)
+            if (lst != null)
+            {
+                foreach (Parametro x in lst)
                 {
-                    foreach (Parametro x in lst)
-                    {
-                        cmd.Parameters.AddWithValue(x.Nombre, x.Valor);
-                    }
+                    cmd.Parameters.AddWithValue(x.Nombre, x.Valor);
                 }
+            }
 
-                n = cmd.ExecuteNonQuery();
+            n = cmd.ExecuteNonQuery();
             }
             catch
             {
-                if (t != null) { t.Rollback(); }
-                n = 0;
+            if (t != null) { t.Rollback(); }
+            n = 0;
             }
             finally
             {
-                if (cnn != null && cnn.State == ConnectionState.Open) { cnn.Close(); }
+            if (cnn != null && cnn.State == ConnectionState.Open) { cnn.Close(); }
             }
+            
             return n;
         }
     }

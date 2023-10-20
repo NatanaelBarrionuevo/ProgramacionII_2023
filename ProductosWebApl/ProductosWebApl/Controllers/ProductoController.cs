@@ -89,7 +89,7 @@ namespace ProductosWebApl.Controllers
         private int ValidarDatos(Producto oProducto)
         {
             int x = 0;
-            if(oProducto.Codigo <= 0)
+            if (oProducto.Codigo <= 0)
             {
                 x = 1;
             }
@@ -143,11 +143,16 @@ namespace ProductosWebApl.Controllers
         [HttpDelete("{id}")]
         public IActionResult Delete(int id)
         {
-            if (servicio.EliminarProducto(id).Equals(1))
+            int x = servicio.EliminarProducto(id);
+            if (x == 1)
             {
                 return Ok("El producto nro  " + id + " fue eliminado correctamente.");
             }
-            return NotFound("No se encontro ningun prodcuto asociado con el idnetificador ingresado");
+            if (x == 0)
+            {
+                return BadRequest("El producto ya fue borrado");
+            }
+                return NotFound("No se encontro ningun prodcuto asociado con el idnetificador ingresado");
         }
     }
 }
