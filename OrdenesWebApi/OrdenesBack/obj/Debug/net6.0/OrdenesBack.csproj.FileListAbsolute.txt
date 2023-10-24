@@ -1,0 +1,12 @@
+C:\Users\vivib\Desktop\Repo_progII\TUP_PROGII2023\ParcialSln\OrdenesBack\bin\Debug\net6.0\OrdenesBack.deps.json
+C:\Users\vivib\Desktop\Repo_progII\TUP_PROGII2023\ParcialSln\OrdenesBack\bin\Debug\net6.0\OrdenesBack.dll
+C:\Users\vivib\Desktop\Repo_progII\TUP_PROGII2023\ParcialSln\OrdenesBack\bin\Debug\net6.0\OrdenesBack.pdb
+C:\Users\vivib\Desktop\Repo_progII\TUP_PROGII2023\ParcialSln\OrdenesBack\obj\Debug\net6.0\OrdenesBack.csproj.AssemblyReference.cache
+C:\Users\vivib\Desktop\Repo_progII\TUP_PROGII2023\ParcialSln\OrdenesBack\obj\Debug\net6.0\OrdenesBack.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\vivib\Desktop\Repo_progII\TUP_PROGII2023\ParcialSln\OrdenesBack\obj\Debug\net6.0\OrdenesBack.AssemblyInfoInputs.cache
+C:\Users\vivib\Desktop\Repo_progII\TUP_PROGII2023\ParcialSln\OrdenesBack\obj\Debug\net6.0\OrdenesBack.AssemblyInfo.cs
+C:\Users\vivib\Desktop\Repo_progII\TUP_PROGII2023\ParcialSln\OrdenesBack\obj\Debug\net6.0\OrdenesBack.csproj.CoreCompileInputs.cache
+C:\Users\vivib\Desktop\Repo_progII\TUP_PROGII2023\ParcialSln\OrdenesBack\obj\Debug\net6.0\OrdenesBack.dll
+C:\Users\vivib\Desktop\Repo_progII\TUP_PROGII2023\ParcialSln\OrdenesBack\obj\Debug\net6.0\refint\OrdenesBack.dll
+C:\Users\vivib\Desktop\Repo_progII\TUP_PROGII2023\ParcialSln\OrdenesBack\obj\Debug\net6.0\OrdenesBack.pdb
+C:\Users\vivib\Desktop\Repo_progII\TUP_PROGII2023\ParcialSln\OrdenesBack\obj\Debug\net6.0\ref\OrdenesBack.dll
