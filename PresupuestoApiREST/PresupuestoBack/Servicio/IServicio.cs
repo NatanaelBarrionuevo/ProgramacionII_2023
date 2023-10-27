@@ -1,4 +1,6 @@
-﻿using PresupuestosBack.Dominio;
+﻿using PresupuestoBack.Datos.DTOs;
+using PresupuestosBack.Datos;
+using PresupuestosBack.Dominio;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,8 +12,11 @@ namespace PresupuestoBack.Servicio
     public interface IServicio
     {
         List<Producto> ObtenerProductos();
-        bool AgregarPresupuesto(Presupuesto oPresupuesto);
-        bool ModificarPresupuesto(Presupuesto oPresupuesto);
+        List<Presupuesto> ObtenerPresupuestos();
+        List<PresupuestoDTO> ObtenerPresupuestos(List<Parametro> lst);
+        <PresupuestoDTO ObtenerDetalles(List<Parametro> lst);
+        bool AgregarPresupuesto(PresupuestoDTO oPresupuesto);
+        bool ModificarPresupuesto(PresupuestoDTO oPresupuesto);
         bool EliminarPresupuesto(int id);
     }
 }

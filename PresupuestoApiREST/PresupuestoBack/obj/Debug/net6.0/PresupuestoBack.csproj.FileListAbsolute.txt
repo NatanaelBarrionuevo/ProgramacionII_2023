@@ -1,0 +1,12 @@
+C:\Users\vivib\Desktop\Repo_progII\ProgramacionII_2023\PresupuestoApiREST\PresupuestoBack\obj\Debug\net6.0\PresupuestoBack.csproj.AssemblyReference.cache
+C:\Users\vivib\Desktop\Repo_progII\ProgramacionII_2023\PresupuestoApiREST\PresupuestoBack\obj\Debug\net6.0\PresupuestoBack.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\vivib\Desktop\Repo_progII\ProgramacionII_2023\PresupuestoApiREST\PresupuestoBack\obj\Debug\net6.0\PresupuestoBack.AssemblyInfoInputs.cache
+C:\Users\vivib\Desktop\Repo_progII\ProgramacionII_2023\PresupuestoApiREST\PresupuestoBack\obj\Debug\net6.0\PresupuestoBack.AssemblyInfo.cs
+C:\Users\vivib\Desktop\Repo_progII\ProgramacionII_2023\PresupuestoApiREST\PresupuestoBack\obj\Debug\net6.0\PresupuestoBack.csproj.CoreCompileInputs.cache
+C:\Users\vivib\Desktop\Repo_progII\ProgramacionII_2023\PresupuestoApiREST\PresupuestoBack\bin\Debug\net6.0\PresupuestoBack.deps.json
+C:\Users\vivib\Desktop\Repo_progII\ProgramacionII_2023\PresupuestoApiREST\PresupuestoBack\bin\Debug\net6.0\PresupuestoBack.dll
+C:\Users\vivib\Desktop\Repo_progII\ProgramacionII_2023\PresupuestoApiREST\PresupuestoBack\bin\Debug\net6.0\PresupuestoBack.pdb
+C:\Users\vivib\Desktop\Repo_progII\ProgramacionII_2023\PresupuestoApiREST\PresupuestoBack\obj\Debug\net6.0\PresupuestoBack.dll
+C:\Users\vivib\Desktop\Repo_progII\ProgramacionII_2023\PresupuestoApiREST\PresupuestoBack\obj\Debug\net6.0\refint\PresupuestoBack.dll
+C:\Users\vivib\Desktop\Repo_progII\ProgramacionII_2023\PresupuestoApiREST\PresupuestoBack\obj\Debug\net6.0\PresupuestoBack.pdb
+C:\Users\vivib\Desktop\Repo_progII\ProgramacionII_2023\PresupuestoApiREST\PresupuestoBack\obj\Debug\net6.0\ref\PresupuestoBack.dll

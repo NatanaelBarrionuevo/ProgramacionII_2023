@@ -11,37 +11,48 @@ namespace PresupuestosBack.Datos
 
         private HelperDB()
         {
-            cnn = new SqlConnection(Properties.GetIntancia().ToString());
+            cnn = new SqlConnection(@"Data Source=LAPTOP-FC0TODPF\SQLEXPRESS;Initial Catalog=carpinteria_db;Integrated Security=True");
+
         }
 
         public static HelperDB ObtenerInstancia()
         {
             if (instancia == null)
+            {
                 instancia = new HelperDB();
+            }
             return instancia;
         }
         public DataTable ConsultaSQL(string spNombre, List<Parametro> values)
         {
             DataTable tabla = new DataTable();
-
-            cnn.Open();
-            SqlCommand cmd = new SqlCommand(spNombre, cnn);
-            cmd.CommandType = CommandType.StoredProcedure;
-            if (values != null)
+            try
             {
-                foreach (Parametro oParametro in values)
+                cnn.Open();
+                SqlCommand cmd = new SqlCommand(spNombre, cnn);
+                cmd.CommandType = CommandType.StoredProcedure;
+                if (values != null)
                 {
-                    cmd.Parameters.AddWithValue(oParametro.Clave, oParametro.Valor);
+                    foreach (Parametro oParametro in values)
+                    {
+                        cmd.Parameters.AddWithValue(oParametro.Clave, oParametro.Valor);
+                    }
+                }
+                tabla.Load(cmd.ExecuteReader());
+            }
+            catch (Exception)
+            {
+                tabla = null;
+            }
+            finally
+            {
+                if (cnn != null && cnn.State == ConnectionState.Open)
+                {
+                    cnn.Close();
                 }
             }
-            tabla.Load(cmd.ExecuteReader());
-            cnn.Close();
-
             return tabla;
         }
-
-
-
         public int EjecutarSQL(string strSql, List<Parametro> values)
         {
             int afectadas = 0;
@@ -156,6 +167,6 @@ namespace PresupuestosBack.Datos
 
             return ok;
         }
-   
+
     }
 }

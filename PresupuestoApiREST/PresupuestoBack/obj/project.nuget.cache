@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "etsHfxaIaZaLmBIf4XufPcx4DmdFwUOhbfzwyzBjSuKJUBiQ7tgulBJf3b7M5K/pEqGguX168HbadsRBh/jkfA==",
+  "dgSpecHash": "r8OVILKC1CcQ+hW9avxJgpxsE7gnSrI0gXiFZvNisfVnKmK/Kw+g9f8zSB9pYDwZHAS5ow5fuJCi9JpLkSeC+g==",
   "success": true,
-  "projectFilePath": "C:\\Users\\vivib\\source\\repos\\PresupuestoApiREST\\PresupuestoBack\\PresupuestoBack.csproj",
+  "projectFilePath": "C:\\Users\\vivib\\Desktop\\Repo_progII\\ProgramacionII_2023\\PresupuestoApiREST\\PresupuestoBack\\CarpinteriaBack.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\vivib\\.nuget\\packages\\microsoft.netcore.platforms\\3.1.0\\microsoft.netcore.platforms.3.1.0.nupkg.sha512",
     "C:\\Users\\vivib\\.nuget\\packages\\microsoft.win32.registry\\4.7.0\\microsoft.win32.registry.4.7.0.nupkg.sha512",

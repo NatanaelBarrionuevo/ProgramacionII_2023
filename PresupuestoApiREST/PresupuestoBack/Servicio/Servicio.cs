@@ -1,5 +1,8 @@
-﻿using PresupuestoBack.Datos.Implementaciones;
+﻿using CarpinteriaBack.Datos.DTOs;
+using PresupuestoBack.Datos.DTOs;
+using PresupuestoBack.Datos.Implementaciones;
 using PresupuestoBack.Datos.Interfaz;
+using PresupuestosBack.Datos;
 using PresupuestosBack.Dominio;
 using System;
 using System.Collections.Generic;
@@ -19,15 +22,15 @@ namespace PresupuestoBack.Servicio
         }
         public List<Producto> ObtenerProductos()
         {
-            return dao.GetAll();
+            return dao.GetAllProductos();
         }
 
-        public bool AgregarPresupuesto(Presupuesto oPresupuesto)
+        public bool AgregarPresupuesto(PresupuestoDTO oPresupuesto)
         {
             return dao.InsertarPresupuesto(oPresupuesto);
         }
 
-        public bool ModificarPresupuesto(Presupuesto oPresupuesto)
+        public bool ModificarPresupuesto(PresupuestoDTO oPresupuesto)
         {
             return dao.ActualizarPresupuesto(oPresupuesto);
         }
@@ -37,6 +40,19 @@ namespace PresupuestoBack.Servicio
             return dao.EliminarPresupuesto(id);
         }
 
-        
+        public List<Presupuesto> ObtenerPresupuestos()
+        {
+            throw new NotImplementedException();
+        }
+
+        public List<PresupuestoDTO> ObtenerPresupuestos(List<Parametro> lst)
+        {
+            return dao.GetPresupuesto(lst);
+        }
+
+        public PresupuestoDTO ObtenerDetalles(List<Parametro> lst)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\vivib\\source\\repos\\PresupuestoApiREST\\PresupuestoBack\\PresupuestoBack.csproj": {}
+    "C:\\Users\\vivib\\Desktop\\Repo_progII\\ProgramacionII_2023\\PresupuestoApiREST\\PresupuestoBack\\PresupuestoBack.csproj": {}
   },
   "projects": {
-    "C:\\Users\\vivib\\source\\repos\\PresupuestoApiREST\\PresupuestoBack\\PresupuestoBack.csproj": {
+    "C:\\Users\\vivib\\Desktop\\Repo_progII\\ProgramacionII_2023\\PresupuestoApiREST\\PresupuestoBack\\PresupuestoBack.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\vivib\\source\\repos\\PresupuestoApiREST\\PresupuestoBack\\PresupuestoBack.csproj",
+        "projectUniqueName": "C:\\Users\\vivib\\Desktop\\Repo_progII\\ProgramacionII_2023\\PresupuestoApiREST\\PresupuestoBack\\PresupuestoBack.csproj",
         "projectName": "PresupuestoBack",
-        "projectPath": "C:\\Users\\vivib\\source\\repos\\PresupuestoApiREST\\PresupuestoBack\\PresupuestoBack.csproj",
+        "projectPath": "C:\\Users\\vivib\\Desktop\\Repo_progII\\ProgramacionII_2023\\PresupuestoApiREST\\PresupuestoBack\\PresupuestoBack.csproj",
         "packagesPath": "C:\\Users\\vivib\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\vivib\\source\\repos\\PresupuestoApiREST\\PresupuestoBack\\obj\\",
+        "outputPath": "C:\\Users\\vivib\\Desktop\\Repo_progII\\ProgramacionII_2023\\PresupuestoApiREST\\PresupuestoBack\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\vivib\\AppData\\Roaming\\NuGet\\NuGet.Config",
